@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 
 var temp = "Francisco";
+var temp2 = "Ali";
+var temp3 = "Louis";
 
 function App() {
   return (
