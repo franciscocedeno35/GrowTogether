@@ -1,0 +1,25 @@
+#divFoot {
+    display: flex;
+    justify-content: space-around;
+    background-color: #383838;
+}
+
+#divFoot > button {
+    padding: 1px 20px;
+    text-align: center;
+    color: #54F5FF;
+    font-size: 15px;
+}
+
+#divFoot2 {
+    display: flex;
+    justify-content: space-around;
+    background-color: #383838;
+}
+
+#divFoot2 > button {
+    padding: 1px 20px;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+}
