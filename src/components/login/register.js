@@ -34,10 +34,8 @@ const Register = () => {
 
 						<button className="center-block" type="submit">
 							Create account
-						</button>
-
-						<hr id='first-line'/>
-
+						</button>					
+						
 						<div className="login-container">
 							Have an account? <a href="#"> Log in</a>
 						</div>
