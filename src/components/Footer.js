@@ -1,17 +1,10 @@
 import Button from "./Button";
 import "./Footer.css";
-import React from 'react';   
-import ReactDOM from 'react-dom';   
 
-function Footer(props) {
-  
-    const myLists = props.myLists;  
-    const listItems = myLists.map((myList) =>  
-        <li>{myList}</li>  
-  ); 
-    
+function Footer() {
   return (
     <footer>
+        <hr></hr>
         <div id="divFoot" >
             <Button id="arts" text="Arts"/>
             <Button id="comics" text='Comics & Illustration'/>
@@ -22,11 +15,43 @@ function Footer(props) {
             <Button id="music" text="Arts & Craft"/>
             <Button id="publishing" text="Publishing"/>
         </div>
-        <div id="about">
-            <h2>Rendering Lists inside component</h2>  
-              <ul>{listItems}</ul>  
+        <div id="additionalInfo">
+            <section>
+                <h2>ABOUT</h2>
+                <div className="infoLists">
+                    <ul><Button id="aboutUs" text='About Us'/></ul>
+                    <ul><Button id="charter" text='Our Charter'/></ul>
+                    <ul><Button id="stats" text='Stats'/></ul>
+                    <ul><Button id="press" text="Press"/></ul>
+                    <ul><Button id="jobs" text="Jobs"/></ul>
+                </div>
+                    
+            </section>
+            <section>
+                <h2>Support</h2>
+                <div className="infoLists">
+                    <ul><Button id="help" text='Help Center'/></ul>
+                    <ul><Button id="aboutUs" text='About Us'/></ul>
+                    <ul><Button id="charter" text='Our Charter'/></ul>
+                    <ul><Button id="stats" text='Stats'/></ul>
+                    <ul><Button id="press" text="Press"/></ul>
+                    <ul><Button id="jobs" text="Jobs"/></ul>
+                </div>
+            </section>
+            <section>
+                <h2>More From GrowTogether</h2>
+                <div className="infoLists">
+                    <ul><Button id="news" text='Newsletters'/></ul>
+                    <ul><Button id="updates" text='GrowTogether Project Updates'/></ul>
+                    <ul><Button id="create" text='The Creative Independent'/></ul>
+                    <ul><Button id="apps" text='Mobile Apps'/></ul>
+                    <ul><Button id="research" text='Research'/></ul>
+                </div>
+            </section>
         </div>
-        <div id="divFoot2" >
+        <h1 id = 'h1Foot'>GrowTogether</h1>
+        <hr></hr>
+        <div id="divFoot2" > 
             <Button id="trust" text="Trust & Safety"/>
             <Button id="terms" text='Terms of Use'/>
             <Button id="privacy" text='Privacy Policy'/>
@@ -39,10 +64,5 @@ function Footer(props) {
     </footer>
     
   )
-}
-const myLists = ['Peter', 'Sachin', 'Kevin', 'Dhoni', 'Alisa'];   
-ReactDOM.render(  
-  <Footer myLists={myLists} />,  
-  document.getElementById('app')  
-);  
+} 
 export default Footer

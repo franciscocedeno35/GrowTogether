@@ -11,6 +11,34 @@
     font-size: 15px;
 }
 
+#additionalInfo {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #383838;
+    color: white;
+}
+
+.infoLists{
+    font-size: 1px;
+}
+
+ul > button{
+    border: none;
+    color: white;
+}
+
+#h1Foot{
+    display: inline-block;
+    margin: 15px 150px 20px;
+    color: #54FFAD;
+    background-color: #383838;
+}
+
+hr{
+    border-top: 3px solid #8B8B8B;
+    margin: 15px 40px 50px;
+}
+
 #divFoot2 {
     display: flex;
     justify-content: space-around;
@@ -22,4 +50,5 @@
     text-align: center;
     color: white;
     font-size: 15px;
+    margin-bottom: 40px;
 }

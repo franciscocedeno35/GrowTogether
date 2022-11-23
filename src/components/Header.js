@@ -7,10 +7,11 @@ function Header() {
      <div id="divHead" >
         <Button id="discover" text="Discover"/>
         <Button id="start" text='Start A Project'/>
-        <h1 id="h1">GrowTogether</h1>
+        <h1 id="h1Head">GrowTogether</h1>
         <Button id="search" text='Search'/>
         <Button id="logIn" text='Log In'/>
       </div>
+      <hr></hr>
     </header>
     //<header style={{ justify: "center", flex: "row" }}className='header'>
      /*<div>
