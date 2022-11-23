@@ -7,8 +7,6 @@ import  Register  from "./components/login/register"
 import { useState } from 'react';
 
 
-
-
 const App = () => {
 	return (
 		<Router>
@@ -34,5 +32,7 @@ const App = () => {
 		</Router>
 	);
 };
+
+
 
 export default App;
