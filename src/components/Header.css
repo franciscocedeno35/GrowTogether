@@ -1,0 +1,16 @@
+#divHead {
+    display: flex;
+    justify-content: space-around;
+    background-color: #383838;
+}
+
+#divHead > button {
+    padding: 1px 20px;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+}
+
+#h1Head{
+    color: #54FFAD;
+}

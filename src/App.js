@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 var temp = "Francisco";
 var temp2 = "Ali";
@@ -7,9 +9,11 @@ var temp3 = "Louis";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div>
+      <header>
+        <Header />
+        <Footer />
+        {/*<img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload. {temp}
         </p>
@@ -20,7 +24,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
+        </a>*/}
       </header>
     </div>
   );
