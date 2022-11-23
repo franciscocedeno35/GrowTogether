@@ -5,31 +5,39 @@ import Login from "./components/login/login"
 import Home from './components/login/home-page';
 import  Register  from "./components/login/register"
 import { useState } from 'react';
+import Header from './components/Header-Footer/Header';
+import Footer from './components/Header-Footer/Footer';
 
 
 const App = () => {
-	return (
-		<Router>
-			<ul>
-				<li>
-					<Link to="/">Home-Page</Link>
-				</li>
+  return (
+		<div>
+			<header>
+				<Header />
 
-				<li>
-					<Link to="/login">Login</Link>
-				</li>
+				<Router>
+					<ul>
+						<li>
+							<Link to="/">Home-Page</Link>
+						</li>
+						<li>
+							<Link to="/login">Login</Link>
+						</li>
 
-				<li>
-					<Link to="/register">Register</Link>
-				</li>
+						<li>
+							<Link to="/register">Register</Link>
+						</li>
+					</ul>
+					<Routes>
+						<Route path="/login" element={<Login />} />
 
-			</ul>
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
-			</Routes>
-		</Router>
+						<Route path="/" element={<Home />} />
+						<Route path="/register" element={<Register />} />
+					</Routes>
+				</Router>
+				<Footer />
+			</header>
+		</div>
 	);
 };
 

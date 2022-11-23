@@ -8,9 +8,9 @@ const Login = () => {
 	
 		return (
 			<div className="body">
-				<h2>Login</h2>
+				<h2 className='login-register-header'>Login</h2>
 
-				<form action="./App.js" method="post">
+				<form className='login-register-form' action="./App.js" method="post">
 					<div className="container">
 						<input
 							className="center-block"
@@ -28,10 +28,10 @@ const Login = () => {
 						/>
 
 						<div className="psw">
-							Forgot your <a href="#"> password?</a>
+							Forgot your <a className='login-link' href="#"> password?</a>
 						</div>
 
-						<button className="center-block" type="submit">
+						<button  className="center-block login-register-button" type="submit">
 							Login
 						</button>
 						<div className="remember-me">

@@ -6,9 +6,9 @@ const Register = () => {
 	
 		return (
 			<div className="body">
-				<h2>Sign up</h2>
+				<h2 className="login-register-header">Sign up</h2>
 
-				<form action="./App.js" method="post">
+				<form className="login-register-form" action="./App.js" method="post">
 					<div className="container">
 						<input
 							className="center-block"
@@ -32,15 +32,15 @@ const Register = () => {
 							required
 						/>
 
-						<button className="center-block" type="submit">
+						<button
+							className="center-block login-register-button"
+							type="submit">
 							Create account
-						</button>					
-						
+						</button>
+
 						<div className="login-container">
 							Have an account? <a href="#"> Log in</a>
 						</div>
-
-						
 					</div>
 				</form>
 			</div>
