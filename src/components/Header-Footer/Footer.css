@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-around;
     background-color: #383838;
+    margin-top: 20px;
 }
 
 #divFoot > button {
@@ -9,6 +10,7 @@
     text-align: center;
     color: #54F5FF;
     font-size: 15px;
+     border: none;
 }
 
 #additionalInfo {
@@ -25,6 +27,7 @@
 ul > button{
     border: none;
     color: white;
+    
 }
 
 #h1Foot{
@@ -51,4 +54,5 @@ hr{
     color: white;
     font-size: 15px;
     margin-bottom: 40px;
+    border: none;
 }

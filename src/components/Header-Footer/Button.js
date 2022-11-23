@@ -3,4 +3,4 @@ const Button = ({ text }) => {
   className='btn'>{text}</button>
 }
 
-export default Button
+export default Button;
