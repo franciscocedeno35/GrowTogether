@@ -4,6 +4,7 @@ import Button from "./Button";
 function Footer() {
   return (
 		<footer>
+			<hr></hr>
 			<div id="divFoot">
 				<Button id="arts" text="Arts" />
 				<Button id="comics" text="Comics & Illustration" />
@@ -14,7 +15,6 @@ function Footer() {
 				<Button id="music" text="Arts & Craft" />
 				<Button id="publishing" text="Publishing" />
 			</div>
-			<hr></hr>
 			<div id="additionalInfo">
 				<section>
 					<h2>ABOUT</h2>
