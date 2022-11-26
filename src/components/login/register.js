@@ -39,7 +39,10 @@ const Register = () => {
 						</button>
 
 						<div className="login-container">
-							Have an account? <a href="#"> Log in</a>
+							Have an account?{' '}
+							<a className="login-link" href="/login">
+								Login
+							</a>
 						</div>
 					</div>
 				</form>

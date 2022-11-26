@@ -1,3 +1,8 @@
+Footer{
+    margin-top: 120px;
+}
+
+
 #divFoot {
     display: flex;
     justify-content: space-around;
