@@ -6,7 +6,7 @@ const Login = () =>
 
 	
 	return (
-		<div className="body">
+		<div className="login-register-body">
 			<h2 className="login-register-header">Login</h2>
 
 			<form className="login-register-form" action="./App.js" method="post">

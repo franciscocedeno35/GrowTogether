@@ -8,6 +8,7 @@ import Register from "./components/login/register";
 import CreateProject from './components/Pages/Create-Project';
 import Discover from './components/Pages/Discover';
 import Search from './components/Pages/Search';
+import Project from './components/Pages/Project';
 
 
 
@@ -44,6 +45,7 @@ const App = () => {
 						<Route path="/discover" element={<Discover />} />
 						<Route path="/search" element={<Search />} />
 						<Route path="/create-project" element={<CreateProject />} />
+						<Route path="/project" element={<Project />} />
 					</Routes>
 				</div>
 				<Footer />
