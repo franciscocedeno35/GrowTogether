@@ -1,5 +1,5 @@
 import React from 'react';
-import './Discover.css';
+import './publicCampaign.css';
 
 const PublicCampaign = () => {
   return (
