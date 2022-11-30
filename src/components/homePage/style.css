@@ -134,12 +134,11 @@ a:hover {
 	color: #54ffad;
 }
 
-.featured-project{
+.featured-project {
 	position: relative;
 	color: lightgray;
 	font-weight: bold;
-	margin-bottom: 0;	
-
+	margin-bottom: 0;
 }
 /* 
 slider section */
@@ -152,28 +151,22 @@ slider section */
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 200px;
-	
-
 }
 
 .slider .slides {
-		
 }
 
 .slider .slides .item {
 	position: relative;
 	display: none;
 	height: 600px;
- width: 800px;
- /* overflow: hidden; */
-
+	width: 800px;
+	/* overflow: hidden; */
 }
 .slider .slides .item img {
-	
 	border-radius: 40px;
 	width: 100%;
 	cursor: pointer;
-	
 }
 .slider .slides .item span {
 	position: relative;
@@ -181,10 +174,8 @@ slider section */
 	font-size: 1.5em;
 	color: lightgray;
 	left: 20px;
-
-	
 }
-.slider .slides .item .project-caption-header{
+.slider .slides .item .project-caption-header {
 	font-weight: bold;
 }
 
@@ -195,7 +186,6 @@ slider section */
 	bottom: 30px;
 	left: 40px;
 	z-index: 1;
-	
 }
 
 .slider .icon-buttons .icons {
@@ -203,11 +193,16 @@ slider section */
 	margin-right: 5px;
 	cursor: pointer;
 	display: flex;
-	
-
-	
 }
 
 .slider .icon-buttons .icons:hover {
 	color: #54ffad;
+}
+
+.item {
+	position: relative;
+	display: none;
+	height: 600px;
+	width: 800px;
+	/* overflow: hidden; */
 }
