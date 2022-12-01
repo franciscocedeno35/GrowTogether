@@ -8,9 +8,8 @@ import Register from "./components/homePage/3.register";
 import CreateProject from './components/Pages/Create-Project';
 import Discover from './components/Pages/Discover';
 import Project from './components/Pages/Project';
+import Overview from './components/Pages/Accounts/Campaign/Overview';
 import Search from './components/Pages/Search';
-
-
 
 const App = () => {
   return (
@@ -46,7 +45,8 @@ const App = () => {
 						<Route path="/search" element={<Search />} />
 						<Route path="/create-project" element={<CreateProject />} />
 						<Route path="/project" element={<Project />} />
-						<Route path="/test" element={<test />} />
+  				</Routes>
+					<Route path="/test" element={<test />} />
 					</Routes>
 				</div>
 				<Footer />
