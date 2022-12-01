@@ -7,13 +7,13 @@ import Login from "./components/homePage/2.login";
 import Register from "./components/homePage/3.register";
 import CreateProject from './components/Pages/Create-Project';
 import Discover from './components/Pages/Discover';
-import Project from './components/Pages/Project';
+import PublicCampaign from './components/Pages/PublicCampaign';
 import Search from './components/Pages/Search';
 
 
 
 const App = () => {
-  return (
+	return (
 		<Router>
 			<header className="header">
 				<div className="App">
@@ -45,7 +45,7 @@ const App = () => {
 						<Route path="/discover" element={<Discover />} />
 						<Route path="/search" element={<Search />} />
 						<Route path="/create-project" element={<CreateProject />} />
-						<Route path="/project" element={<Project />} />
+						<Route path="/project" element={<PublicCampaign />} />
 						<Route path="/test" element={<test />} />
 					</Routes>
 				</div>

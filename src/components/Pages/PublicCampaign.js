@@ -1,11 +1,14 @@
-import React from 'react';
-import './Project.css';
+import { React, useState } from 'react';
+import './PublicCampaign.css';
 
-const Project = () => {
+const PublicCampaign = () => {
+	const [campaignInfo, setcampaignInfo] = useState({
+		title: "meow"
+	})
 	return (
-		<div className="Project-test-css">
-			<h1>Project Test Successful</h1>
+		<div className="PublicCampaign-test-css">
+			<h1>{campaignInfo.title}</h1>
 		</div>
 	);
 };
-export default Project;
+export default PublicCampaign;
