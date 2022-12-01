@@ -9,6 +9,7 @@ import CreateProject from './components/Pages/Create-Project';
 import Discover from './components/Pages/Discover';
 import Search from './components/Pages/Search';
 import Project from './components/Pages/Project';
+import Overview from './components/Pages/Accounts/Campaign/Overview';
 
 
 
@@ -38,6 +39,9 @@ const App = () => {
 
 					<hr></hr>
 
+					<Overview />
+					{/*
+
 					<Routes>
 						<Route path="/login" element={<Login />} />
 						<Route path="/" element={<Home />} />
@@ -46,7 +50,7 @@ const App = () => {
 						<Route path="/search" element={<Search />} />
 						<Route path="/create-project" element={<CreateProject />} />
 						<Route path="/project" element={<Project />} />
-					</Routes>
+  </Routes>*/}
 				</div>
 				<Footer />
 			</header>
