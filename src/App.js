@@ -39,9 +39,6 @@ const App = () => {
 
 					<hr></hr>
 
-					<Overview />
-					{/*
-
 					<Routes>
 						<Route path="/login" element={<Login />} />
 						<Route path="/" element={<Home />} />
@@ -50,7 +47,7 @@ const App = () => {
 						<Route path="/search" element={<Search />} />
 						<Route path="/create-project" element={<CreateProject />} />
 						<Route path="/project" element={<Project />} />
-  </Routes>*/}
+  					</Routes>
 				</div>
 				<Footer />
 			</header>
