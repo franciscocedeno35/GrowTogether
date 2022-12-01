@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './components/Footer/Footer';
-import Home from './components/login/home-page';
-import Login from "./components/login/login";
-import Register from "./components/login/register";
+import Home from './components/homePage/1.home-page';
+import Login from "./components/homePage/2.login";
+import Register from "./components/homePage/3.register";
 import CreateProject from './components/Pages/Create-Project';
 import Discover from './components/Pages/Discover';
-import Search from './components/Pages/Search';
 import Project from './components/Pages/Project';
 import Overview from './components/Pages/Accounts/Campaign/Overview';
-
-
+import Search from './components/Pages/Search';
 
 const App = () => {
   return (
@@ -47,7 +45,9 @@ const App = () => {
 						<Route path="/search" element={<Search />} />
 						<Route path="/create-project" element={<CreateProject />} />
 						<Route path="/project" element={<Project />} />
-  					</Routes>
+  				</Routes>
+					<Route path="/test" element={<test />} />
+					</Routes>
 				</div>
 				<Footer />
 			</header>
