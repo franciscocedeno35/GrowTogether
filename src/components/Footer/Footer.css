@@ -36,8 +36,8 @@ ul > button{
 }
 
 #h1Foot{
-    display: inline-block;
-    margin: 15px 150px 20px;
+    text-align: left;
+    margin: 10px 200px;
     color: #54FFAD;
     background-color: #383838;
 }

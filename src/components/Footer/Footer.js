@@ -15,6 +15,7 @@ function Footer() {
 				<Button id="music" text="Arts & Craft" />
 				<Button id="publishing" text="Publishing" />
 			</div>
+			<hr></hr>
 			<div id="additionalInfo">
 				<section>
 					<h2>ABOUT</h2>
