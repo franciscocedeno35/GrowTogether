@@ -100,7 +100,7 @@ hr {
   left: 330px;
 }
 
-p {
+.rewardsSummary > p {
   margin: 20px;
 }
 
