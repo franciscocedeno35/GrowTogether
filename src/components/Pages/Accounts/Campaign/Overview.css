@@ -1,150 +1,150 @@
-.welcomer{
-    position: relative;
+.welcomer {
+  position: relative;
 }
 
-h1{
-    width: 100%;
-    text-align: center;
-    background-color: #383838;
-    margin-top: 10px;
-    color: white;
+.welcomer > h1 {
+  width: 100%;
+  text-align: center;
+  background-color: #383838;
+  margin-top: 10px;
+  color: white;
 }
 
-#settings{ 
-    position: absolute;
-    right: 100px;
-    margin: auto;
-    top: 10px;
-    background-color: #383838;
-    color:white;
-    border: none;
+#settings {
+  position: absolute;
+  right: 100px;
+  margin: auto;
+  top: 10px;
+  background-color: #383838;
+  color: white;
+  border: none;
 }
 
-hr{
-    border-top: 3px solid #8B8B8B;
-    margin: 15px ;
+hr {
+  border-top: 3px solid #8b8b8b;
+  margin: 15px;
 }
 
-#titles{
-    display: flex;
-    justify-content: space-around;
-    background-color: #383838;
-    color: white;
+#titles {
+  display: flex;
+  justify-content: space-around;
+  background-color: #383838;
+  color: white;
 }
 
-.a{
-    display: flex;
-    justify-content: space-around;
-    background-color: #383838;
-    color: white;
+.a {
+  display: flex;
+  justify-content: space-around;
+  background-color: #383838;
+  color: white;
 }
 
-#backed{
-    box-sizing: border-box;
-    width: 643px;
-    height: 1065px;
-    background: #3E3E3E;
-    border: 3px solid #8B8B8B;
-    border-radius: 15px;
+#backed {
+  box-sizing: border-box;
+  width: 643px;
+  height: 1065px;
+  background: #3e3e3e;
+  border: 3px solid #8b8b8b;
+  border-radius: 15px;
 }
 
-#present{
-    display: flex;
-    justify-content: left;
+#present {
+  display: flex;
+  justify-content: left;
 }
 
-#imgPresent{
-    width: 300.51px;
-    height: 169.04px;
-    margin: 20px 20px;
-    background: #D9D9D9;
+#imgPresent {
+  width: 300.51px;
+  height: 169.04px;
+  margin: 20px 20px;
+  background: #d9d9d9;
 }
 
-#info{
-    margin-top: 20px;
+#info {
+  margin-top: 20px;
 }
 
-#contribution{
-    position: relative;
-    top: 40px;
+#contribution {
+  position: relative;
+  top: 40px;
 }
 
-#rewardsPromised{
-    margin-left: 20px;
+#rewardsPromised {
+  margin-left: 20px;
 }
 
-.rewardsSummary{
-    width: 614px;
-    height: 245px;
-    margin: 20px 10px;
-    background: #4C4C4C;
-    border: 1px solid #8B8B8B;
-    border-radius: 15px;
+.rewardsSummary {
+  width: 614px;
+  height: 245px;
+  margin: 20px 10px;
+  background: #4c4c4c;
+  border: 1px solid #8b8b8b;
+  border-radius: 15px;
 }
 
-.rewardTitle{
-    position: relative;
+.rewardTitle {
+  position: relative;
 }
 
-.title{
-    width:100% ;
-    text-align: left;
-    margin: 20px;
-    left: 20px;
+.title {
+  width: 100%;
+  text-align: left;
+  margin: 20px;
+  left: 20px;
 }
 
-.price{
-    position: absolute;
-    margin: auto;
-    bottom: 0px;
-    left: 330px;
+.price {
+  position: absolute;
+  margin: auto;
+  bottom: 0px;
+  left: 330px;
 }
 
-p{
-    margin: 20px;
+p {
+  margin: 20px;
 }
 
-.delivery{
-    position: relative;
-    margin: 20px;
-    top: 100px;
+.delivery {
+  position: relative;
+  margin: 20px;
+  top: 100px;
 }
 
-#yourCampaigns{
-    box-sizing: border-box;
-    width: 436px;
-    height: 400px;
-    background: #3E3E3E;
-    border: 3px solid #8B8B8B;
-    border-radius: 15px;
+#yourCampaigns {
+  box-sizing: border-box;
+  width: 436px;
+  height: 400px;
+  background: #3e3e3e;
+  border: 3px solid #8b8b8b;
+  border-radius: 15px;
 }
 
-.campaign{
-    display: flex;
-    justify-content: left;
-    margin: 5px 7px;
-    width: 416px;
-    height: 92px;
-    background: #4D4D4D;
-    border: 3px solid #8B8B8B;
-    border-radius: 15px;
+.campaign {
+  display: flex;
+  justify-content: left;
+  margin: 5px 7px;
+  width: 416px;
+  height: 92px;
+  background: #4d4d4d;
+  border: 3px solid #8b8b8b;
+  border-radius: 15px;
 }
 
-.img{
-    width: 125px;
-    height: 70px;
-    margin: 5px 10px;
-    background: #D9D9D9;
+.img {
+  width: 125px;
+  height: 70px;
+  margin: 5px 10px;
+  background: #d9d9d9;
 }
 
-h4{
-    margin-top: 5px 10px 5px;
+h4 {
+  margin-top: 5px 10px 5px;
 }
 
-#add{
-    margin: auto;
-    top: 10px;
-    background-color: #4D4D4D;
-    color:white;
-    border: 3px solid #8B8B8B;
+#add {
+  margin: auto;
+  top: 10px;
+  background-color: #4d4d4d;
+  color: white;
+  border: 3px solid #8b8b8b;
 }
