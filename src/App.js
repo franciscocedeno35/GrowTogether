@@ -5,10 +5,10 @@ import Footer from './components/Footer/Footer';
 import Home from './components/homePage/1.home-page';
 import Login from "./components/homePage/2.login";
 import Register from "./components/homePage/3.register";
+import Overview from './components/Pages/Accounts/Campaign/Overview';
 import CreateProject from './components/Pages/Create-Project';
 import Discover from './components/Pages/Discover';
 import Project from './components/Pages/Project';
-import Overview from './components/Pages/Accounts/Campaign/Overview';
 import Search from './components/Pages/Search';
 
 const App = () => {
@@ -16,7 +16,6 @@ const App = () => {
 		<Router>
 			<header className="header">
 				<div className="App">
-					{/* <Header /> */}
 					<div id="divHead">
 						<Link exact ClassName="nav-link" to="/Discover">
 							Discover
@@ -45,8 +44,7 @@ const App = () => {
 						<Route path="/search" element={<Search />} />
 						<Route path="/create-project" element={<CreateProject />} />
 						<Route path="/project" element={<Project />} />
-  				</Routes>
-					<Route path="/test" element={<test />} />
+						<Route path="/test" element={<test />} />
 					</Routes>
 				</div>
 				<Footer />
