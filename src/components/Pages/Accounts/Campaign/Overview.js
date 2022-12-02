@@ -30,7 +30,10 @@ function Overview() {
                         <h3 class='price'>Reward Price: $###</h3>
                     </div>
                     <p id='summary1'>Summary</p>
-                    <text class='delivery' id='delivery1'>Delivery XX/XX/XXXX</text>
+                    <div class='rewardInfo'>
+                        <text class='delivery' id='delivery1'>Delivery XX/XX/XXXX</text>
+                        <text class='purchased' id='purchased1'>Purchased on XX/XX/XXXX</text>
+                    </div>
                 </div>
                 <div class='rewardsSummary' id='rewards2'>
                     <div class='rewardTitle' id='rewardTitle2'>
@@ -38,7 +41,10 @@ function Overview() {
                         <h3 class='price'>Reward Price: $###</h3>
                     </div>
                     <p id='summary2'>Summary</p>
-                    <text class='delivery' id='delivery2'>Delivery XX/XX/XXXX</text>
+                    <div class='rewardInfo'>
+                        <text class='delivery' id='delivery2'>Delivery XX/XX/XXXX</text>
+                        <text class='purchased' id='purchased2'>Purchased on XX/XX/XXXX</text>
+                    </div>
                 </div>
                 <div class='rewardsSummary' id='rewards3'>
                     <div class='rewardTitle' id='rewardTitle3'>
@@ -46,7 +52,10 @@ function Overview() {
                         <h3 class='price'>Reward Price: $###</h3>
                     </div>
                     <p id='summary3'>Summary</p>
-                    <text class='delivery' id='delivery3'>Delivery XX/XX/XXXX</text>
+                    <div class='rewardInfo'>
+                        <text class='delivery' id='delivery3'>Delivery XX/XX/XXXX</text>
+                        <text class='purchased' id='purchased3'>Purchased on XX/XX/XXXX</text>
+                    </div>
                 </div>
             </div>
             <div id='yourCampaigns'>

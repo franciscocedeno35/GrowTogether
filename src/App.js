@@ -47,7 +47,6 @@ const App = () => {
 						<Route path="/project" element={<Project />} />
   				</Routes>
 					<Route path="/test" element={<test />} />
-					</Routes>
 				</div>
 				<Footer />
 			</header>

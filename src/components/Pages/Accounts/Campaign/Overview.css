@@ -97,17 +97,28 @@ hr{
     position: absolute;
     margin: auto;
     bottom: 0px;
-    left: 330px;
+    right: 20px;
 }
 
 p{
     margin: 20px;
 }
 
+.rewardInfo{
+    position: relative;
+}
+
 .delivery{
     position: relative;
     margin: 20px;
     top: 100px;
+}
+
+.purchased{
+    position: absolute;
+    margin: auto;
+    top: 100px;
+    right: 20px;
 }
 
 #yourCampaigns{
