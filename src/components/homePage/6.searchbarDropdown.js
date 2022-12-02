@@ -31,7 +31,7 @@ const SearchbarDropdown = (props) => {
 							key={index}
 							onClick={(e) => {
 								e.preventDefault();
-								window.location.href = '/Project';
+								window.location.href = 'PublicCampaign/';
 							}}
 							className="list-group-item list-group-item-action">
 							{option}

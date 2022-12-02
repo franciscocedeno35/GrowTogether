@@ -43,7 +43,7 @@ const App = () => {
 						<Route path="/discover" element={<Discover />} />
 						<Route path="/search" element={<Search />} />
 						<Route path="/create-project" element={<CreateProject />} />
-						<Route path="/project" element={<PublicCampaign />} />
+						<Route path="/PublicCampaign" element={<PublicCampaign />} />
 						<Route path="/test" element={<test />} />
 					</Routes>
 				</div>

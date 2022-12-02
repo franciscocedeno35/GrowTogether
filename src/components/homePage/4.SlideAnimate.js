@@ -11,7 +11,7 @@ const SlideAnimate = ({image, title, description, creator, slideClass, slideId})
 					alt="slide1"
 					onClick={(e) => {
 						e.preventDefault();
-						window.location.href = '/Project';
+						window.location.href = 'PublicCampaign/';
 					}}
 				/>
 				<span>
