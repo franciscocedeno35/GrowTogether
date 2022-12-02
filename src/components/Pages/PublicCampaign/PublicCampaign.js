@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import "./PublicCampaign.css";
+import PublicReward from "./PublicReward";
 
 const PublicCampaign = () => {
   const [CI, setCI] = useState({
@@ -54,7 +55,9 @@ const PublicCampaign = () => {
         </div>
         <div className="rewards-container">
           <h1 className="title-section reward-title">Rewards</h1>
-          <div className="rewards-list"></div>
+          <div className="rewards-list">
+            <PublicReward />
+          </div>
         </div>
       </div>
     </div>
