@@ -1,3 +1,12 @@
-.test {
+.reward-container {
+  background-color: #404040;
+  border: 1px solid #c8c8c8;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.reward-container > * {
   color: white;
+  width: 100%;
+  text-align: left;
 }
