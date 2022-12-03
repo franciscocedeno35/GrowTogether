@@ -1,24 +1,30 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SlideAnimate from "./4.SlideAnimate";
 import { VscCircleLargeFilled } from "react-icons/vsc";
 import SearchbarDropdownn from "./6.searchbarDropdown";
 import "./style.css";
 
+let counter = 0;
+
 const Home = () => {
   const [slideIndex, setslideIndex] = useState(0);
 
-  // useEffect(() => {
-  setInterval(() => {
-    let test = slideIndex;
-    test++;
-    if (test == 3) {
-      test = 0;
-    }
-    setslideIndex(test);
-    setSlide(`slide${slideIndex}`, test);
-  }, 5000);
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // console.log(counter);
+      counter++;
+      if (counter == 3) {
+        counter = 0;
+      }
+      setslideIndex(counter);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    setSlide(`slide${slideIndex}`, slideIndex);
+  }, [slideIndex]);
 
   const [Featured, setFeatured] = useState([
     {
@@ -54,6 +60,7 @@ const Home = () => {
   ]);
 
   const setSlide = (input, index) => {
+    console.log(index);
     setslideIndex(index);
     for (let i = 0; i < Featured.length; i++) {
       let feature = Featured[i];
@@ -66,6 +73,7 @@ const Home = () => {
     }
     setFeatured(Featured);
     const meow = [Featured[0].class, Featured[1].class, Featured[2].class];
+    console.log(meow);
   };
 
   return (
