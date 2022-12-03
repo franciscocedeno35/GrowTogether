@@ -1,36 +1,37 @@
-
-a{
+a {
   color: white;
 }
 
 a:hover {
-	 color: #54FFAD;
+  color: #54ffad;
 }
 
 #divHead {
-    display: flex;
-    justify-content: space-around;
-    background-color: #383838;
-    margin: 0;
-    padding: 0;
-    
+  display: flex;
+  justify-content: space-around;
+  background-color: #383838;
+  margin: 0;
+  padding: 0;
 }
 
 #divHead :link {
-    padding: 1px 20px;
-    font-size: 15px;   
-    text-decoration: none;   
+  padding: 1px 20px;
+  font-size: 15px;
+  text-decoration: none;
 }
 :link {
   margin-top: 20px;
-  
 }
-#h1Head{
-    color: #54FFAD;
-    margin-top: 0;
+#h1Head {
+  color: #54ffad;
+  margin-top: 0;
 }
 
-hr{
-  border-top: 3px solid #8B8B8B;
+hr {
+  border-top: 3px solid #8b8b8b;
   margin: 15px 40px 50px;
+}
+
+* {
+  color: white;
 }

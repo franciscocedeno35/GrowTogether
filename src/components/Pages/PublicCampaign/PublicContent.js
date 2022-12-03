@@ -1,14 +1,47 @@
-import './PublicContent.css';
+import "./PublicContent.css";
+import PublicContentHeader from "./PublicContentTypes/PublicContentHeader";
+import PublicContentParagraph from "./PublicContentTypes/PublicContentParagraph";
+import PublicContentImage from "./PublicContentTypes/PublicContentImage";
+import PublicContentVideo from "./PublicContentTypes/PublicContentVideo";
 
-function PublicContent({ reward }) {
-  return (
-    <div className="reward-container">
-      <h1 className="test">Pledge ${reward.price.toLocaleString('en')}</h1>
-      <p>Delivery {reward.expectedDeliveryDate.toDateString()}</p>
-      <h5>{reward.name}</h5>
-      <p>{reward.description}</p>
-    </div>
-  );
+function PublicContent({ content }) {
+  switch (content.type) {
+    case "Header": {
+      return (
+        <div>
+          <PublicContentHeader content={content.content} />
+        </div>
+      );
+    }
+    case "Paragraph": {
+      return (
+        <div>
+          <PublicContentParagraph content={content.content} />
+        </div>
+      );
+    }
+    case "Image": {
+      return (
+        <div>
+          <PublicContentImage content={content.content} />
+        </div>
+      );
+    }
+    case "Video": {
+      return (
+        <div>
+          <PublicContentVideo content={content.content} />
+        </div>
+      );
+    }
+    default: {
+      return (
+        <div>
+          <PublicContentHeader content={content.content} />
+        </div>
+      );
+    }
+  }
 }
 
 export default PublicContent;
