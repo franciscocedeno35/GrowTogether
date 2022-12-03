@@ -54,6 +54,7 @@ const Home = () => {
   ]);
 
   const setSlide = (input, index) => {
+    setslideIndex(index);
     for (let i = 0; i < Featured.length; i++) {
       let feature = Featured[i];
       if (i == index) {
