@@ -14,7 +14,10 @@ const PublicCampaign = () => {
     backerNum: 123,
     daysToGo: 12,
     mainImageURL: "https://ksr-ugc.imgix.net/assets/039/310/556/38cb174b02dbc87b2aa0f37bff787eb1_original.png?ixlib=rb-4.0.2&crop=faces&w=1024&h=576&fit=crop&v=1669269851&auto=format&frame=1&q=92&s=9cc64e834dd12ba11a6e550f5381e1d0",
-    content: [],
+    content: [{
+      type: "Header",
+      content: "Shiiiit"
+    }],
     rewards: [{
       name: "Buy us boba tea",
       price: 8,
@@ -74,7 +77,11 @@ const PublicCampaign = () => {
       </div>
       <div className="bottom-section">
         <div className="content-section">
-          <h1 className="title-section">meow</h1>
+          {CampInfo.content.map((content) => {
+            return (
+              <PublicContent content={content} />
+            )
+          })}
         </div>
         <div className="rewards-section">
           <h1 className="title-section reward-title">Rewards</h1>
