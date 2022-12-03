@@ -8,10 +8,12 @@ const a = axios.create({
 /**
  * Requests something from the Backend
  * @param {String} endpoint
- * @param {{}} body
+ * @param {{}} params
  */
-export async function Get(endpoint, body) {
-  const result = await a.get(endpoint, body);
+export async function Get(endpoint, params) {
+  const result = await a.get(endpoint, {
+    params: params,
+  });
   return result.data;
 }
 

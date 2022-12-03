@@ -16,6 +16,7 @@ const Register = () => {
       password: password,
     })
       .then((result) => {
+        console.log(result);
         localStorage.setItem("userID", result);
         // make sure everyone knows we're signed in now.
         // redirect to homepage
