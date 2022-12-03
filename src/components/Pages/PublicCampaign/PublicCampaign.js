@@ -25,7 +25,7 @@ const PublicCampaign = () => {
   const [mainImage, setMainImage] = useState(null);
 
   useEffect(() => {
-    Get("/campaigns/638aad7387425dd86325e1ec", {}).then((result) => {
+    Get("/campaigns/638ae590d6312c2d2d8cc3f3", {}).then((result) => {
       const rewards = result.rewards;
       rewards.forEach((reward) => {
         reward.expectedDeliveryDate = new Date(reward.expectedDeliveryDate);
