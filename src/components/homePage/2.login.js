@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { Get } from "../../scripts";
 import "./style.css";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
 
@@ -20,6 +22,7 @@ const Login = () => {
         await console.log(localStorage.getItem("userID"));
         // make sure everyone knows we're signed in now.
         // redirect to homepage
+        navigate("/");
       })
       .catch((error) => {
         alert("something's wrong!");

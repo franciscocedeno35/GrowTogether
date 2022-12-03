@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { Post } from "../../scripts";
 import "./style.css";
 
@@ -9,6 +10,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
 
   const handleSignup = async () => {
+    const navigate = useNavigate;
     Post("/users/", {
       firstName: firstName,
       lastName: lastName,
@@ -20,6 +22,7 @@ const Register = () => {
         localStorage.setItem("userID", result);
         // make sure everyone knows we're signed in now.
         // redirect to homepage
+        navigate("/");
       })
       .catch((error) => {
         switch (error.response.status) {
