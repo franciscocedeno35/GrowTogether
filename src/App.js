@@ -8,7 +8,7 @@ import Register from "./components/homePage/3.register";
 import CreateProject from './components/Pages/Create-Project';
 import Discover from './components/Pages/Discover';
 import Project from './components/Pages/Project';
-import Overview from './components/Pages/Accounts/Campaign/Overview';
+import Overview from './components/Pages/Accounts/AccountOverview';
 import Search from './components/Pages/Search';
 
 const App = () => {
