@@ -9,7 +9,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSignup = async () => {
+  const handleSignup = async (onSuccess) => {
     const navigate = useNavigate;
     Post("/users/", {
       firstName: firstName,
@@ -22,6 +22,7 @@ const Register = () => {
         localStorage.setItem("userID", result);
         // make sure everyone knows we're signed in now.
         // redirect to homepage
+        onSuccess();
         navigate("/");
       })
       .catch((error) => {

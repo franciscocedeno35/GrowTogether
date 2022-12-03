@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
@@ -12,6 +12,42 @@ import PublicCampaign from "./components/Pages/PublicCampaign/PublicCampaign";
 import Search from "./components/Pages/Search";
 
 const App = () => {
+  const [loginSetting, setloginSetting] = useState({
+    path: "/login",
+    text: "Log In/Register",
+  });
+
+  useEffect(() => {
+    checkLoggedIn();
+  }, []);
+
+  const checkLoggedIn = () => {
+    const storedUSER = JSON.parse(localStorage.getItem("userID"));
+    console.log(storedUSER);
+    // if (storedUSER.userID) {
+    //   loginSetting = {
+    //     path: "/overview",
+    //     text: "Hello username",
+    //   };
+    // } else {
+    //   loginSetting = {
+    //     path: "/login",
+    //     text: "Log In/Register",
+    //   };
+    // }
+    if (storedUSER.userID) {
+      setloginSetting({
+        path: "/overview",
+        text: "Hello username",
+      });
+    } else {
+      setloginSetting({
+        path: "/login",
+        text: "Log In/Register",
+      });
+    }
+    console.log(loginSetting);
+  };
   return (
     <Router>
       <header className="header">
@@ -29,17 +65,24 @@ const App = () => {
             <Link className="nav-link" to="/Search">
               Search
             </Link>
-            <Link className="nav-link" to="/login">
-              Log In/Register
+            <Link className="nav-link" to={loginSetting.path}>
+              {loginSetting.text}
             </Link>
           </div>
 
           <hr></hr>
 
           <Routes>
-            <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
+            <Route
+              path="/login"
+              element={<Login onSuccess={checkLoggedIn} />}
+            />
+            <Route
+              path="/register"
+              element={<Register onSuccess={checkLoggedIn} />}
+            />
+            <Route path="/overview" element={<Overview />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/search" element={<Search />} />
             <Route path="/create-project" element={<CreateProject />} />
