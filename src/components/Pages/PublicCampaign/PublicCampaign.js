@@ -1,4 +1,5 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
+import { Get } from "../../../scripts";
 import "./PublicCampaign.css";
 import PublicContent from "./PublicContent";
 import PublicReward from "./PublicReward";
@@ -18,54 +19,27 @@ const PublicCampaign = () => {
       "https://ksr-ugc.imgix.net/assets/039/310/556/38cb174b02dbc87b2aa0f37bff787eb1_original.png?ixlib=rb-4.0.2&crop=faces&w=1024&h=576&fit=crop&v=1669269851&auto=format&frame=1&q=92&s=9cc64e834dd12ba11a6e550f5381e1d0",
     content: [
       {
-        type: "Header",
-        content: "I'm a header",
-      },
-      {
-        type: "Paragraph",
-        content: "I'm a paragraph",
-      },
-      {
-        type: "Image",
-        content: "I'm an Image",
-      },
-      {
-        type: "Video",
-        content: "I'm a video",
+        _id: 123,
+        type: "header",
+        content: "wazzap beijing",
       },
     ],
-    rewards: [
-      {
-        name: "Buy us boba tea",
-        price: 8,
-        description:
-          "One of the best ways you can spend 8 dollars on the internet. Thank you for supporting this new indie publisher!!!\n\nYou'll also receive updates on the project and access to the pledge manager.",
-        expectedDeliveryDate: new Date(12, 12, 2022),
-      },
-      {
-        name: "The Arts of War",
-        price: 59,
-        description:
-          "The base game with all 8 playable characters, each coming in their own jumbo tuck box.\n\nOver 100 pieces of art across over 500 components, from cards to tokens to even custom dice.",
-        expectedDeliveryDate: new Date(12, 12, 2022),
-      },
-      {
-        name: "Buy us boba tea",
-        price: 8,
-        description:
-          "One of the best ways you can spend 8 dollars on the internet. Thank you for supporting this new indie publisher!!!\n\nYou'll also receive updates on the project and access to the pledge manager.",
-        expectedDeliveryDate: new Date(12, 12, 2022),
-      },
-      {
-        name: "Buy us boba tea",
-        price: 8,
-        description:
-          "One of the best ways you can spend 8 dollars on the internet. Thank you for supporting this new indie publisher!!!\n\nYou'll also receive updates on the project and access to the pledge manager.",
-        expectedDeliveryDate: new Date(12, 12, 2022),
-      },
-    ],
+    rewards: [],
   });
-  console.log(CampInfo);
+
+  useEffect(() => {
+    Get("/campaigns/638aad7387425dd86325e1ec", {}).then((result) => {
+      const rewards = result.rewards;
+      rewards.forEach((reward) => {
+        reward.expectedDeliveryDate = new Date(reward.expectedDeliveryDate);
+      });
+      result.currentlyDonated = CampInfo.currentlyDonated;
+      result.backerNum = CampInfo.backerNum;
+      result.daysToGo = CampInfo.daysToGo;
+      setCampInfo(result);
+    });
+  }, []);
+
   return (
     <div>
       <div className="title-section">
@@ -102,16 +76,16 @@ const PublicCampaign = () => {
       </div>
       <div className="bottom-section">
         <div className="content-section">
-          {CampInfo.content.map((content) => {
-            return <PublicContent content={content} />;
-          })}
+          {CampInfo.content.map((content) => (
+            <PublicContent content={content} key={content._id} />
+          ))}
         </div>
         <div className="rewards-section">
           <h1 className="title-section reward-title">Rewards</h1>
           <div className="rewards-list">
-            {CampInfo.rewards.map((reward) => {
-              return <PublicReward reward={reward} />;
-            })}
+            {CampInfo.rewards.map((reward) => (
+              <PublicReward reward={reward} key={reward._id} />
+            ))}
           </div>
         </div>
       </div>
