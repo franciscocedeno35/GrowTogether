@@ -11,8 +11,16 @@ const a = axios.create({
  * @param {{}} body
  */
 export async function Get(endpoint, body) {
-  const result = await a.get(endpoint, {
-    data: body,
-  });
+  const result = await a.get(endpoint, body);
+  return result.data;
+}
+
+/**
+ * Requests something from the Backend
+ * @param {String} endpoint
+ * @param {{}} body
+ */
+export async function Post(endpoint, body) {
+  const result = await a.post(endpoint, body);
   return result.data;
 }
