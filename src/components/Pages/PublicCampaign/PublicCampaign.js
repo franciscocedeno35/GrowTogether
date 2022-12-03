@@ -3,6 +3,7 @@ import { Get } from "../../../scripts";
 import "./PublicCampaign.css";
 import PublicContent from "./PublicContent";
 import PublicReward from "./PublicReward";
+import { Buffer } from "buffer";
 
 const PublicCampaign = () => {
   const [CampInfo, setCampInfo] = useState({
@@ -17,15 +18,11 @@ const PublicCampaign = () => {
     daysToGo: 12,
     mainImageURL:
       "https://ksr-ugc.imgix.net/assets/039/310/556/38cb174b02dbc87b2aa0f37bff787eb1_original.png?ixlib=rb-4.0.2&crop=faces&w=1024&h=576&fit=crop&v=1669269851&auto=format&frame=1&q=92&s=9cc64e834dd12ba11a6e550f5381e1d0",
-    content: [
-      {
-        _id: 123,
-        type: "header",
-        content: "wazzap beijing",
-      },
-    ],
+    content: [],
     rewards: [],
   });
+
+  const [mainImage, setMainImage] = useState(null);
 
   useEffect(() => {
     Get("/campaigns/638aad7387425dd86325e1ec", {}).then((result) => {
@@ -37,6 +34,14 @@ const PublicCampaign = () => {
       result.backerNum = CampInfo.backerNum;
       result.daysToGo = CampInfo.daysToGo;
       setCampInfo(result);
+
+      Get(`/images/${result.mainImage}`).then((response) => {
+        console.log(response);
+        setMainImage(
+          "data:image/png;base64," +
+            Buffer.from(response.data).toString("base64")
+        );
+      });
     });
   }, []);
 
@@ -48,7 +53,16 @@ const PublicCampaign = () => {
       </div>
       <div className="intro-block">
         {/* <div className="intro-block-image"> */}
-        <img src={CampInfo.mainImageURL} />
+        <img
+          // src={
+          //   mainImage != null
+          //     ? "data:image/png;base64," +
+          //       btoa(String.fromCharCode.apply(null, mainImage.data))
+          //     : ""
+          // }
+          // alt="meow"
+          src={mainImage ? mainImage : ""}
+        />
         {/* </div> */}
         <div className="intro-stats">
           <hr />
