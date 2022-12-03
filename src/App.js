@@ -22,20 +22,9 @@ const App = () => {
   }, []);
 
   const checkLoggedIn = () => {
-    const storedUSER = JSON.parse(localStorage.getItem("userID"));
-    console.log(storedUSER);
-    // if (storedUSER.userID) {
-    //   loginSetting = {
-    //     path: "/overview",
-    //     text: "Hello username",
-    //   };
-    // } else {
-    //   loginSetting = {
-    //     path: "/login",
-    //     text: "Log In/Register",
-    //   };
-    // }
-    if (storedUSER.userID) {
+    let storedUSER = localStorage.getItem("userID");
+    if (storedUSER) {
+      storedUSER = JSON.parse(storedUSER);
       setloginSetting({
         path: "/overview",
         text: "Hello username",
@@ -46,8 +35,8 @@ const App = () => {
         text: "Log In/Register",
       });
     }
-    console.log(loginSetting);
   };
+
   return (
     <Router>
       <header className="header">
