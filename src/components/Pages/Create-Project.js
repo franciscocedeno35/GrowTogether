@@ -1,59 +1,54 @@
-import React from "react";
 import "./Create-Project.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { Get } from '../../scripts';
 
-const CreateProject = () => {
+
+
+
+function CreateProject() 
+{
+  
+  const [image, setImage] = useState('');
+  const [ loading, setLoading ] = useState( false );
+  
+  const uploadImage = async e =>
+  {
+    const files = e.target.files
+    const data = new FormData()
+    data.append( 'file', files[ 0 ] )
+    data.append( 'upload_preset', 'darwin' )
+    setLoading( true )
+    const res = await fetch(
+      'http://localhost:4000/image/upload',
+      {
+        method: 'POST',
+        body: data
+      }
+    
+    )
+    const file = await res.json()
+
+    setImage( file.secure_url )
+    setLoading(false)
+  }
+ 
   return (
     <div className="create-project">
-      <h2>CreateProject</h2>
+      <h1>Upload Image</h1>
+      <input type="file"
+        name="file"
+        placeholder="Upload an image"
+        onChange={uploadImage}
+      />
 
-      <form className="login-register-form" action="./App.js" method="post">
-        <div className="container">
-          <input
-            className="center-block"
-            type="text"
-            placeholder="Enter Username"
-            name="uname"
-            required
-          />
-          <input
-            className="center-block"
-            type="password"
-            placeholder="Enter Password"
-            name="psword"
-            required
-          />
+      {loading ? (
+        <h3>Loading...</h3>
+      ) : (
+        <img src={image} style={{ width: '300px' }} />
+      )}
 
-          <div className="psw">
-            Forgot your{" "}
-            <a className="login-link" href="#">
-              {" "}
-              password?
-            </a>
-          </div>
-
-          <button className="center-block login-register-button" type="submit">
-            Login
-          </button>
-          <div className="remember-me">
-            <label>
-              <input
-                type="checkbox"
-                className="remember"
-                name="remember"
-                defaultChecked={true}
-              />{" "}
-              Remember me
-            </label>
-          </div>
-        </div>
-      </form>
-      <div className="new-signup">
-        New to GrowTogether?{" "}
-        <a className="login-link" href="/register">
-          Register
-        </a>
-      </div>
     </div>
-  );
-};
+  )
+}
 export default CreateProject;
