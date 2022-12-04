@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Post } from "../../scripts";
 
-function CreateProject() {
+function CreateProject(props) {
   const navigate = useNavigate();
   const [userID, setUserID] = useState(localStorage.getItem("userID"));
   const [state, setState] = useState({
@@ -19,7 +19,7 @@ function CreateProject() {
 
   useEffect(() => {
     console.log(userID);
-    if (userID) {
+    if (!userID) {
       // then user is not logged in!!! they shouldn't ever be here!
       navigate("/Login");
     }
@@ -43,7 +43,35 @@ function CreateProject() {
       });
   };
 
-  const submitNewCampaign = async (e) => {};
+  const submitNewCampaign = async (e) => {
+    Post(`/campaigns/${userID}`, state)
+      .then((response) => {
+        console.log("Campaign successfully created! It returned:");
+        console.log(response);
+        // successfully created!
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        switch (error.response.status) {
+          case 428: {
+            alert("You provided invalid information, please try again");
+            break;
+          }
+          case 404: {
+            // Image Not Found
+            alert(
+              "We are having trouble finding your image, please try uploading it again"
+            );
+            break;
+          }
+          default: {
+            alert("There is an error with the server. Sorry");
+            break;
+          }
+        }
+      });
+  };
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
