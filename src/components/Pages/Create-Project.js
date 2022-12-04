@@ -1,8 +1,7 @@
 import "./Create-Project.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { Get, Post } from "../../scripts";
-import { Buffer } from "buffer";
+import { Post } from "../../scripts";
 
 function CreateProject() {
   const [state, setState] = useState({
@@ -11,7 +10,7 @@ function CreateProject() {
     description: "Default Description",
     goal: 1,
     duration: 1,
-    mainImage: "638ae54cd4f54a8e23b56c4e",
+    mainImage: "",
   });
   const [loading, setLoading] = useState(false);
   const [mainImage, setMainImage] = useState(null);

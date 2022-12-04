@@ -16,6 +16,9 @@ const App = () => {
     path: "/login",
     text: "Log In/Register",
   });
+  const [createProj, setCreateProj] = useState({
+    path: "/Create-Project",
+  });
 
   useEffect(() => {
     checkLoggedIn();
@@ -29,10 +32,16 @@ const App = () => {
         path: "/overview",
         text: "Hello username",
       });
+      setCreateProj({
+        path: "/Create-Project",
+      });
     } else {
       setloginSetting({
         path: "/login",
         text: "Log In/Register",
+      });
+      setCreateProj({
+        path: "/login",
       });
     }
   };
@@ -45,7 +54,7 @@ const App = () => {
             <Link className="nav-link" to="/Discover">
               Discover
             </Link>
-            <Link className="nav-link" to="/Create-Project">
+            <Link className="nav-link" to={createProj.path}>
               Start A Project
             </Link>
             <Link className="Logo" to="/">
