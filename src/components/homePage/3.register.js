@@ -3,14 +3,14 @@ import { useNavigate } from "react-router";
 import { Post } from "../../scripts";
 import "./style.css";
 
-const Register = () => {
+const Register = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSignup = async (onSuccess) => {
-    const navigate = useNavigate;
+  const handleSignup = async () => {
     Post("/users/", {
       firstName: firstName,
       lastName: lastName,
@@ -22,10 +22,11 @@ const Register = () => {
         localStorage.setItem("userID", result.userID);
         // make sure everyone knows we're signed in now.
         // redirect to homepage
-        onSuccess();
+        props.onSuccess();
         navigate("/");
       })
       .catch((error) => {
+        console.log(error);
         switch (error.response.status) {
           case 422: {
             // missing account information

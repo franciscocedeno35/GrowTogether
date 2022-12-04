@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { Get } from "../../scripts";
 import "./style.css";
 
-const Login = ({ onSuccess }) => {
+const Login = (props) => {
   const navigate = useNavigate();
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
@@ -22,11 +22,11 @@ const Login = ({ onSuccess }) => {
         await console.log(localStorage.getItem("userID"));
         // make sure everyone knows we're signed in now.
         // redirect to homepage
-        onSuccess();
+        props.onSuccess();
         navigate("/");
       })
       .catch((error) => {
-        alert("something's wrong!");
+        console.log(error);
         switch (error.response.status) {
           case 400: {
             // something
