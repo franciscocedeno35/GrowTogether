@@ -50,6 +50,12 @@ function Overview() {
     setOverviewInfo(info);
   };
 
+  const goToCampaignOverview = (campaign) => {
+    navigate(`/campaignOverview/${campaign._id}`, {
+      state: { campaign: campaign },
+    });
+  };
+
   return (
     <header>
       <div className="welcomer">
@@ -151,7 +157,14 @@ function Overview() {
         <div id="yourCampaigns">
           {overviewInfo.campaignsOwned.map((campaign, i) => {
             return (
-              <div className="campaign" id={"campaign" + (i + 1)} key={campaign._id}>
+              <div
+                className="campaign"
+                id={"campaign" + (i + 1)}
+                key={campaign._id}
+                onClick={() => {
+                  goToCampaignOverview(campaign);
+                }}
+              >
                 <img className="img" src={campaign.imageSrc ? campaign.imageSrc : ""} />
                 <div id="srcCamp1">
                   <h4>{campaign.title}</h4>

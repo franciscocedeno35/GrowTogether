@@ -6,6 +6,7 @@ import Home from "./components/homePage/1.home-page";
 import Login from "./components/homePage/2.login";
 import Register from "./components/homePage/3.register";
 import Overview from "./components/Pages/Accounts/Campaign/Overview";
+import CampaignOverview from "./components/Pages/CampaignOverview";
 import CreateProject from "./components/Pages/Create-Project";
 import Discover from "./components/Pages/Discover";
 import PublicCampaign from "./components/Pages/PublicCampaign/PublicCampaign";
@@ -76,6 +77,7 @@ const App = () => {
             <Route path="/login" element={<Login onSuccess={alterHeaderIfLoggedIn} />} />
             <Route path="/register" element={<Register onSuccess={alterHeaderIfLoggedIn} />} />
             <Route path="/overview" element={<Overview />} />
+            <Route path="/campaignOverview/:campaignID" element={<CampaignOverview />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/search" element={<Search />} />
             <Route path="/create-project" element={<CreateProject />} />
