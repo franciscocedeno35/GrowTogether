@@ -18,7 +18,7 @@ const Login = ({ onSuccess }) => {
     })
       .then(async (result) => {
         console.log(result);
-        await localStorage.setItem("userID", JSON.stringify(result));
+        await localStorage.setItem("userID", result.userID);
         await console.log(localStorage.getItem("userID"));
         // make sure everyone knows we're signed in now.
         // redirect to homepage

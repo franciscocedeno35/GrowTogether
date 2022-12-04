@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Post } from "../../scripts";
 
-function CreateProject({ checkLogin }) {
+function CreateProject() {
   const navigate = useNavigate();
+  const [userID, setUserID] = useState(localStorage.getItem("userID"));
   const [state, setState] = useState({
     title: "Default Title",
     subtitle: "Default SubTitle",
@@ -17,7 +18,8 @@ function CreateProject({ checkLogin }) {
   const [mainImage, setMainImage] = useState(null);
 
   useEffect(() => {
-    if (!checkLogin()) {
+    console.log(userID);
+    if (userID) {
       // then user is not logged in!!! they shouldn't ever be here!
       navigate("/Login");
     }

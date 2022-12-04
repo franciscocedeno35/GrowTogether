@@ -21,13 +21,12 @@ const App = () => {
   });
 
   useEffect(() => {
-    checkLoggedIn();
+    alterHeaderIfLoggedIn();
   }, []);
 
-  const checkLoggedIn = () => {
+  const alterHeaderIfLoggedIn = () => {
     let storedUSER = localStorage.getItem("userID");
     if (storedUSER) {
-      storedUSER = JSON.parse(storedUSER);
       setloginSetting({
         path: "/overview",
         text: "Hello username",
@@ -76,19 +75,16 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route
               path="/login"
-              element={<Login onSuccess={checkLoggedIn} />}
+              element={<Login onSuccess={alterHeaderIfLoggedIn} />}
             />
             <Route
               path="/register"
-              element={<Register onSuccess={checkLoggedIn} />}
+              element={<Register onSuccess={alterHeaderIfLoggedIn} />}
             />
             <Route path="/overview" element={<Overview />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/search" element={<Search />} />
-            <Route
-              path="/create-project"
-              element={<CreateProject checkLogin={checkLoggedIn} />}
-            />
+            <Route path="/create-project" element={<CreateProject />} />
             <Route path="/PublicCampaign" element={<PublicCampaign />} />
             <Route path="/test" element={<test />} />
           </Routes>
