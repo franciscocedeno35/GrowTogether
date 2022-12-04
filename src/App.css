@@ -32,6 +32,20 @@ hr {
   margin: 15px 40px 50px;
 }
 
-* {
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.white {
   color: white;
+}
+
+.black {
+  color: black;
 }
