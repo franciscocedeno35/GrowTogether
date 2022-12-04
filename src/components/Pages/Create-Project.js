@@ -60,9 +60,7 @@ function CreateProject(props) {
           }
           case 404: {
             // Image Not Found
-            alert(
-              "We are having trouble finding your image, please try uploading it again"
-            );
+            alert("We are having trouble finding your image, please try uploading it again");
             break;
           }
           default: {
@@ -80,42 +78,13 @@ function CreateProject(props) {
   return (
     <div className="create-project">
       <h1>Upload Image</h1>
-      {loading ? (
-        <h3>Loading...</h3>
-      ) : (
-        <img src={mainImage ? mainImage : ""} style={{ width: "300px" }} />
-      )}
+      {loading ? <h3>Loading...</h3> : <img src={mainImage ? mainImage : ""} style={{ width: "300px" }} />}
       <div className="flex-col">
-        <input
-          type="text"
-          value={state.title}
-          name="title"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          value={state.subtitle}
-          name="subtitle"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          value={state.description}
-          name="description"
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          value={state.goal}
-          name="goal"
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          value={state.duration}
-          name="duration"
-          onChange={handleChange}
-        />
+        <input type="text" value={state.title} name="title" onChange={handleChange} />
+        <input type="text" value={state.subtitle} name="subtitle" onChange={handleChange} />
+        <input type="text" value={state.description} name="description" onChange={handleChange} />
+        <input type="number" value={state.goal} name="goal" onChange={handleChange} />
+        <input type="number" value={state.duration} name="duration" onChange={handleChange} />
         <input type="file" onChange={uploadImage} />
         <button onClick={submitNewCampaign} style={{ color: "black" }}>
           {" "}

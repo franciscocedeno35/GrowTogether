@@ -73,14 +73,8 @@ const App = () => {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route
-              path="/login"
-              element={<Login onSuccess={alterHeaderIfLoggedIn} />}
-            />
-            <Route
-              path="/register"
-              element={<Register onSuccess={alterHeaderIfLoggedIn} />}
-            />
+            <Route path="/login" element={<Login onSuccess={alterHeaderIfLoggedIn} />} />
+            <Route path="/register" element={<Register onSuccess={alterHeaderIfLoggedIn} />} />
             <Route path="/overview" element={<Overview />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/search" element={<Search />} />
