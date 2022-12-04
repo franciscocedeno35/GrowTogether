@@ -32,6 +32,8 @@ hr {
   margin: 15px 40px 50px;
 }
 
-* {
-  color: white;
+.nav-link {
+color: white !important;
+
 }
+

@@ -7,25 +7,22 @@ import './style.css';
 const SlideBar = ({
 	image,
 	title,
-	description,
 	creator,
-	slideClass,
-	slideId,
+	cardSliderClass,
+	cardSliderId,
 }) => {
 	return (
-		<div className={slideClass} id={slideId}>
+		<div className={cardSliderClass} id={cardSliderId}>
 			<img
 				src={image}
-				alt="slide1"
+				alt="slidebar"
 				onClick={(e) => {
 					e.preventDefault();
 					window.location.href = 'PublicCampaign/';
 				}}
 			/>
-			<span>
-				<p className="project-caption-header">{title}</p>
-				{description}
-				<br></br>
+			<span className="project-card-header-creator">
+				<p className="project-card-header">{title}</p>
 				{creator}
 			</span>
 		</div>
