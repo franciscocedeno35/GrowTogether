@@ -35,6 +35,7 @@ const App = () => {
       setCreateProj({
         path: "/Create-Project",
       });
+      return true;
     } else {
       setloginSetting({
         path: "/login",
@@ -43,6 +44,7 @@ const App = () => {
       setCreateProj({
         path: "/login",
       });
+      return false;
     }
   };
 
@@ -83,7 +85,10 @@ const App = () => {
             <Route path="/overview" element={<Overview />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/create-project" element={<CreateProject />} />
+            <Route
+              path="/create-project"
+              element={<CreateProject checkLogin={checkLoggedIn} />}
+            />
             <Route path="/PublicCampaign" element={<PublicCampaign />} />
             <Route path="/test" element={<test />} />
           </Routes>

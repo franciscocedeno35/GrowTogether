@@ -1,9 +1,10 @@
 import "./Create-Project.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { Post } from "../../scripts";
 
-function CreateProject() {
+function CreateProject({ checkLogin }) {
+  const navigate = useNavigate();
   const [state, setState] = useState({
     title: "Default Title",
     subtitle: "Default SubTitle",
@@ -14,6 +15,13 @@ function CreateProject() {
   });
   const [loading, setLoading] = useState(false);
   const [mainImage, setMainImage] = useState(null);
+
+  useEffect(() => {
+    if (!checkLogin()) {
+      // then user is not logged in!!! they shouldn't ever be here!
+      navigate("/Login");
+    }
+  }, []);
 
   const uploadImage = (e) => {
     // console.log(e.target.files);
