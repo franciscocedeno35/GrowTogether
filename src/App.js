@@ -5,7 +5,11 @@ import Footer from "./components/Footer/Footer";
 import Home from "./components/homePage/1.home-page";
 import Login from "./components/homePage/2.login";
 import Register from "./components/homePage/3.register";
-import Overview from "./components/Pages/Accounts/Campaign/Overview";
+import AccountOverview from "./components/Pages/Accounts/AccountOverview";
+import EditCampaignSettings from "./components/Pages/CampaignEditing/EditCampaignSettings";
+import EditContent from "./components/Pages/CampaignEditing/EditContent";
+import EditRewards from "./components/Pages/CampaignEditing/EditRewards";
+import UnpublishedCampaignOverview from "./components/Pages/CampaignEditing/UnpublishedCampaignOverview";
 import CreateProject from "./components/Pages/Create-Project";
 import Discover from "./components/Pages/Discover";
 import PublicCampaign from "./components/Pages/PublicCampaign/PublicCampaign";
@@ -16,24 +20,34 @@ const App = () => {
     path: "/login",
     text: "Log In/Register",
   });
+  const [createProj, setCreateProj] = useState({
+    path: "/Create-Project",
+  });
 
   useEffect(() => {
-    checkLoggedIn();
+    alterHeaderIfLoggedIn();
   }, []);
 
-  const checkLoggedIn = () => {
+  const alterHeaderIfLoggedIn = () => {
     let storedUSER = localStorage.getItem("userID");
     if (storedUSER) {
-      storedUSER = JSON.parse(storedUSER);
       setloginSetting({
         path: "/overview",
         text: "Hello username",
       });
+      setCreateProj({
+        path: "/Create-Project",
+      });
+      return true;
     } else {
       setloginSetting({
         path: "/login",
         text: "Log In/Register",
       });
+      setCreateProj({
+        path: "/login",
+      });
+      return false;
     }
   };
 
@@ -45,7 +59,7 @@ const App = () => {
             <Link className="nav-link" to="/Discover">
               Discover
             </Link>
-            <Link className="nav-link" to="/Create-Project">
+            <Link className="nav-link" to={createProj.path}>
               Start A Project
             </Link>
             <Link className="Logo" to="/">
@@ -63,15 +77,13 @@ const App = () => {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route
-              path="/login"
-              element={<Login onSuccess={checkLoggedIn} />}
-            />
-            <Route
-              path="/register"
-              element={<Register onSuccess={checkLoggedIn} />}
-            />
-            <Route path="/overview" element={<Overview />} />
+            <Route path="/login" element={<Login onSuccess={alterHeaderIfLoggedIn} />} />
+            <Route path="/register" element={<Register onSuccess={alterHeaderIfLoggedIn} />} />
+            <Route path="/overview" element={<AccountOverview />} />
+            <Route path="/unpublishedCampaign/Overview/:campaignID" element={<UnpublishedCampaignOverview />} />
+            <Route path="/unpublishedCampaign/Settings/:campaignID" element={<EditCampaignSettings />} />
+            <Route path="/unpublishedCampaign/Content/:campaignID" element={<EditContent />} />
+            <Route path="/unpublishedCampaign/Rewards/:campaignID" element={<EditRewards />} />
             <Route path="/discover" element={<Discover />} />
             <Route path="/search" element={<Search />} />
             <Route path="/create-project" element={<CreateProject />} />
