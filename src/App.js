@@ -5,7 +5,7 @@ import Footer from "./components/Footer/Footer";
 import Home from "./components/homePage/1.home-page";
 import Login from "./components/homePage/2.login";
 import Register from "./components/homePage/3.register";
-import Overview from "./components/Pages/Accounts/Campaign/Overview";
+import AccountOverview from "./components/Pages/Accounts/AccountOverview";
 import EditCampaignSettings from "./components/Pages/CampaignEditing/EditCampaignSettings";
 import EditContent from "./components/Pages/CampaignEditing/EditContent";
 import EditRewards from "./components/Pages/CampaignEditing/EditRewards";
@@ -79,7 +79,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login onSuccess={alterHeaderIfLoggedIn} />} />
             <Route path="/register" element={<Register onSuccess={alterHeaderIfLoggedIn} />} />
-            <Route path="/overview" element={<Overview />} />
+            <Route path="/overview" element={<AccountOverview />} />
             <Route path="/unpublishedCampaign/Overview/:campaignID" element={<UnpublishedCampaignOverview />} />
             <Route path="/unpublishedCampaign/Settings/:campaignID" element={<EditCampaignSettings />} />
             <Route path="/unpublishedCampaign/Content/:campaignID" element={<EditContent />} />
