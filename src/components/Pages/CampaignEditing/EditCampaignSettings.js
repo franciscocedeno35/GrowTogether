@@ -44,7 +44,7 @@ const EditCampaignSettings = () => {
         return (
           <div key={settingKey}>
             <label>{settingKey}</label>
-            <input name={settingKey} onChange={handleChange} />;
+            <input name={settingKey} onChange={handleChange} defaultValue={settings[settingKey]} />;
           </div>
         );
       })}
