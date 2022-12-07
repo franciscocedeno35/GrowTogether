@@ -40,13 +40,12 @@ export async function GetImage(imageID) {
         resolve("data:image/png;base64," + Buffer.from(response.data.data).toString("base64"));
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         if (error.code == "404") {
           console.log("Cannot find image with that id");
         } else {
           console.log("Something's wrong with the database");
         }
-        reject(error);
       });
   });
 }
