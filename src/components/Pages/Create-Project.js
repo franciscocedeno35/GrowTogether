@@ -44,7 +44,7 @@ function CreateProject(props) {
   };
 
   const submitNewCampaign = async (e) => {
-    Post(`/campaigns/${userID}`, state)
+    Post(`/unpublishedCampaigns/${userID}`, state)
       .then((response) => {
         console.log("Campaign successfully created! It returned:");
         console.log(response);

@@ -11,7 +11,8 @@ function Overview() {
     username: "",
     password: "",
     donations: [],
-    campaignsOwned: [],
+    unpublishedCampaignsOwned: [],
+    publishedCampaignsOwned: [],
   });
   const navigate = useNavigate();
   useEffect(() => {
@@ -40,18 +41,18 @@ function Overview() {
   }, []);
 
   const retrieveCampaignImages = async (info) => {
-    for (let i = 0; i < info.campaignsOwned.length; i++) {
-      const campaign = info.campaignsOwned[i];
+    for (let i = 0; i < info.unpublishedCampaignsOwned.length; i++) {
+      const campaign = info.unpublishedCampaignsOwned[i];
       const imageSrc = await GetImage(campaign.mainImage);
       campaign.imageSrc = imageSrc;
-      info.campaignsOwned[i] = { ...campaign };
+      info.unpublishedCampaignsOwned[i] = { ...campaign };
     }
     console.log(info);
     setOverviewInfo(info);
   };
 
   const goToCampaignOverview = (campaign) => {
-    navigate(`/campaignOverview/${campaign._id}`, {
+    navigate(`/unpublishedCampaign/Overview/${campaign._id}`, {
       state: { campaign: campaign },
     });
   };
@@ -155,7 +156,7 @@ function Overview() {
           </p>
         </div> */}
         <div id="yourCampaigns">
-          {overviewInfo.campaignsOwned.map((campaign, i) => {
+          {overviewInfo.unpublishedCampaignsOwned.map((campaign, i) => {
             return (
               <div
                 className="campaign"
@@ -168,7 +169,25 @@ function Overview() {
                 <img className="img" src={campaign.imageSrc ? campaign.imageSrc : ""} />
                 <div id="srcCamp1">
                   <h4>{campaign.title}</h4>
-                  <p>{campaign.isPublished ? "Published" : "Unpublished"}</p>
+                  <p>Unpublished!</p>
+                </div>
+              </div>
+            );
+          })}
+          {overviewInfo.publishedCampaignsOwned.map((campaign, i) => {
+            return (
+              <div
+                className="campaign"
+                id={"campaign" + (i + 1)}
+                key={campaign._id}
+                onClick={() => {
+                  goToCampaignOverview(campaign);
+                }}
+              >
+                <img className="img" src={campaign.imageSrc ? campaign.imageSrc : ""} />
+                <div id="srcCamp1">
+                  <h4>{campaign.title}</h4>
+                  <p>Published!</p>
                 </div>
               </div>
             );

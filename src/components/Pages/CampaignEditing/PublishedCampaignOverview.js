@@ -1,9 +1,9 @@
-import "./CampaignOverview.css";
+import "./PublishedCampaignOverview.css";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { Get, Post } from "../../scripts";
 
-function CampaignOverview(props) {
+function PublishedCampaignOverview(props) {
   const location = useLocation();
   // const params = useParams();
   const navigate = useNavigate();
@@ -101,4 +101,4 @@ function CampaignOverview(props) {
     </div>
   );
 }
-export default CampaignOverview;
+export default PublishedCampaignOverview;
