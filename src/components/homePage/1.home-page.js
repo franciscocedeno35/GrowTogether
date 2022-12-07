@@ -2,7 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState, useEffect } from "react";
 import SlideAnimate from "./4.SlideAnimate";
 import { VscCircleLargeFilled } from "react-icons/vsc";
-import SearchbarDropdownn from "./6.searchbarDropdown";
+import SearchbarDropdownn from "./5.searchbarDropdown";
+import SlideBar from './6.SlideBar';
 import "./style.css";
 
 let counter = 0;
@@ -110,6 +111,9 @@ const Home = () => {
             />
           </div>
         </section>
+      </div>
+      <div className="slide-bar">
+        <SlideBar />
       </div>
     </div>
   );
