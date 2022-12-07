@@ -5,6 +5,12 @@ import { Get, Post } from "../../../scripts";
 import { Link } from "react-router-dom";
 
 function UnpublishedCampaignOverview(props) {
+  const canBePublished = {
+    get() {
+      console.log(campaign.content.length);
+      return campaign.content.length > 0;
+    },
+  };
   const location = useLocation();
   // const params = useParams();
   const navigate = useNavigate();
@@ -64,6 +70,8 @@ function UnpublishedCampaignOverview(props) {
         <Link to={"/unpublishedCampaign/Rewards/" + campaign._id} state={{ campaign: campaign }}>
           Rewards
         </Link>
+        <hr />
+        {canBePublished ? <button disabled>PUBLISH</button> : <button>PUBLISH</button>}
       </div>
     </div>
   );
