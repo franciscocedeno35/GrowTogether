@@ -10,7 +10,7 @@ const ValidContentTypes = {
   Video: true,
 };
 
-const ContentEditor = ({ data, saveEdit, cancelEdit }) => {
+const ContentEditor = ({ data, saveEdit, cancelEdit, insertEdit, deleteContent }) => {
   const [state, setState] = useState(data.content);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const ContentEditor = ({ data, saveEdit, cancelEdit }) => {
     }
     // do other checks
 
-    saveEdit(state, data.index);
+    data.isInsert ? insertEdit(state, data.index) : saveEdit(state, data.index);
   };
   // TODO: MAKE IT SO THEY CAN ONLY PUT IN THE RIGHT TYPES
   return (
@@ -43,13 +43,8 @@ const ContentEditor = ({ data, saveEdit, cancelEdit }) => {
         <input name="content" onChange={handleChange} type="text" defaultValue={state.content} />
       </div>
       <button onClick={trySave}>SAVE</button>
-      <button
-        onClick={() => {
-          cancelEdit();
-        }}
-      >
-        CANCEL
-      </button>
+      <button onClick={cancelEdit}>CANCEL</button>
+      {data.isInsert ? "" : <button onClick={deleteContent}>DELETE</button>}
     </div>
   );
 };
