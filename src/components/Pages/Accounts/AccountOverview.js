@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Get, GetImage } from "../../../../scripts";
+import { Get, GetImage } from "../../../scripts";
 import "./AccountOverview.css";
 
-function Overview() {
+function AccountOverview() {
   const [userID, setUserID] = useState(localStorage.getItem("userID"));
   const [overviewInfo, setOverviewInfo] = useState({
     firstname: "",
@@ -116,9 +116,14 @@ function Overview() {
                       <h3 className="price">Reward Price: ${reward.price.toLocaleString("en")}</h3>
                     </div>
                     <p id={"summary" + (i + 1)}>{reward.description}</p>
-                    <p className="delivery" id="delivery1">
-                      Delivery {reward.expectedDeliveryDate.toDateString()}
-                    </p>
+                    <div class="rewardInfo">
+                      <p className="delivery" id={"delivery" + (i + 1)}>
+                        Delivery {reward.expectedDeliveryDate.toDateString()}
+                      </p>
+                      <p className="purchased" id={"purchased" + (i + 1)}>
+                        Purchased on {donation.purchaseDate.toDateString()}
+                      </p>
+                    </div>
                   </div>
                 );
               })}
@@ -222,4 +227,4 @@ function Overview() {
   );
 }
 
-export default Overview;
+export default AccountOverview;
