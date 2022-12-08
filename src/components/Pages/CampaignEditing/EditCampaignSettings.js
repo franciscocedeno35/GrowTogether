@@ -42,7 +42,7 @@ const EditCampaignSettings = () => {
         console.log(newCampaign);
         // delete the old image from the db
         if (oldID != "638ae54cd4f54a8e23b56c4e") {
-          Delete("images/" + oldID, {});
+          await Delete("images/" + oldID, {});
         }
         // update campaign var
         setCampaign({ ...campaign });
@@ -60,8 +60,23 @@ const EditCampaignSettings = () => {
     }
   };
 
-  const deleteCampaign = () => {
+  const deleteCampaign = async () => {
     // do the thing
+    if (campaign.publishDate) {
+      alert("You cannot delete a published campaign! You're already committed!");
+      return;
+    } else {
+      const response = prompt("Are you sure?", "Yes");
+      if (response === "Yes") {
+        const oldImageID = campaign.mainImage;
+        await Delete(`/unpublishedCampaigns/${campaign._id}/${location.state.userID}`, {});
+        if (oldImageID != "638ae54cd4f54a8e23b56c4e") {
+          await Delete("images/" + oldImageID, {});
+        }
+        navigate("/overview", { state: { userID: location.state.userID } });
+      }
+      return;
+    }
   };
 
   return (

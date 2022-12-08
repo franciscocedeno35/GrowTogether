@@ -68,6 +68,16 @@ export async function Patch(endpoint, body) {
  * @param {{}} body
  */
 export async function Delete(endpoint, body) {
+  return new Promise((resolve, reject) => {
+    a.delete(endpoint, body)
+      .then((result) => {
+        resolve(result.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+  });
   const result = await a.delete(endpoint, body);
   return result.data;
 }
