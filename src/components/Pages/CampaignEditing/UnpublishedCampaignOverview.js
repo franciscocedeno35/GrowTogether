@@ -20,6 +20,7 @@ function UnpublishedCampaignOverview(props) {
     subtitle: "",
     description: "",
     mainImage: "",
+    imageSrc: "",
     owner: "",
     goal: 1,
     duration: 1,
@@ -59,6 +60,7 @@ function UnpublishedCampaignOverview(props) {
       <h1>{campaign.title}</h1>
       <h1>{campaign.subtitle}</h1>
       <p>{campaign.description}</p>
+      <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" />
       <hr />
       <div className="flex-row justify-space-around">
         <Link to={"/unpublishedCampaign/Settings/" + campaign._id} state={{ campaign: campaign }}>
