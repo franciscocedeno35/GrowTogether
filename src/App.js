@@ -32,7 +32,7 @@ const App = () => {
     let storedUSER = localStorage.getItem("userID");
     if (storedUSER) {
       setloginSetting({
-        path: "/overview",
+        path: "/accountOverview",
         text: "Hello username",
       });
       setCreateProj({
@@ -79,7 +79,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login onSuccess={alterHeaderIfLoggedIn} />} />
             <Route path="/register" element={<Register onSuccess={alterHeaderIfLoggedIn} />} />
-            <Route path="/overview" element={<AccountOverview />} />
+            <Route path="/accountOverview" element={<AccountOverview />} />
             <Route path="/unpublishedCampaign/Overview/:campaignID" element={<UnpublishedCampaignOverview />} />
             <Route path="/unpublishedCampaign/Settings/:campaignID" element={<EditCampaignSettings />} />
             <Route path="/unpublishedCampaign/Content/:campaignID" element={<EditContent />} />

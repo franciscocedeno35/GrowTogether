@@ -73,7 +73,7 @@ const EditCampaignSettings = () => {
         if (oldImageID != "638ae54cd4f54a8e23b56c4e") {
           await Delete("images/" + oldImageID, {});
         }
-        navigate("/overview", { state: { userID: location.state.userID } });
+        navigate("/accountOverview", { state: { userID: location.state.userID } });
       }
       return;
     }
