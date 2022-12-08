@@ -1,7 +1,7 @@
 import "./UnpublishedCampaignOverview.css";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
-import { Get, Post } from "../../../scripts";
+import { Get, GetImage, Post } from "../../../scripts";
 import { Link } from "react-router-dom";
 
 function UnpublishedCampaignOverview(props) {
@@ -44,7 +44,14 @@ function UnpublishedCampaignOverview(props) {
     } else {
       // we can assume state.campaign is present.
       const c = location.state.campaign;
-      setCampaign(location.state.campaign);
+      if (!c.imageSrc) {
+        GetImage(c.mainImage).then((id) => {
+          location.state.campaign.imageSrc = id;
+          setCampaign(location.state.campaign);
+        });
+      } else {
+        setCampaign(location.state.campaign);
+      }
     }
 
     // console.log(params);
