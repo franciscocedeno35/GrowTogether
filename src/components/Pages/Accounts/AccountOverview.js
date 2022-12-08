@@ -53,7 +53,7 @@ function AccountOverview() {
 
   const goToCampaignOverview = (campaign) => {
     navigate(`/unpublishedCampaign/Overview/${campaign._id}`, {
-      state: { campaign: campaign },
+      state: { campaign: campaign, userID: userID },
     });
   };
 

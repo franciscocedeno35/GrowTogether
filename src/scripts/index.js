@@ -12,19 +12,63 @@ const a = axios.create({
  * @param {{}} params
  */
 export async function Get(endpoint, params) {
-  const result = await a.get(endpoint, {
-    params: params,
+  return new Promise((resolve, reject) => {
+    a.get(endpoint, {
+      params: params,
+    })
+      .then((result) => {
+        resolve(result.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
   });
-  return result.data;
 }
 
 /**
- * Requests something from the Backend
+ * Posts something to the Backend
  * @param {String} endpoint
  * @param {{}} body
  */
 export async function Post(endpoint, body) {
-  const result = await a.post(endpoint, body);
+  return new Promise((resolve, reject) => {
+    a.post(endpoint, body)
+      .then((result) => {
+        resolve(result.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+  });
+}
+
+/**
+ * Patches something in the Backend
+ * @param {String} endpoint
+ * @param {{}} body
+ */
+export async function Patch(endpoint, body) {
+  return new Promise((resolve, reject) => {
+    a.patch(endpoint, body)
+      .then((result) => {
+        resolve(result.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+  });
+}
+
+/**
+ * Deletes something in the Backend
+ * @param {String} endpoint
+ * @param {{}} body
+ */
+export async function Delete(endpoint, body) {
+  const result = await a.delete(endpoint, body);
   return result.data;
 }
 
@@ -36,7 +80,6 @@ export async function GetImage(imageID) {
   return new Promise((resolve, reject) => {
     a.get(`/images/${imageID}`)
       .then((response) => {
-        console.log(response);
         resolve("data:image/png;base64," + Buffer.from(response.data.data).toString("base64"));
       })
       .catch((error) => {

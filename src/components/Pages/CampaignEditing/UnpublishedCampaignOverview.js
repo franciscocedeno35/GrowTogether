@@ -55,6 +55,10 @@ function UnpublishedCampaignOverview(props) {
     // }
   }, []);
 
+  const publishCampaign = () => {
+    // do the thing;
+  };
+
   return (
     <div className="campaign-overview white">
       <h1>{campaign.title}</h1>
@@ -63,17 +67,17 @@ function UnpublishedCampaignOverview(props) {
       <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" />
       <hr />
       <div className="flex-row justify-space-around">
-        <Link to={"/unpublishedCampaign/Settings/" + campaign._id} state={{ campaign: campaign }}>
+        <Link to={"/unpublishedCampaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
           Settings
         </Link>
-        <Link to={"/unpublishedCampaign/Content/" + campaign._id} state={{ campaign: campaign }}>
+        <Link to={"/unpublishedCampaign/Content/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
           Content
         </Link>
-        <Link to={"/unpublishedCampaign/Rewards/" + campaign._id} state={{ campaign: campaign }}>
+        <Link to={"/unpublishedCampaign/Rewards/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
           Rewards
         </Link>
         <hr />
-        {canBePublished ? <button disabled>PUBLISH</button> : <button>PUBLISH</button>}
+        {canBePublished ? <button disabled>PUBLISH</button> : <button onClick={publishCampaign}>PUBLISH</button>}
       </div>
     </div>
   );
