@@ -42,18 +42,25 @@ function AccountOverview() {
   }, []);
 
   const retrieveCampaignImages = async (info) => {
+    console.log(info);
     for (let i = 0; i < info.unpublishedCampaignsOwned.length; i++) {
       const campaign = info.unpublishedCampaignsOwned[i];
       const imageSrc = await GetImage(campaign.mainImage);
       campaign.imageSrc = imageSrc;
       info.unpublishedCampaignsOwned[i] = { ...campaign };
     }
+    for (let i = 0; i < info.publishedCampaignsOwned.length; i++) {
+      const campaign = info.publishedCampaignsOwned[i];
+      const imageSrc = await GetImage(campaign.mainImage);
+      campaign.imageSrc = imageSrc;
+      info.publishedCampaignsOwned[i] = { ...campaign };
+    }
     console.log(info);
     setOverviewInfo(info);
   };
 
   const goToCampaignOverview = (campaign) => {
-    navigate(`/unpublishedCampaign/Overview/${campaign._id}`, {
+    navigate(`/campaign/Overview/${campaign._id}`, {
       state: { campaign: campaign, userID: userID },
     });
   };

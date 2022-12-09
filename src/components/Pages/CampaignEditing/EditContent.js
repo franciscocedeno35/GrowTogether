@@ -67,25 +67,20 @@ const EditContent = () => {
   };
 
   const saveContents = async () => {
-    // PATCH to db with updated campaign.
-    if (campaign.publishDate) {
-      // TODO: publishing
-      // Patch("/publishedCampaigns/Content")
-    } else {
-      Patch(`/unpublishedCampaigns/content/${campaign._id}/${location.state.userID}`, { content: contents })
-        .then((updatedCampaign) => {
-          const newCampaign = { ...campaign, ...updatedCampaign };
-          newCampaign.content = updatedCampaign.content;
-          console.log(newCampaign);
-          setCampaign(newCampaign);
-          // make sure to update react location state before leaving!
-          navigate(`/unpublishedCampaign/Overview/` + updatedCampaign._id, { state: { ...location.state, campaign: newCampaign } });
-        })
-        .catch((error) => {
-          console.error(error);
-          console.alert(error.response.data.message);
-        });
-    }
+    const endPoint = (campaign.publishDate ? "" : "un") + "publishedCampaigns/content/" + campaign._id + "/" + location.state.userID;
+    Patch(endPoint, { content: contents })
+      .then((updatedCampaign) => {
+        const newCampaign = { ...campaign, ...updatedCampaign };
+        newCampaign.content = updatedCampaign.content;
+        console.log(newCampaign);
+        setCampaign(newCampaign);
+        // make sure to update react location state before leaving!
+        navigate(`/campaign/Overview/` + newCampaign._id, { state: { ...location.state, campaign: newCampaign } });
+      })
+      .catch((error) => {
+        console.error(error);
+        console.alert(error.response.data.message);
+      });
   };
 
   return (
@@ -125,7 +120,7 @@ const EditContent = () => {
         APPEND NEW
       </button>
       <button onClick={saveContents}>SAVE</button>
-      <Link to={"/unpublishedCampaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+      <Link to={"/campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
         CANCEL
       </Link>
       {showingEditor ? (

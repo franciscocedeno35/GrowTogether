@@ -28,50 +28,47 @@ const EditCampaignSettings = () => {
   const saveSettings = async () => {
     // if they uploaded a new image...
     console.log(campaign);
+    // setup endpoint and body
+    const endPoint = (campaign.publishDate ? "" : "un") + "publishedCampaigns/settings/" + campaign._id + "/" + location.state.userID;
+
+    const patchBody = {
+      title: campaign.title,
+      subtitle: campaign.subtitle,
+      description: campaign.description,
+    };
+    if (!campaign.publishDate) {
+      patchBody.goal = campaign.goal;
+      patchBody.duration = campaign.duration;
+    }
+    let response;
     if (campaign.image) {
       // store image to db
       const formData = new FormData();
       formData.append("image", campaign.image);
-      Post("/images", formData).then(async (newImageID) => {
-        // record old imageID for deletion
-        const oldID = campaign.mainImage;
-        // record given image id as the new mainImage.
-        campaign.mainImage = newImageID;
-        // PATCH campaign
-        const newCampaign = await Patch("unpublishedCampaigns/settings/" + campaign._id + "/" + location.state.userID, {
-          title: campaign.title,
-          subtitle: campaign.subtitle,
-          description: campaign.description,
-          mainImage: newImageID,
-          goal: campaign.goal,
-          duration: campaign.duration,
-        });
-        console.log(newCampaign);
-        // delete the old image from the db
-        if (oldID != "638ae54cd4f54a8e23b56c4e") {
-          await Delete("images/" + oldID, {});
-        }
-        // update campaign var
-        setCampaign({ ...campaign });
-        // return to overview
-        navigate("/unpublishedCampaign/Overview/" + campaign._id, { state: { campaign: campaign, userID: location.state.userID } });
-      });
+      const newImageID = await Post("/images", formData);
+      // record old imageID for deletion
+      const oldID = campaign.mainImage;
+      // record given image id as the new mainImage.
+      patchBody.mainImage = newImageID;
+      // PATCH campaign
+      const newCampaign = await Patch(endPoint, patchBody);
+      console.log(newCampaign);
+      setCampaign({ ...newCampaign });
+      response = newCampaign;
+      // delete the old image from the db
+      if (oldID != "638ae54cd4f54a8e23b56c4e") {
+        await Delete("images/" + oldID, {});
+      }
     } else {
       // if not ...
       // PATCH campaign
-      await Patch("unpublishedCampaigns/settings/" + campaign._id + "/" + location.state.userID, {
-        title: campaign.title,
-        subtitle: campaign.subtitle,
-        description: campaign.description,
-        mainImage: campaign.mainImage,
-        goal: campaign.goal,
-        duration: campaign.duration,
-      });
-      // update campaign var
-      setCampaign({ ...campaign });
-      // return to overview
-      navigate("/unpublishedCampaign/Overview/" + campaign._id, { state: { campaign: campaign, userID: location.state.userID } });
+      const newCampaign = await Patch(endPoint, patchBody);
+      console.log(newCampaign);
+      setCampaign({ ...newCampaign });
+      response = newCampaign;
     }
+    // return to overview
+    navigate("/campaign/Overview/" + campaign._id, { state: { campaign: response, userID: location.state.userID } });
   };
 
   const deleteCampaign = async () => {
@@ -113,15 +110,15 @@ const EditCampaignSettings = () => {
       </div>
       <div>
         <label>Goal</label>
-        <input name="goal" type="number" onChange={handleChange} defaultValue={campaign.goal} />;
+        <input name="goal" type="number" onChange={handleChange} defaultValue={campaign.goal} disabled={campaign.publishDate} />;
       </div>
       <div>
         <label>Duration In Days</label>
-        <input name="duration" type="number" onChange={handleChange} defaultValue={campaign.duration} />;
+        <input name="duration" type="number" onChange={handleChange} defaultValue={campaign.duration} disabled={campaign.publishDate} />;
       </div>
       <div>
         <button onClick={saveSettings}>SAVE</button>
-        <Link to={"/unpublishedCampaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+        <Link to={"/campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
           Back
         </Link>
       </div>

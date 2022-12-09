@@ -49,7 +49,7 @@ function CreateProject(props) {
         console.log("Campaign successfully created! It returned:");
         console.log(response);
         // successfully created!
-        navigate("/unpublishedCampaign/Overview/" + response._id, { state: { campaign: response, userID: userID } });
+        navigate("/campaign/Overview/" + response._id, { state: { campaign: response, userID: userID } });
       })
       .catch((error) => {
         console.log(error);
