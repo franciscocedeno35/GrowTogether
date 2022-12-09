@@ -7,7 +7,7 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
 
   const handleChange = (e) => {
     if (e.target.name == "expectedDeliveryDate") {
-      setState({ ...state, [e.target.name]: new Date(e.target.value) });
+      setState({ ...state, [e.target.name]: e.target.value });
     } else {
       setState({ ...state, [e.target.name]: e.target.value });
     }
@@ -40,7 +40,12 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
       </div>
       <div>
         <label>Expected Delivery Date</label>
-        <input name="expectedDeliveryDate" onChange={handleChange} type="date" defaultValue={state.expectedDeliveryDate.toLocaleDateString("en-CA")} />
+        <input
+          name="expectedDeliveryDate"
+          onChange={handleChange}
+          type="date"
+          defaultValue={new Date(state.expectedDeliveryDate).toLocaleDateString("en-CA")}
+        />
       </div>
       <button onClick={trySave}>SAVE</button>
       <button onClick={cancelEdit}>CANCEL</button>

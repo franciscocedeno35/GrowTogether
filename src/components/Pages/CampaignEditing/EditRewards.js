@@ -9,7 +9,7 @@ const emptyReward = {
   name: "Default Reward Name",
   price: 1,
   description: "Default Description",
-  expectedDeliveryDate: new Date(),
+  expectedDeliveryDate: new Date().toString(),
 };
 
 const EditRewards = () => {
@@ -25,8 +25,8 @@ const EditRewards = () => {
     setCampaign(c);
 
     const newRewards = [];
-    // this is to make it so newRewards is a different pointer than campaign.content
-    c.content.forEach((reward) => {
+    // this is to make it so newRewards is a different pointer than campaign.rewards
+    c.rewards.forEach((reward) => {
       newRewards.push(reward);
     });
 
@@ -89,7 +89,7 @@ const EditRewards = () => {
               </div>
               <div>
                 <label>Expected Delivery Date</label>
-                <h3>{reward.expectedDeliveryDate.toString()}</h3>
+                <h3>{new Date(reward.expectedDeliveryDate).toString()}</h3>
               </div>
               <button
                 onClick={() => {
