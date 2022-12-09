@@ -64,6 +64,10 @@ function AccountOverview() {
     });
   };
 
+  const goToCreateCampaign = () => {
+    navigate(`/create-project`);
+  };
+
   return (
     <header>
       <div className="welcomer">
@@ -228,7 +232,9 @@ function AccountOverview() {
             </div>
           </div> */}
           <div className="campaign" id="newCamp">
-            <button id="add">Add</button>
+            <button id="add" onClick={goToCreateCampaign}>
+              Add
+            </button>
           </div>
         </div>
       </div>
