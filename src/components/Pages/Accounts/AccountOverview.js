@@ -83,7 +83,7 @@ function AccountOverview() {
           Settings
         </button>
       </div>
-      <hr></hr>
+      <hr className="whiteLine"></hr>
       <div id="titles">
         <h2>Campaigns Backed:</h2>
         <h2>Your Campaigns:</h2>
@@ -193,7 +193,7 @@ function AccountOverview() {
               >
                 <img className="img" src={campaign.imageSrc ? campaign.imageSrc : ""} />
                 <div id="srcCamp1">
-                  <h4>{campaign.title}</h4>
+                  <h4 className="projectTitle">{campaign.title}</h4>
                   <p>Unpublished!</p>
                 </div>
               </div>
@@ -211,7 +211,7 @@ function AccountOverview() {
               >
                 <img className="img" src={campaign.imageSrc ? campaign.imageSrc : ""} />
                 <div id="srcCamp1">
-                  <h4>{campaign.title}</h4>
+                  <h4 className="projectTitle">{campaign.title}</h4>
                   <p>Published!</p>
                 </div>
               </div>
