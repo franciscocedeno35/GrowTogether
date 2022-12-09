@@ -38,7 +38,14 @@ const EditCampaignSettings = () => {
         // record given image id as the new mainImage.
         campaign.mainImage = newImageID;
         // PATCH campaign
-        const newCampaign = await Patch("unpublishedCampaigns/settings/" + campaign._id + "/" + location.state.userID, campaign);
+        const newCampaign = await Patch("unpublishedCampaigns/settings/" + campaign._id + "/" + location.state.userID, {
+          title: campaign.title,
+          subtitle: campaign.subtitle,
+          description: campaign.description,
+          mainImage: newImageID,
+          goal: campaign.goal,
+          duration: campaign.duration,
+        });
         console.log(newCampaign);
         // delete the old image from the db
         if (oldID != "638ae54cd4f54a8e23b56c4e") {
@@ -52,7 +59,14 @@ const EditCampaignSettings = () => {
     } else {
       // if not ...
       // PATCH campaign
-      await Patch("unpublishedCampaigns/settings/" + campaign._id + "/" + location.state.userID, campaign);
+      await Patch("unpublishedCampaigns/settings/" + campaign._id + "/" + location.state.userID, {
+        title: campaign.title,
+        subtitle: campaign.subtitle,
+        description: campaign.description,
+        mainImage: campaign.mainImage,
+        goal: campaign.goal,
+        duration: campaign.duration,
+      });
       // update campaign var
       setCampaign({ ...campaign });
       // return to overview
@@ -66,8 +80,7 @@ const EditCampaignSettings = () => {
       alert("You cannot delete a published campaign! You're already committed!");
       return;
     } else {
-      const response = prompt("Are you sure?", "Yes");
-      if (response === "Yes") {
+      if (window.confirm("Are you sure you want to delete this campaign?")) {
         const oldImageID = campaign.mainImage;
         await Delete(`/unpublishedCampaigns/${campaign._id}/${location.state.userID}`, {});
         if (oldImageID != "638ae54cd4f54a8e23b56c4e") {
