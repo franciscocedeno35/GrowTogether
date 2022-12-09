@@ -81,7 +81,7 @@ const App = () => {
             <Route path="/login" element={<Login onSuccess={alterHeaderIfLoggedIn} />} />
             <Route path="/register" element={<Register onSuccess={alterHeaderIfLoggedIn} />} />
             <Route path="/accountOverview" element={<AccountOverview />} />
-            <Route path="/accountOverview/Settings" element={<AccountSettings />} />
+            <Route path="/accountOverview/Settings" element={<AccountSettings onSuccess={alterHeaderIfLoggedIn} />} />
             <Route path="/unpublishedCampaign/Overview/:campaignID" element={<UnpublishedCampaignOverview />} />
             <Route path="/unpublishedCampaign/Settings/:campaignID" element={<EditCampaignSettings />} />
             <Route path="/unpublishedCampaign/Content/:campaignID" element={<EditContent />} />

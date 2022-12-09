@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { Patch } from "../../../scripts";
 
-function AccountSettings() {
+function AccountSettings({ onSuccess }) {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, setUser] = useState({ _id: "" });
@@ -18,14 +19,43 @@ function AccountSettings() {
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+    console.log(e.target.name + ": " + user[e.target.name] + " --> " + e.target.value);
   };
 
   const saveSettings = async () => {
-    // do the thing
+    // make sure every field is populated with something.
+    if (!(user.firstName && user.lastName && user.username && user.password)) {
+      alert("Please provide something for all settings!");
+    } else {
+      Patch(`/users/settings/${user._id}`, {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        password: user.password,
+      })
+        .then((newUserInfo) => {
+          // user has been saved.
+          console.log(newUserInfo);
+          setUser(newUserInfo);
+          navigate(`/accountOverview`, { state: { ...location.state, user: newUserInfo } });
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error.response.data.message);
+        });
+    }
   };
 
   const deleteAccount = async () => {
-    // do the thing
+    // make sure they don't have any donations or published campaigns
+    // TODO: implement donations and publishing
+    alert("Dude. Delete doesn't work yet.");
+  };
+
+  const signOut = async () => {
+    localStorage.removeItem("userID");
+    onSuccess();
+    navigate("/", { state: {} });
   };
 
   return (
@@ -44,12 +74,12 @@ function AccountSettings() {
       </div>
       <div>
         <label>Password</label>
-        <input name="oldPassword" type="password" onChange={handleChange} defaultValue={""} />;
+        <input name="password" type="text" onChange={handleChange} defaultValue={user ? user.password : ""} />;
       </div>
       <div>
         <button onClick={saveSettings}>SAVE</button>
         <Link to={"/accountOverview"} state={location.state}>
-          Back
+          CANCEL
         </Link>
       </div>
       {user && user.publishedCampaignsOwned && user.publishedCampaignsOwned.length > 0 ? (
@@ -57,6 +87,7 @@ function AccountSettings() {
       ) : (
         <button onClick={deleteAccount}>DELETE</button>
       )}
+      <button onClick={signOut}>SIGN OUT</button>
     </div>
   );
 }
