@@ -95,16 +95,16 @@ function CampaignOverview(props) {
       <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" />
       <hr />
       <div className="flex-row justify-space-around">
-        <Link to={"/campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
+        <Link to={"/Campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
           Settings
         </Link>
-        <Link to={"/campaign/Content/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
+        <Link to={"/Campaign/Content/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
           Content
         </Link>
         {isPublished() ? (
           ""
         ) : (
-          <Link to={"/campaign/Rewards/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
+          <Link to={"/Campaign/Rewards/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
             Rewards
           </Link>
         )}

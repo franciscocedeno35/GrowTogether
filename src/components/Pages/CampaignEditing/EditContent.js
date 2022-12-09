@@ -75,7 +75,7 @@ const EditContent = () => {
         console.log(newCampaign);
         setCampaign(newCampaign);
         // make sure to update react location state before leaving!
-        navigate(`/campaign/Overview/` + newCampaign._id, { state: { ...location.state, campaign: newCampaign } });
+        navigate(`/Campaign/Overview/` + newCampaign._id, { state: { ...location.state, campaign: newCampaign } });
       })
       .catch((error) => {
         console.error(error);
@@ -120,7 +120,7 @@ const EditContent = () => {
         APPEND NEW
       </button>
       <button onClick={saveContents}>SAVE</button>
-      <Link to={"/campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+      <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
         CANCEL
       </Link>
       {showingEditor ? (

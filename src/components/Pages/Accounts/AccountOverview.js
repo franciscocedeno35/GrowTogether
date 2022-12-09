@@ -60,19 +60,19 @@ function AccountOverview() {
   };
 
   const goToCampaignOverview = (campaign) => {
-    navigate(`/campaign/Overview/${campaign._id}`, {
+    navigate(`/Campaign/Overview/${campaign._id}`, {
       state: { campaign: campaign, userID: userID },
     });
   };
 
   const goToAccountOverview = () => {
-    navigate(`/accountOverview/Settings`, {
+    navigate(`/AccountOverview/Settings`, {
       state: { userID: userID, user: userInfoPlusOverviewInfo },
     });
   };
 
   const goToCreateCampaign = () => {
-    navigate(`/create-project`);
+    navigate(`/CreateProject`);
   };
 
   return (

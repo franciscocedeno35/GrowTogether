@@ -11,7 +11,7 @@ function AccountSettings({ onSuccess }) {
   useEffect(() => {
     if (!location.state || !location.state.user || !location.state.userID) {
       // did not receive the correct state.
-      navigate("/accountOverview", location.state);
+      navigate("/AccountOverview", location.state);
     } else {
       setUser({ ...location.state.user });
     }
@@ -37,7 +37,7 @@ function AccountSettings({ onSuccess }) {
           // user has been saved.
           console.log(newUserInfo);
           setUser(newUserInfo);
-          navigate(`/accountOverview`, { state: { ...location.state, user: newUserInfo } });
+          navigate(`/AccountOverview`, { state: { ...location.state, user: newUserInfo } });
         })
         .catch((error) => {
           console.error(error);
@@ -78,7 +78,7 @@ function AccountSettings({ onSuccess }) {
       </div>
       <div>
         <button onClick={saveSettings}>SAVE</button>
-        <Link to={"/accountOverview"} state={location.state}>
+        <Link to={"/AccountOverview"} state={location.state}>
           CANCEL
         </Link>
       </div>

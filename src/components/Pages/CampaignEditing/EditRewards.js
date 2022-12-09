@@ -76,7 +76,7 @@ const EditRewards = () => {
       })
         .then((updatedCampaign) => {
           console.log(updatedCampaign);
-          navigate(`/campaign/Overview/${campaign._id}`, {
+          navigate(`/Campaign/Overview/${campaign._id}`, {
             state: {
               ...location.state,
               campaign: { ...campaign, rewards: updatedCampaign.rewards },
@@ -132,7 +132,7 @@ const EditRewards = () => {
         CREATE NEW
       </button>
       <button onClick={saveRewards}>SAVE</button>
-      <Link to={"/campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+      <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
         Back
       </Link>
       {showingEditor ? <RewardEditor data={rewardToBeEdited} saveReward={saveEdit} cancelEdit={cancelEdit} deleteReward={deleteReward} /> : ""}

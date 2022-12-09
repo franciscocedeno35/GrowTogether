@@ -15,7 +15,7 @@ import Search from "./components/Pages/Search";
 
 const App = () => {
   const [loginSetting, setloginSetting] = useState({
-    path: "/login",
+    path: "/Login",
     text: "Log In/Register",
   });
   const [createProj, setCreateProj] = useState({
@@ -30,7 +30,7 @@ const App = () => {
     let storedUSER = localStorage.getItem("userID");
     if (storedUSER) {
       setloginSetting({
-        path: "/accountOverview",
+        path: "/AccountOverview",
         text: "Hello username",
       });
       setCreateProj({
@@ -39,11 +39,11 @@ const App = () => {
       return true;
     } else {
       setloginSetting({
-        path: "/login",
+        path: "/Login",
         text: "Log In/Register",
       });
       setCreateProj({
-        path: "/login",
+        path: "/Login",
       });
       return false;
     }
@@ -75,19 +75,19 @@ const App = () => {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login onSuccess={alterHeaderIfLoggedIn} />} />
-            <Route path="/register" element={<Register onSuccess={alterHeaderIfLoggedIn} />} />
-            <Route path="/accountOverview" element={<AccountOverview />} />
-            <Route path="/accountOverview/Settings" element={<AccountSettings onSuccess={alterHeaderIfLoggedIn} />} />
-            <Route path="/campaign/Overview/:campaignID" element={<CampaignOverview />} />
-            <Route path="/campaign/Settings/:campaignID" element={<EditCampaignSettings />} />
-            <Route path="/campaign/Content/:campaignID" element={<EditContent />} />
-            <Route path="/campaign/Rewards/:campaignID" element={<EditRewards />} />
-            <Route path="/discover" element={<Discover />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/create-project" element={<CreateProject />} />
-            <Route path="/PublicCampaign" element={<PublicCampaign />} />
-            <Route path="/test" element={<test />} />
+            <Route path="/Login" element={<Login onSuccess={alterHeaderIfLoggedIn} />} />
+            <Route path="/Register" element={<Register onSuccess={alterHeaderIfLoggedIn} />} />
+            <Route path="/AccountOverview" element={<AccountOverview />} />
+            <Route path="/AccountOverview/Settings" element={<AccountSettings onSuccess={alterHeaderIfLoggedIn} />} />
+            <Route path="/Campaign/Overview/:campaignID" element={<CampaignOverview />} />
+            <Route path="/Campaign/Settings/:campaignID" element={<EditCampaignSettings />} />
+            <Route path="/Campaign/Content/:campaignID" element={<EditContent />} />
+            <Route path="/Campaign/Rewards/:campaignID" element={<EditRewards />} />
+            <Route path="/Discover" element={<Discover />} />
+            <Route path="/Search" element={<Search />} />
+            <Route path="/CreateProject" element={<CreateProject />} />
+            <Route path="/Campaign" element={<Home />} />
+            <Route path="/Campaign/:campaignID" element={<PublicCampaign />} />
           </Routes>
         </div>
         <Footer />

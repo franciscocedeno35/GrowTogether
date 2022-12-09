@@ -68,7 +68,7 @@ const EditCampaignSettings = () => {
       response = newCampaign;
     }
     // return to overview
-    navigate("/campaign/Overview/" + campaign._id, { state: { campaign: response, userID: location.state.userID } });
+    navigate("/Campaign/Overview/" + campaign._id, { state: { campaign: response, userID: location.state.userID } });
   };
 
   const deleteCampaign = async () => {
@@ -83,7 +83,7 @@ const EditCampaignSettings = () => {
         if (oldImageID != "638ae54cd4f54a8e23b56c4e") {
           await Delete("images/" + oldImageID, {});
         }
-        navigate("/accountOverview", { state: { userID: location.state.userID } });
+        navigate("/AccountOverview", { state: { userID: location.state.userID } });
       }
       return;
     }
@@ -118,7 +118,7 @@ const EditCampaignSettings = () => {
       </div>
       <div>
         <button onClick={saveSettings}>SAVE</button>
-        <Link to={"/campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+        <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
           Back
         </Link>
       </div>
