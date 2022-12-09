@@ -78,8 +78,6 @@ export async function Delete(endpoint, body) {
         reject(error);
       });
   });
-  const result = await a.delete(endpoint, body);
-  return result.data;
 }
 
 /**
