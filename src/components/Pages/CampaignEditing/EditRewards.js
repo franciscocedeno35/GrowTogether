@@ -9,7 +9,7 @@ const emptyReward = {
   name: "Default Reward Name",
   price: 1,
   description: "Default Description",
-  expectedDeliveryDate: new Date(Date.now()).toString(),
+  expectedDeliveryDate: new Date(),
 };
 
 const EditRewards = () => {

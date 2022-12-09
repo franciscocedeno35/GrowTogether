@@ -18,14 +18,9 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
     const stateDate = new Date(state.expectedDeliveryDate);
     const today = new Date(Date.now());
     if (stateDate < today) {
-      alert("You must provide a valid date!");
+      alert("Your date must be after today!");
       return;
     }
-
-    // if (state.expectedDeliveryDate < new Date(Date.now()).toISOString()) {
-    //   alert("You must provide a valid date!");
-    //   return;
-    // }
     if (state.price <= 0) {
       alert("Price must be higher than 0");
       return;
@@ -51,13 +46,7 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
       </div>
       <div>
         <label>Expected Delivery Date</label>
-        <input
-          name="expectedDeliveryDate"
-          onChange={handleChange}
-          type="datetime-local"
-          // defaultValue={new Date(state.expectedDeliveryDate).toLocaleDateString("en-CA")
-          defaultValue={new Date(state.expectedDeliveryDate).toLocaleDateString("en-CA")}
-        />
+        <input name="expectedDeliveryDate" onChange={handleChange} type="datetime-local" defaultValue={state.expectedDeliveryDate} />
       </div>
       <button onClick={trySave}>SAVE</button>
       <button onClick={cancelEdit}>CANCEL</button>
