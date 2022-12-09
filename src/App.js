@@ -57,19 +57,19 @@ const App = () => {
         <div className="App">
           <div id="divHead">
             <Link className="nav-link" to="/Discover">
-              <text className="white">Discover</text>
+              <div className="white">Discover</div>
             </Link>
             <Link className="nav-link" to={createProj.path}>
-              <text className="white">Start A Project</text>
+              <div className="white">Start A Project</div>
             </Link>
             <Link className="Logo" to="/">
               <h1 id="h1Head">GrowTogether</h1>
             </Link>
             <Link className="nav-link" to="/Search">
-              <text className="white">Search</text>
+              <div className="white">Search</div>
             </Link>
             <Link className="nav-link" to={loginSetting.path}>
-              <text className="white">{loginSetting.text}</text>
+              <div className="white">{loginSetting.text}</div>
             </Link>
           </div>
 
