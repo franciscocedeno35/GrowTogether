@@ -21,6 +21,7 @@ export async function Get(endpoint, params) {
       })
       .catch((error) => {
         console.error(error);
+        console.log(error.response.data.message);
         reject(error);
       });
   });
@@ -39,6 +40,7 @@ export async function Post(endpoint, body) {
       })
       .catch((error) => {
         console.error(error);
+        console.log(error.response.data.message);
         reject(error);
       });
   });
@@ -57,6 +59,7 @@ export async function Patch(endpoint, body) {
       })
       .catch((error) => {
         console.error(error);
+        console.log(error.response.data.message);
         reject(error);
       });
   });
@@ -75,6 +78,7 @@ export async function Delete(endpoint, body) {
       })
       .catch((error) => {
         console.error(error);
+        console.log(error.response.data.message);
         reject(error);
       });
   });
@@ -92,6 +96,7 @@ export async function GetImage(imageID) {
       })
       .catch((error) => {
         console.error(error);
+        console.log(error.response.data.message);
         if (error.code == "404") {
           console.log("Cannot find image with that id");
         } else {
