@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { Patch } from "../../../scripts";
 import "./EditRewards.css";
 import RewardEditor from "./RewardEditor";
 
@@ -13,6 +14,7 @@ const emptyReward = {
 };
 
 const EditRewards = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [showingEditor, setShowingEditor] = useState(false);
   const [campaign, setCampaign] = useState({ _id: "" });
@@ -25,8 +27,8 @@ const EditRewards = () => {
     setCampaign(c);
 
     const newRewards = [];
-    // this is to make it so newRewards is a different pointer than campaign.content
-    c.content.forEach((reward) => {
+    // this is to make it so newRewards is a different pointer than campaign.rewards
+    c.rewards.forEach((reward) => {
       newRewards.push(reward);
     });
 
@@ -66,7 +68,27 @@ const EditRewards = () => {
   };
 
   const saveRewards = () => {
-    // send save patch
+    if (campaign.publishDate) {
+      // this is a public campaign, don't allow.
+    } else {
+      Patch(`/unpublishedCampaigns/rewards/${campaign._id}/${location.state.userID}`, {
+        rewards: rewards,
+      })
+        .then((updatedCampaign) => {
+          console.log(updatedCampaign);
+          navigate(`/Campaign/Overview/${campaign._id}`, {
+            state: {
+              ...location.state,
+              campaign: { ...campaign, rewards: updatedCampaign.rewards },
+              userID: location.state.userID,
+            },
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+          alert(error.response.data.message);
+        });
+    }
   };
 
   return (
@@ -89,7 +111,7 @@ const EditRewards = () => {
               </div>
               <div>
                 <label>Expected Delivery Date</label>
-                <h3>{reward.expectedDeliveryDate.toString()}</h3>
+                <h3>{new Date(reward.expectedDeliveryDate).toString()}</h3>
               </div>
               <button
                 onClick={() => {
@@ -110,7 +132,7 @@ const EditRewards = () => {
         CREATE NEW
       </button>
       <button onClick={saveRewards}>SAVE</button>
-      <Link to={"/unpublishedCampaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+      <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
         Back
       </Link>
       {showingEditor ? <RewardEditor data={rewardToBeEdited} saveReward={saveEdit} cancelEdit={cancelEdit} deleteReward={deleteReward} /> : ""}

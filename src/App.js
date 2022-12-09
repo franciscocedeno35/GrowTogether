@@ -6,10 +6,8 @@ import Home from "./components/homePage/1.home-page";
 import Login from "./components/homePage/2.login";
 import Register from "./components/homePage/3.register";
 import AccountOverview from "./components/Pages/Accounts/AccountOverview";
-import EditCampaignSettings from "./components/Pages/CampaignEditing/EditCampaignSettings";
-import EditContent from "./components/Pages/CampaignEditing/EditContent";
-import EditRewards from "./components/Pages/CampaignEditing/EditRewards";
-import UnpublishedCampaignOverview from "./components/Pages/CampaignEditing/UnpublishedCampaignOverview";
+import AccountSettings from "./components/Pages/Accounts/AccountSettings";
+import { CampaignOverview, EditCampaignSettings, EditContent, EditRewards } from "./components/Pages/CampaignEditing";
 import CreateProject from "./components/Pages/Create-Project";
 import Discover from "./components/Pages/Discover";
 import PublicCampaign from "./components/Pages/PublicCampaign/PublicCampaign";
@@ -17,7 +15,7 @@ import Search from "./components/Pages/Search";
 
 const App = () => {
   const [loginSetting, setloginSetting] = useState({
-    path: "/login",
+    path: "/Login",
     text: "Log In/Register",
   });
   const [createProj, setCreateProj] = useState({
@@ -32,7 +30,7 @@ const App = () => {
     let storedUSER = localStorage.getItem("userID");
     if (storedUSER) {
       setloginSetting({
-        path: "/overview",
+        path: "/AccountOverview",
         text: "Hello username",
       });
       setCreateProj({
@@ -41,11 +39,11 @@ const App = () => {
       return true;
     } else {
       setloginSetting({
-        path: "/login",
+        path: "/Login",
         text: "Log In/Register",
       });
       setCreateProj({
-        path: "/login",
+        path: "/Login",
       });
       return false;
     }
@@ -77,18 +75,19 @@ const App = () => {
 
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login onSuccess={alterHeaderIfLoggedIn} />} />
-            <Route path="/register" element={<Register onSuccess={alterHeaderIfLoggedIn} />} />
-            <Route path="/overview" element={<AccountOverview />} />
-            <Route path="/unpublishedCampaign/Overview/:campaignID" element={<UnpublishedCampaignOverview />} />
-            <Route path="/unpublishedCampaign/Settings/:campaignID" element={<EditCampaignSettings />} />
-            <Route path="/unpublishedCampaign/Content/:campaignID" element={<EditContent />} />
-            <Route path="/unpublishedCampaign/Rewards/:campaignID" element={<EditRewards />} />
-            <Route path="/discover" element={<Discover />} />
-            <Route path="/search" element={<Search />} />
-            <Route path="/create-project" element={<CreateProject />} />
-            <Route path="/PublicCampaign" element={<PublicCampaign />} />
-            <Route path="/test" element={<test />} />
+            <Route path="/Login" element={<Login onSuccess={alterHeaderIfLoggedIn} />} />
+            <Route path="/Register" element={<Register onSuccess={alterHeaderIfLoggedIn} />} />
+            <Route path="/AccountOverview" element={<AccountOverview />} />
+            <Route path="/AccountOverview/Settings" element={<AccountSettings onSuccess={alterHeaderIfLoggedIn} />} />
+            <Route path="/Campaign/Overview/:campaignID" element={<CampaignOverview />} />
+            <Route path="/Campaign/Settings/:campaignID" element={<EditCampaignSettings />} />
+            <Route path="/Campaign/Content/:campaignID" element={<EditContent />} />
+            <Route path="/Campaign/Rewards/:campaignID" element={<EditRewards />} />
+            <Route path="/Discover" element={<Discover />} />
+            <Route path="/Search" element={<Search />} />
+            <Route path="/CreateProject" element={<CreateProject />} />
+            <Route path="/Campaign" element={<Home />} />
+            <Route path="/Campaign/:campaignID" element={<PublicCampaign />} />
           </Routes>
         </div>
         <Footer />

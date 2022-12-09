@@ -5,7 +5,7 @@ import "./AccountOverview.css";
 
 function AccountOverview() {
   const [userID, setUserID] = useState(localStorage.getItem("userID"));
-  const [overviewInfo, setOverviewInfo] = useState({
+  const [userInfoPlusOverviewInfo, setOverviewInfo] = useState({
     firstname: "",
     lastName: "",
     username: "",
@@ -22,6 +22,7 @@ function AccountOverview() {
     // we're logged in!
     Get(`/users/${userID}`, {})
       .then((result) => {
+        setOverviewInfo(result);
         retrieveCampaignImages(result);
       })
       .catch((error) => {
@@ -41,27 +42,46 @@ function AccountOverview() {
   }, []);
 
   const retrieveCampaignImages = async (info) => {
+    console.log(info);
     for (let i = 0; i < info.unpublishedCampaignsOwned.length; i++) {
       const campaign = info.unpublishedCampaignsOwned[i];
       const imageSrc = await GetImage(campaign.mainImage);
       campaign.imageSrc = imageSrc;
       info.unpublishedCampaignsOwned[i] = { ...campaign };
     }
+    for (let i = 0; i < info.publishedCampaignsOwned.length; i++) {
+      const campaign = info.publishedCampaignsOwned[i];
+      const imageSrc = await GetImage(campaign.mainImage);
+      campaign.imageSrc = imageSrc;
+      info.publishedCampaignsOwned[i] = { ...campaign };
+    }
     console.log(info);
     setOverviewInfo(info);
   };
 
   const goToCampaignOverview = (campaign) => {
-    navigate(`/unpublishedCampaign/Overview/${campaign._id}`, {
-      state: { campaign: campaign },
+    navigate(`/Campaign/Overview/${campaign._id}`, {
+      state: { campaign: campaign, userID: userID },
     });
+  };
+
+  const goToAccountOverview = () => {
+    navigate(`/AccountOverview/Settings`, {
+      state: { userID: userID, user: userInfoPlusOverviewInfo },
+    });
+  };
+
+  const goToCreateCampaign = () => {
+    navigate(`/CreateProject`);
   };
 
   return (
     <header>
       <div className="welcomer">
-        <h1>Hello, {overviewInfo.username}</h1>
-        <button id="settings">Settings</button>
+        <h1>Hello, {userInfoPlusOverviewInfo.username}</h1>
+        <button id="settings" onClick={goToAccountOverview}>
+          Settings
+        </button>
       </div>
       <hr className="whiteLine"></hr>
       <div id="titles">
@@ -95,7 +115,7 @@ function AccountOverview() {
             );
           })} */}
         </div>
-        {overviewInfo.donations.map((donation, i) => {
+        {userInfoPlusOverviewInfo.donations.map((donation, i) => {
           return (
             <div className="backed">
               <div id="present">
@@ -108,7 +128,7 @@ function AccountOverview() {
                 </div>
               </div>
               <h3 id="rewardsPromised">Rewards Promised:</h3>
-              {overviewInfo.donations.map((reward, i) => {
+              {userInfoPlusOverviewInfo.donations.map((reward, i) => {
                 return (
                   <div className="rewardsSummary" id={"rewards" + (i + 1)} key={i}>
                     <div className="rewardTitle" id={"rewardTitle" + (i + 1)}>
@@ -161,7 +181,7 @@ function AccountOverview() {
           </p>
         </div> */}
         <div id="yourCampaigns">
-          {overviewInfo.unpublishedCampaignsOwned.map((campaign, i) => {
+          {userInfoPlusOverviewInfo.unpublishedCampaignsOwned.map((campaign, i) => {
             return (
               <div
                 className="campaign"
@@ -179,7 +199,7 @@ function AccountOverview() {
               </div>
             );
           })}
-          {overviewInfo.publishedCampaignsOwned.map((campaign, i) => {
+          {userInfoPlusOverviewInfo.publishedCampaignsOwned.map((campaign, i) => {
             return (
               <div
                 className="campaign"
@@ -219,7 +239,9 @@ function AccountOverview() {
             </div>
           </div> */}
           <div className="campaign" id="newCamp">
-            <button id="add">Add</button>
+            <button id="add" onClick={goToCreateCampaign}>
+              Add
+            </button>
           </div>
         </div>
       </div>

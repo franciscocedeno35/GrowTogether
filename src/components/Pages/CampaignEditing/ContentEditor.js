@@ -23,6 +23,10 @@ const ContentEditor = ({ data, saveEdit, cancelEdit, insertEdit, deleteContent }
 
   const trySave = () => {
     // just make sure that the reward values are OK before saving.
+    if (!state.content) {
+      alert("You must provide content to display!");
+      return;
+    }
     if (!ValidContentTypes[state.type]) {
       alert("Provide a valid Content Type!");
       return;
