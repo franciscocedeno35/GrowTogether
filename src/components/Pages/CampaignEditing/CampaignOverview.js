@@ -5,7 +5,6 @@ import { Get, GetImage, Patch } from "../../../scripts";
 import { Link } from "react-router-dom";
 
 function CampaignOverview(props) {
-  // TODO: update canBePublished
   const canBePublished = () => {
     console.log("content length is: " + campaign.content.length);
     return campaign.content.length > 0;

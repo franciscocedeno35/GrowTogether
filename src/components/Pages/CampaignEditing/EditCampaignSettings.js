@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { Delete, Patch, Post } from "../../../scripts";
 import "./EditCampaignSettings.css";
 
-//TODO: ADD CHECK FOR PUBLISHED/UNPUBLISHED AND ADD DELETE BUTTON
 const EditCampaignSettings = () => {
   const location = useLocation();
   const navigate = useNavigate();

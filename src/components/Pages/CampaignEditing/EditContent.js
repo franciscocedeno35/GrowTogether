@@ -120,13 +120,11 @@ const EditContent = () => {
   return (
     <div className="flex-column white">
       {contents.map((content, i) => {
-        // TODO: Make this content display similar to how Content is displayed on PublicCampaign
         return (
           <div key={i}>
             <div className="edit-content-content">
               <button
                 onClick={() => {
-                  //TODO: CHANGE THIS TO INSERT AT THIS LOCATION
                   showEditor(emptyContent, i, true);
                 }}
               >
