@@ -5,7 +5,7 @@ import "./AccountOverview.css";
 
 function AccountOverview() {
   const [userID, setUserID] = useState(localStorage.getItem("userID"));
-  const [userInfoPlusOverviewInfo, setOverviewInfo] = useState({
+  const [overviewInfo, setOverviewInfo] = useState({
     firstname: "",
     lastName: "",
     username: "",
@@ -41,22 +41,37 @@ function AccountOverview() {
       });
   }, []);
 
-  const retrieveCampaignImages = async (info) => {
-    console.log(info);
-    for (let i = 0; i < info.unpublishedCampaignsOwned.length; i++) {
-      const campaign = info.unpublishedCampaignsOwned[i];
+  const retrieveCampaignImages = async (userInfo) => {
+    console.log(userInfo);
+    for (let i = 0; i < userInfo.unpublishedCampaignsOwned.length; i++) {
+      const campaign = userInfo.unpublishedCampaignsOwned[i];
       const imageSrc = await GetImage(campaign.mainImage);
       campaign.imageSrc = imageSrc;
-      info.unpublishedCampaignsOwned[i] = { ...campaign };
+      userInfo.unpublishedCampaignsOwned[i] = { ...campaign };
     }
-    for (let i = 0; i < info.publishedCampaignsOwned.length; i++) {
-      const campaign = info.publishedCampaignsOwned[i];
+    for (let i = 0; i < userInfo.publishedCampaignsOwned.length; i++) {
+      const campaign = userInfo.publishedCampaignsOwned[i];
       const imageSrc = await GetImage(campaign.mainImage);
       campaign.imageSrc = imageSrc;
-      info.publishedCampaignsOwned[i] = { ...campaign };
+      userInfo.publishedCampaignsOwned[i] = { ...campaign };
     }
-    console.log(info);
-    setOverviewInfo(info);
+    for (let i = 0; i < userInfo.donations.length; i++) {
+      const campaign = userInfo.donations[i].campaign;
+
+      // compute campaign progress
+      let sum = 0;
+      const campDonations = await Get(`/donations/${campaign._id}`, {});
+      for (let j = 0; j < campDonations.length; j++) {
+        sum += campDonations[j].sum;
+      }
+      campaign.currentlyDonated = sum;
+
+      const imageSrc = await GetImage(campaign.mainImage);
+      campaign.imageSrc = imageSrc;
+      userInfo.donations[i].campaign = { ...campaign };
+    }
+    console.log(userInfo);
+    setOverviewInfo(userInfo);
   };
 
   const goToCampaignOverview = (campaign) => {
@@ -67,7 +82,7 @@ function AccountOverview() {
 
   const goToAccountOverview = () => {
     navigate(`/AccountOverview/Settings`, {
-      state: { userID: userID, user: userInfoPlusOverviewInfo },
+      state: { userID: userID, user: overviewInfo },
     });
   };
 
@@ -78,7 +93,7 @@ function AccountOverview() {
   return (
     <header>
       <div className="welcomer">
-        <h1>Hello, {userInfoPlusOverviewInfo.username}</h1>
+        <h1>Hello, {overviewInfo.username}</h1>
         <button id="settings" onClick={goToAccountOverview}>
           Settings
         </button>
@@ -115,33 +130,35 @@ function AccountOverview() {
             );
           })} */}
         </div>
-        {userInfoPlusOverviewInfo.donations.map((donation, i) => {
+        {overviewInfo.donations.map((donation) => {
           return (
-            <div className="backed">
-              <div id="present">
-                <div id="imgPresent"></div>
-                <div id="info">
-                  <h2>donation.campaign.title</h2>
-                  <h3>Progress $###/$###</h3>
+            <div className="backed" key={donation._id}>
+              <div className="present">
+                <img className="imgPresent" src={donation.campaign.imageSrc ? donation.campaign.imageSrc : ""} alt="" />
+                <div className="info">
+                  <h2>{donation.campaign.title}</h2>
+                  <h3>
+                    Progress ${donation.campaign.currentlyDonated}/${donation.campaign.goal}
+                  </h3>
                   <p>Created By {donation.campaign.owner}</p>
-                  <h5 id="contribution">Total Contributed: ${donation.total.toLocaleString("en")}</h5>
+                  <h5 className="contribution">Total Contributed: ${donation.sum.toLocaleString("en")}</h5>
                 </div>
               </div>
-              <h3 id="rewardsPromised">Rewards Promised:</h3>
-              {userInfoPlusOverviewInfo.donations.map((reward, i) => {
+              <h3 className="rewardsPromised">Rewards Promised:</h3>
+              {donation.rewards.map((reward, i) => {
                 return (
-                  <div className="rewardsSummary" id={"rewards" + (i + 1)} key={i}>
+                  <div className="rewardsSummary" id={"rewards" + (i + 1)} key={reward._id}>
                     <div className="rewardTitle" id={"rewardTitle" + (i + 1)}>
                       <h3 className="title">{reward.name}</h3>
                       <h3 className="price">Reward Price: ${reward.price.toLocaleString("en")}</h3>
                     </div>
                     <p id={"summary" + (i + 1)}>{reward.description}</p>
-                    <div class="rewardInfo">
+                    <div className="rewardInfo">
                       <p className="delivery" id={"delivery" + (i + 1)}>
-                        Delivery {reward.expectedDeliveryDate.toDateString()}
+                        Delivery {new Date(reward.expectedDeliveryDate).toDateString()}
                       </p>
                       <p className="purchased" id={"purchased" + (i + 1)}>
-                        Purchased on {donation.purchaseDate.toDateString()}
+                        Purchased on {new Date(donation.purchaseDate).toDateString()}
                       </p>
                     </div>
                   </div>
@@ -181,7 +198,7 @@ function AccountOverview() {
           </p>
         </div> */}
         <div id="yourCampaigns">
-          {userInfoPlusOverviewInfo.unpublishedCampaignsOwned.map((campaign, i) => {
+          {overviewInfo.unpublishedCampaignsOwned.map((campaign, i) => {
             return (
               <div
                 className="campaign"
@@ -199,7 +216,7 @@ function AccountOverview() {
               </div>
             );
           })}
-          {userInfoPlusOverviewInfo.publishedCampaignsOwned.map((campaign, i) => {
+          {overviewInfo.publishedCampaignsOwned.map((campaign, i) => {
             return (
               <div
                 className="campaign"

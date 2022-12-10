@@ -36,6 +36,7 @@ const Home = () => {
       creator: "By Aural Pleasure Records",
       class: "item active",
       id: "slide1",
+      campaignID: "6392b0f87899f867cbd34359",
     },
     {
       image:
@@ -87,6 +88,7 @@ const Home = () => {
                 slideClass={campaign.class}
                 slideId={campaign.id}
                 key={campaign.id}
+                campaignID={campaign.campaignID}
               />
             ))}
           </div>

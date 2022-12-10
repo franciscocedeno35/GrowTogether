@@ -10,6 +10,7 @@ import AccountSettings from "./components/Pages/Accounts/AccountSettings";
 import { CampaignOverview, EditCampaignSettings, EditContent, EditRewards } from "./components/Pages/CampaignEditing";
 import CreateProject from "./components/Pages/Create-Project";
 import Discover from "./components/Pages/Discover";
+import Donate from "./components/Pages/PublicCampaign/Donate";
 import PublicCampaign from "./components/Pages/PublicCampaign/PublicCampaign";
 import Search from "./components/Pages/Search";
 
@@ -88,6 +89,7 @@ const App = () => {
             <Route path="/CreateProject" element={<CreateProject />} />
             <Route path="/Campaign" element={<Home />} />
             <Route path="/Campaign/:campaignID" element={<PublicCampaign />} />
+            <Route path="/Campaign/Donate/:campaignID" element={<Donate />} />
           </Routes>
         </div>
         <Footer />
