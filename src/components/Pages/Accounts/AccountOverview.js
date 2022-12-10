@@ -130,43 +130,45 @@ function AccountOverview() {
             );
           })} */}
         </div>
-        {overviewInfo.donations.map((donation) => {
-          return (
-            <div className="backed" key={donation._id}>
-              <div className="present">
-                <img className="imgPresent" src={donation.campaign.imageSrc ? donation.campaign.imageSrc : ""} alt="" />
-                <div className="info">
-                  <h2>{donation.campaign.title}</h2>
-                  <h3>
-                    Progress ${donation.campaign.currentlyDonated}/${donation.campaign.goal}
-                  </h3>
-                  <p>Created By {donation.campaign.owner}</p>
-                  <h5 className="contribution">Total Contributed: ${donation.sum.toLocaleString("en")}</h5>
-                </div>
-              </div>
-              <h3 className="rewardsPromised">Rewards Promised:</h3>
-              {donation.rewards.map((reward, i) => {
-                return (
-                  <div className="rewardsSummary" id={"rewards" + (i + 1)} key={reward._id}>
-                    <div className="rewardTitle" id={"rewardTitle" + (i + 1)}>
-                      <h3 className="title">{reward.name}</h3>
-                      <h3 className="price">Reward Price: ${reward.price.toLocaleString("en")}</h3>
-                    </div>
-                    <p id={"summary" + (i + 1)}>{reward.description}</p>
-                    <div className="rewardInfo">
-                      <p className="delivery" id={"delivery" + (i + 1)}>
-                        Delivery {new Date(reward.expectedDeliveryDate).toDateString()}
-                      </p>
-                      <p className="purchased" id={"purchased" + (i + 1)}>
-                        Purchased on {new Date(donation.purchaseDate).toDateString()}
-                      </p>
-                    </div>
+        <div className="flex-column">
+          {overviewInfo.donations.map((donation) => {
+            return (
+              <div className="backed" key={donation._id}>
+                <div className="present">
+                  <img className="imgPresent" src={donation.campaign.imageSrc ? donation.campaign.imageSrc : ""} alt="" />
+                  <div className="info">
+                    <h2>{donation.campaign.title}</h2>
+                    <h3>
+                      Progress ${donation.campaign.currentlyDonated}/${donation.campaign.goal}
+                    </h3>
+                    <p>Created By {donation.campaign.owner}</p>
+                    <h5 className="contribution">Total Contributed: ${donation.sum.toLocaleString("en")}</h5>
                   </div>
-                );
-              })}
-            </div>
-          );
-        })}
+                </div>
+                <h3 className="rewardsPromised">Rewards Promised:</h3>
+                {donation.rewards.map((reward, i) => {
+                  return (
+                    <div className="rewardsSummary" id={"rewards" + (i + 1)} key={reward._id}>
+                      <div className="rewardTitle" id={"rewardTitle" + (i + 1)}>
+                        <h3 className="title">{reward.name}</h3>
+                        <h3 className="price">Reward Price: ${reward.price.toLocaleString("en")}</h3>
+                      </div>
+                      <p id={"summary" + (i + 1)}>{reward.description}</p>
+                      <div className="rewardInfo">
+                        <p className="delivery" id={"delivery" + (i + 1)}>
+                          Delivery {new Date(reward.expectedDeliveryDate).toDateString()}
+                        </p>
+                        <p className="purchased" id={"purchased" + (i + 1)}>
+                          Purchased on {new Date(donation.purchaseDate).toDateString()}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
         {/* <div className="rewardsSummary" id="rewards1">
           <div className="rewardTitle" id="rewardTitle1">
             <h3 className="title">Reward Title</h3>
