@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { Patch } from "../../../scripts";
+import { Delete, GetImage, Patch, Post } from "../../../scripts";
 import PublicContent from "../PublicCampaign/PublicContent";
 import ContentEditor from "./ContentEditor";
 import "./EditContent.css";
@@ -24,23 +24,33 @@ const EditContent = () => {
     const c = location.state.campaign;
     console.log(c);
     setCampaign(c);
+    prepareContent(c);
+  }, []);
+
+  const prepareContent = async (campaign) => {
     const newContent = [];
     // this is to make it so newContent is a different pointer than campaign.content
-    c.content.forEach((content) => {
+    for (let i = 0; i < campaign.content.length; i++) {
+      const content = campaign.content[i];
+      if (content.type == "Image") {
+        // we gotta grab the image from DB and store it.
+        const src = await GetImage(content.content);
+        content.imageSrc = src;
+      }
+      if (content.type == "Video") {
+        content.videoURL = content.content;
+      }
       newContent.push(content);
-    });
+    }
     setContents(newContent);
-  }, []);
+  };
 
   const showEditor = (content, index, isInsert) => {
     setContentToBeEdited({ content: content, index: index, isInsert: isInsert });
     setShowingEditor(true);
   };
 
-  // TODO: MAKE THIS INSERT IF THIS IS AN INSERT
   const saveEdit = (content, index) => {
-    // meow
-    // const contents = contents;
     if (index >= contents.length) {
       console.log(contents.push(content));
     } else {
@@ -67,8 +77,32 @@ const EditContent = () => {
   };
 
   const saveContents = async () => {
+    // process images
+    const newContent = [];
+    for (let i = 0; i < contents.length; i++) {
+      // identify which images are new and save them.
+      // unfortunately, if an image content is overwritten or deleted, we'll never know and they will clog up the DB.
+      // we can solve this by having it so that edits, inserts, and appends are all saved once you leave the Editor
+      // this has an unintended side effect where the user cannot see how their content may look. So I will just keep it this way until decided otherwise.
+      let content = contents[i];
+      if (content.type == "Image") {
+        if (content.imageFile) {
+          // imageFiles only exist if this was uploaded during an edit phase.
+          // upload the image, get the new imageID, and save it as the content.
+          const formData = new FormData();
+          formData.append("image", content.imageFile);
+          const newImageID = await Post(`/images`, formData);
+          content = { type: "Image", content: newImageID };
+        } else {
+          content = { type: "Image", content: content.content };
+        }
+      }
+      newContent.push(content);
+    }
+    console.log(newContent);
+    // we can assume videoURLs are valid
     const endPoint = (campaign.publishDate ? "" : "un") + "publishedCampaigns/content/" + campaign._id + "/" + location.state.userID;
-    Patch(endPoint, { content: contents })
+    Patch(endPoint, { content: newContent })
       .then((updatedCampaign) => {
         const newCampaign = { ...campaign, ...updatedCampaign };
         newCampaign.content = updatedCampaign.content;

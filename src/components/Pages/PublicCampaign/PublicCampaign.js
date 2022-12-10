@@ -26,39 +26,55 @@ const PublicCampaign = () => {
   const [mainImage, setMainImage] = useState(null);
 
   useEffect(() => {
+    populateInfo();
+  }, []);
+
+  const populateInfo = async () => {
     if (!params.campaignID) {
       console.error("Must provide a valid campaignID");
       navigate("/");
     } else {
       console.log(params.campaignID);
-      Get(`/publishedCampaigns/view/${params.campaignID}`, {}).then((PC) => {
-        PC.rewards.forEach((reward) => {
-          reward.expectedDeliveryDate = new Date(reward.expectedDeliveryDate);
+      const PC = await Get(`/publishedCampaigns/view/${params.campaignID}`, {});
+      // update reward info
+      PC.rewards.forEach((reward) => {
+        reward.expectedDeliveryDate = new Date(reward.expectedDeliveryDate);
+      });
+      console.log(PC.rewards);
+      // get mainCampaign Image
+      GetImage(PC.mainImage).then((src) => {
+        setMainImage(src);
+      });
+      // populate content images
+      for (let i = 0; i < PC.content.length; i++) {
+        const c = PC.content[i];
+        if (c.type == "Image") {
+          PC.content[i].imageSrc = await GetImage(c.content);
+        }
+        if (c.type == "Video") {
+          PC.content[i].videoURL = c.content;
+        }
+      }
+      // get donation information
+      Get(`/donations/${params.campaignID}`, {}).then((donations) => {
+        // donations is an array of donations.
+        let sum = 0;
+        let backers = {};
+        donations.forEach((donation) => {
+          sum += donation.sum;
         });
-        console.log(PC.rewards);
-        GetImage(PC.mainImage).then((src) => {
-          setMainImage(src);
-        });
-        Get(`/donations/${params.campaignID}`, {}).then((donations) => {
-          // donations is an array of donations.
-          let sum = 0;
-          let backers = {};
-          donations.forEach((donation) => {
-            sum += donation.sum;
-          });
-          console.log(sum);
-          PC.currentlyDonated = sum;
-          PC.backerNum = Object.keys(backers).length;
-          // get days to go here.
-          const dayInMs = 24 * 60 * 60 * 1000;
-          const endInMs = new Date(PC.publishDate).getTime() + PC.duration * dayInMs;
-          const todayInMs = Date.now();
-          PC.daysToGo = (endInMs - todayInMs) / dayInMs;
-          setCampInfo(PC);
-        });
+        console.log(sum);
+        PC.currentlyDonated = sum;
+        PC.backerNum = Object.keys(backers).length;
+        // get days to go here.
+        const dayInMs = 24 * 60 * 60 * 1000;
+        const endInMs = new Date(PC.publishDate).getTime() + PC.duration * dayInMs;
+        const todayInMs = Date.now();
+        PC.daysToGo = (endInMs - todayInMs) / dayInMs;
+        setCampInfo(PC);
       });
     }
-  }, []);
+  };
 
   const goToDonate = () => {
     if (userID) {
