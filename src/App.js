@@ -35,7 +35,7 @@ const App = () => {
         text: "Hello username",
       });
       setCreateProj({
-        path: "/Create-Project",
+        path: "/CreateProject",
       });
       return true;
     } else {

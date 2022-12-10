@@ -109,7 +109,7 @@ function CampaignOverview(props) {
       // if so, publish it
       Patch(`unpublishedCampaigns/publish/${campaign._id}/${userID}`, {}).then((publishedCampaign) => {
         //  navigate to /publishedCampaign/Overview/:campaignID
-        navigate(`publishedCampaign/Overview/${publishedCampaign._id}/${userID}`, {
+        navigate(`/Campaign/Overview/${publishedCampaign._id}/${userID}`, {
           state: {
             campaign: publishedCampaign,
             userID: userID,
