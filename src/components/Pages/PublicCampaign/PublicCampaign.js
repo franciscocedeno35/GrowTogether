@@ -48,8 +48,12 @@ const PublicCampaign = () => {
           });
           console.log(sum);
           PC.currentlyDonated = sum;
-          PC.backNum = Object.keys(backers).length;
+          PC.backerNum = Object.keys(backers).length;
           // get days to go here.
+          const dayInMs = 24 * 60 * 60 * 1000;
+          const endInMs = new Date(PC.publishDate).getTime() + PC.duration * dayInMs;
+          const todayInMs = Date.now();
+          PC.daysToGo = (endInMs - todayInMs) / dayInMs;
           setCampInfo(PC);
         });
       });
