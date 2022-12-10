@@ -1,6 +1,6 @@
 import "./CampaignOverview.css";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 import { Get, GetImage, Patch } from "../../../scripts";
 import { Link } from "react-router-dom";
 
@@ -109,12 +109,7 @@ function CampaignOverview(props) {
       // if so, publish it
       Patch(`unpublishedCampaigns/publish/${campaign._id}/${userID}`, {}).then((publishedCampaign) => {
         //  navigate to /publishedCampaign/Overview/:campaignID
-        navigate(`/Campaign/Overview/${publishedCampaign._id}/${userID}`, {
-          state: {
-            campaign: publishedCampaign,
-            userID: userID,
-          },
-        });
+        populateCampaign(publishedCampaign);
       });
     }
   };
