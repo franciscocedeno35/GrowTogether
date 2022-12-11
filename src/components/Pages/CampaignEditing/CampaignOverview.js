@@ -1,11 +1,10 @@
 import "./CampaignOverview.css";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
-import { GetImage, Patch } from "../../../scripts";
+import { useLocation, useNavigate, useParams } from "react-router";
+import { Get, GetImage, Patch } from "../../../scripts";
 import { Link } from "react-router-dom";
 
 function CampaignOverview(props) {
-  // TODO: update canBePublished
   const canBePublished = () => {
     console.log("content length is: " + campaign.content.length);
     return campaign.content.length > 0;
@@ -29,6 +28,8 @@ function CampaignOverview(props) {
     content: [],
     rewards: [],
   });
+  const [donations, setDonations] = useState([]);
+  const [rewardSummaryInfo, setRewardSummaryInfo] = useState([]);
 
   useEffect(() => {
     console.log(userID);
@@ -45,26 +46,56 @@ function CampaignOverview(props) {
       navigate("/");
     } else {
       // we can assume state.campaign is present.
-      // TODO: Get all relevent Overview information
-      // for example, get all donations that were donated to this campaign.
-      const c = location.state.campaign;
-      if (!c.imageSrc) {
-        GetImage(c.mainImage).then((id) => {
-          location.state.campaign.imageSrc = id;
-          setCampaign(location.state.campaign);
-        });
-      } else {
-        setCampaign(location.state.campaign);
-      }
+      populateCampaign(location.state.campaign);
     }
-
-    // console.log(params);
-    // if (!params || !params.campaignID) {
-    //   console.log("No CampaignID given to overview via Params");
-    // } else {
-    //   console.log(params);
-    // }
   }, []);
+
+  const populateCampaign = async (c) => {
+    if (!c.imageSrc) {
+      c.imageSrc = await GetImage(c.mainImage);
+    }
+    if (c.publishDate) {
+      // this is a published campaign! we have to gather helpful information
+      const allDonations = await Get(`/donations/${c._id}`, {});
+      setDonations(allDonations);
+      calculateRewardSummaryInfo(c, allDonations);
+      let sum = 0;
+      for (let i = 0; i < allDonations.length; i++) {
+        sum += allDonations[i].sum;
+      }
+      c.currentlyDonated = sum;
+    }
+    setCampaign({ ...c });
+  };
+
+  const calculateRewardSummaryInfo = (c, d) => {
+    // const newSummary = [];
+    // c.rewards.forEach((reward) => {
+    //   newSummary.push(reward);
+    // });
+    const newSummary = c.rewards;
+    console.log(newSummary);
+    // c is campaign info
+    // d is a list of all donations
+    // this function should set rewardSummaryInfo with array that such that
+    // each index is an object that contains statistics about the contribution of each reward towards the campaign's goal.
+    newSummary.forEach((reward) => {
+      const id = reward._id;
+      // find how many times this reward has been bought.
+      let count = 0;
+      d.forEach((donation) => {
+        donation.rewards.forEach((purchasedReward) => {
+          console.log(id);
+          if (purchasedReward._id == id) {
+            count++;
+          }
+        });
+      });
+      reward.purchaseCount = count;
+    });
+    console.log(newSummary);
+    setRewardSummaryInfo(newSummary);
+  };
 
   const publishCampaign = () => {
     // check if you can publish it (we can assume all values are OK, but we must verify that content is not-empty)
@@ -77,14 +108,41 @@ function CampaignOverview(props) {
       // if so, publish it
       Patch(`unpublishedCampaigns/publish/${campaign._id}/${userID}`, {}).then((publishedCampaign) => {
         //  navigate to /publishedCampaign/Overview/:campaignID
-        navigate(`publishedCampaign/Overview/${publishedCampaign._id}/${userID}`, {
-          state: {
-            campaign: publishedCampaign,
-            userID: userID,
-          },
-        });
+        populateCampaign(publishedCampaign);
       });
     }
+  };
+
+  const getOverviewInfo = () => {
+    return (
+      <div className="flex-column">
+        <div>
+          Progress: {campaign.currentlyDonated} / {campaign.goal}
+        </div>
+        <div>TimeLeft = {}</div>
+        <div>Total Views = {campaign.views.length}</div>
+        <div>
+          Conversion Percentage = {donations.length} / {campaign.views.length} = {donations.length / campaign.views.length}%
+        </div>
+        <div>
+          <h1>Reward Info</h1>
+          <div className="overview-reward-summary">
+            {rewardSummaryInfo.map((r) => {
+              return (
+                <div className="flex-column" key={r._id}>
+                  <h3>{r.name}</h3>
+                  <div>Times Bought: {r.purchaseCount}</div>
+                  <div>Total Earned: {r.purchaseCount * r.price}</div>
+                  <div>Percentage Responsible: {(r.purchaseCount * r.price) / campaign.goal}%</div>
+                  <div>Idk, and some other interesting statistics.</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <hr />
+      </div>
+    );
   };
 
   return (
@@ -94,6 +152,7 @@ function CampaignOverview(props) {
       <p>{campaign.description}</p>
       <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" />
       <hr />
+      {isPublished() ? getOverviewInfo() : ""}
       <div className="flex-row justify-space-around">
         <Link to={"/Campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
           Settings

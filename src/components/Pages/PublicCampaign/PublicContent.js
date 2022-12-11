@@ -9,35 +9,35 @@ function PublicContent({ content }) {
     case "Header": {
       return (
         <div>
-          <PublicContentHeader content={content.content} />
+          <PublicContentHeader content={content} />
         </div>
       );
     }
     case "Paragraph": {
       return (
         <div>
-          <PublicContentParagraph content={content.content} />
+          <PublicContentParagraph content={content} />
         </div>
       );
     }
     case "Image": {
       return (
         <div>
-          <PublicContentImage content={content.content} />
+          <PublicContentImage content={content} />
         </div>
       );
     }
     case "Video": {
       return (
         <div>
-          <PublicContentVideo content={content.content} />
+          <PublicContentVideo content={content} />
         </div>
       );
     }
     default: {
       return (
         <div>
-          <PublicContentHeader content={content.content} />
+          <PublicContentHeader content={content} />
         </div>
       );
     }

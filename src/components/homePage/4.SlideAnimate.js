@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-const SlideAnimate = ({ image, title, description, creator, slideClass, slideId }) => {
+const SlideAnimate = ({ image, title, description, creator, slideClass, slideId, campaignID }) => {
   return (
     <div className={slideClass} id={slideId}>
       <img
@@ -9,7 +9,7 @@ const SlideAnimate = ({ image, title, description, creator, slideClass, slideId 
         alt="slide1"
         onClick={(e) => {
           e.preventDefault();
-          window.location.href = "Campaign/";
+          window.location.href = "Campaign/" + campaignID;
         }}
       />
       <span>

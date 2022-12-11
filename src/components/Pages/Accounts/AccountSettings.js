@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { Patch } from "../../../scripts";
+import { Delete, Patch } from "../../../scripts";
 
 function AccountSettings({ onSuccess }) {
   const location = useLocation();
@@ -47,9 +47,10 @@ function AccountSettings({ onSuccess }) {
   };
 
   const deleteAccount = async () => {
-    // make sure they don't have any donations or published campaigns
-    // TODO: implement donations and publishing
-    alert("Dude. Delete doesn't work yet.");
+    await Delete(`users/${user._id}`, {});
+    localStorage.removeItem("userID");
+    onSuccess();
+    navigate("/", { state: {} });
   };
 
   const signOut = async () => {
@@ -82,7 +83,7 @@ function AccountSettings({ onSuccess }) {
           CANCEL
         </Link>
       </div>
-      {user && user.publishedCampaignsOwned && user.publishedCampaignsOwned.length > 0 ? (
+      {user && ((user.publishedCampaignsOwned && user.publishedCampaignsOwned.length > 0) || (user.donations && user.donations.length > 0)) ? (
         <button disabled>DELETE</button>
       ) : (
         <button onClick={deleteAccount}>DELETE</button>

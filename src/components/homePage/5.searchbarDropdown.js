@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Get } from "../../scripts";
 import "./style.css";
 
 const SearchbarDropdown = (props) => {
@@ -27,11 +28,11 @@ const SearchbarDropdown = (props) => {
               key={index}
               onClick={(e) => {
                 e.preventDefault();
-                window.location.href = "PublicCampaign/";
+                window.location.href = `/Campaign/${option._id}`;
               }}
               className="list-group-item list-group-item-action"
             >
-              {option}
+              {option.title}
             </button>
           );
         })}
@@ -40,17 +41,21 @@ const SearchbarDropdown = (props) => {
   );
 };
 
-const defauktOptions = [];
-for (let i = 0; i < 10; i++) {
-  defauktOptions.push(`technology ${i}`);
-  defauktOptions.push(`art ${i}`);
-  defauktOptions.push(`sport ${i}`);
-}
+const defaultOptions = [];
+Get(`/publishedCampaigns/searchOptions`, {}).then((result) => {
+  result.forEach((blah) => {
+    defaultOptions.push(blah);
+  });
+});
 
 const SearchbarDropdownMain = () => {
   const [options, setOptions] = useState([]);
   const onInputChange = (event) => {
-    setOptions(defauktOptions.filter((option) => option.includes(event.target.value)));
+    setOptions(
+      defaultOptions.filter((option) => {
+        return option.title.includes(event.target.value) || option.subtitle.includes(event.target.value) || option.description.includes(event.target.value);
+      })
+    );
   };
 
   return (

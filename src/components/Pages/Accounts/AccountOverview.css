@@ -39,7 +39,7 @@
   color: white;
 }
 
-#backed {
+.backed {
   box-sizing: border-box;
   width: 643px;
   height: 1065px;
@@ -48,28 +48,28 @@
   border-radius: 15px;
 }
 
-#present {
+.present {
   display: flex;
   justify-content: left;
 }
 
-#imgPresent {
+.imgPresent {
   width: 300.51px;
   height: 169.04px;
   margin: 20px 20px;
-  background: #d9d9d9;
+  /* background: #d9d9d9; */
 }
 
-#info {
+.info {
   margin-top: 20px;
 }
 
-#contribution {
+.contribution {
   position: relative;
   top: 40px;
 }
 
-#rewardsPromised {
+.rewardsPromised {
   margin-left: 20px;
 }
 
