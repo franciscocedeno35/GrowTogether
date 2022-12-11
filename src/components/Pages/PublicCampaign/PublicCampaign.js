@@ -10,6 +10,7 @@ const PublicCampaign = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [userID, setUserID] = useState(localStorage.getItem("userID"));
+  const [mainImage, setMainImage] = useState();
   const [CampInfo, setCampInfo] = useState({
     title: "",
     subtitle: "",
@@ -22,70 +23,7 @@ const PublicCampaign = () => {
     mainImageURL: "",
     content: [],
     rewards: [],
- 
-
-		content: [
-			{
-				type: 'header',
-				content: 'Welcome!',
-			},
-			{
-				type: 'paragraph',
-				content:
-					'Description - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-			},
-			{
-				type: 'header',
-				content: "Here's some media!",
-			},
-			{
-				type: 'image',
-				content:
-					'https://ksr-ugc.imgix.net/assets/039/310/556/38cb174b02dbc87b2aa0f37bff787eb1_original.png?ixlib=rb-4.0.2&crop=faces&w=1024&h=576&fit=crop&v=1669269851&auto=format&frame=1&q=92&s=9cc64e834dd12ba11a6e550f5381e1d0',
-			},
-			{
-				type: 'video',
-				content: 'https://www.youtube.com/watch?v=bGzanfKVFeU&ab_channel=BeJS',
-			},
-		],
-		rewards: [
-			{
-				campaign: '',
-				name: 'reward1',
-				price: 5,
-				description: "Random letters just keep in mind goal youtube  youtube video is available    at http://www.youtube.com/watch",
-				expectedDeliveryDate: new Date(),
-			},
-			{
-				campaign: '',
-				name: 'reward2',
-				price: 6,
-				description: 'meow',
-				expectedDeliveryDate: new Date(),
-			},
-			{
-				campaign: '',
-				name: 'reward3',
-				price: 7,
-				description: 'meow',
-				expectedDeliveryDate: new Date(),
-			},
-			{
-				campaign: '',
-				name: 'reward4',
-				price: 9,
-				description: 'meow',
-				expectedDeliveryDate: new Date(),
-			},
-			{
-				campaign: '',
-				name: 'reward5',
-				price: 10,
-				description: 'meow',
-				expectedDeliveryDate: new Date(),
-			},
-		],
-	});
+  });
 
   useEffect(() => {
     populateInfo();
