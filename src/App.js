@@ -13,6 +13,7 @@ import Discover from "./components/Pages/Discover";
 import Donate from "./components/Pages/PublicCampaign/Donate";
 import PublicCampaign from "./components/Pages/PublicCampaign/PublicCampaign";
 import Search from "./components/Pages/Search";
+import { Get } from "./scripts";
 
 const App = () => {
   const [loginSetting, setloginSetting] = useState({
@@ -27,12 +28,13 @@ const App = () => {
     alterHeaderIfLoggedIn();
   }, []);
 
-  const alterHeaderIfLoggedIn = () => {
+  const alterHeaderIfLoggedIn = async () => {
     let storedUSER = localStorage.getItem("userID");
     if (storedUSER) {
+      const user = await Get(`/users/${storedUSER}`, {});
       setloginSetting({
         path: "/AccountOverview",
-        text: "Hello username",
+        text: `Hello ${user.username}`,
       });
       setCreateProj({
         path: "/CreateProject",
