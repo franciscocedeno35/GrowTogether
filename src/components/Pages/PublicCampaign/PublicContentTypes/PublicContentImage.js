@@ -4,8 +4,8 @@ import "./PublicContentImage.css";
 function PublicContentImage({ content }) {
   return (
     <div>
-      {/* <img src={content} alt="" /> */}
-      <h2>{content}</h2>
+      <img src={content.imageSrc} alt="" />
+      {/* <h2>{content}</h2> */}
     </div>
   );
 }

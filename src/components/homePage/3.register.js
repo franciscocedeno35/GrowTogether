@@ -103,7 +103,7 @@ const Register = (props) => {
 
         <div className="login-container">
           Have an account?{" "}
-          <a className="login-link" href="/login">
+          <a className="login-link" href="/Login">
             Login
           </a>
         </div>

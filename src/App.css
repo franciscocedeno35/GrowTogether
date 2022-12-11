@@ -22,14 +22,10 @@ a:hover {
 :link {
   margin-top: 20px;
 }
+
 #h1Head {
   color: #54ffad;
   margin-top: 0;
-}
-
-hr {
-  border-top: 3px solid #8b8b8b;
-  margin: 15px 40px 50px;
 }
 
 .flex-col {

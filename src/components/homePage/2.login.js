@@ -74,29 +74,20 @@ const Login = (props) => {
           </a>
         </div>
 
-        <button
-          className="center-block login-register-button"
-          onClick={handleLogin}
-        >
+        <button className="center-block login-register-button" onClick={handleLogin}>
           Login
         </button>
 
         <div className="remember-me">
           <label>
-            <input
-              type="checkbox"
-              className="remember"
-              name="remember"
-              defaultChecked={true}
-            />{" "}
-            Remember me
+            <input type="checkbox" className="remember" name="remember" defaultChecked={true} /> Remember me
           </label>
         </div>
       </div>
       {/* </form> */}
       <div className="new-signup">
         New to GrowTogether?{" "}
-        <a className="login-link" href="/register">
+        <a className="login-link" href="/Register">
           Register
         </a>
       </div>

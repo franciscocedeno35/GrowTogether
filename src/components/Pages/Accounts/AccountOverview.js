@@ -22,6 +22,7 @@ function AccountOverview() {
     // we're logged in!
     Get(`/users/${userID}`, {})
       .then((result) => {
+        setOverviewInfo(result);
         retrieveCampaignImages(result);
       })
       .catch((error) => {
@@ -40,30 +41,64 @@ function AccountOverview() {
       });
   }, []);
 
-  const retrieveCampaignImages = async (info) => {
-    for (let i = 0; i < info.unpublishedCampaignsOwned.length; i++) {
-      const campaign = info.unpublishedCampaignsOwned[i];
+  const retrieveCampaignImages = async (userInfo) => {
+    console.log(userInfo);
+    for (let i = 0; i < userInfo.unpublishedCampaignsOwned.length; i++) {
+      const campaign = userInfo.unpublishedCampaignsOwned[i];
       const imageSrc = await GetImage(campaign.mainImage);
       campaign.imageSrc = imageSrc;
-      info.unpublishedCampaignsOwned[i] = { ...campaign };
+      userInfo.unpublishedCampaignsOwned[i] = { ...campaign };
     }
-    console.log(info);
-    setOverviewInfo(info);
+    for (let i = 0; i < userInfo.publishedCampaignsOwned.length; i++) {
+      const campaign = userInfo.publishedCampaignsOwned[i];
+      const imageSrc = await GetImage(campaign.mainImage);
+      campaign.imageSrc = imageSrc;
+      userInfo.publishedCampaignsOwned[i] = { ...campaign };
+    }
+    for (let i = 0; i < userInfo.donations.length; i++) {
+      const campaign = userInfo.donations[i].campaign;
+
+      // compute campaign progress
+      let sum = 0;
+      const campDonations = await Get(`/donations/${campaign._id}`, {});
+      for (let j = 0; j < campDonations.length; j++) {
+        sum += campDonations[j].sum;
+      }
+      campaign.currentlyDonated = sum;
+
+      const imageSrc = await GetImage(campaign.mainImage);
+      campaign.imageSrc = imageSrc;
+      userInfo.donations[i].campaign = { ...campaign };
+    }
+    console.log(userInfo);
+    setOverviewInfo(userInfo);
   };
 
   const goToCampaignOverview = (campaign) => {
-    navigate(`/unpublishedCampaign/Overview/${campaign._id}`, {
-      state: { campaign: campaign },
+    navigate(`/Campaign/Overview/${campaign._id}`, {
+      state: { campaign: campaign, userID: userID },
     });
+  };
+
+  const goToAccountOverview = () => {
+    navigate(`/AccountOverview/Settings`, {
+      state: { userID: userID, user: overviewInfo },
+    });
+  };
+
+  const goToCreateCampaign = () => {
+    navigate(`/CreateProject`);
   };
 
   return (
     <header>
       <div className="welcomer">
         <h1>Hello, {overviewInfo.username}</h1>
-        <button id="settings">Settings</button>
+        <button id="settings" onClick={goToAccountOverview}>
+          Settings
+        </button>
       </div>
-      <hr></hr>
+      <hr className="whiteLine"></hr>
       <div id="titles">
         <h2>Campaigns Backed:</h2>
         <h2>Your Campaigns:</h2>
@@ -95,41 +130,45 @@ function AccountOverview() {
             );
           })} */}
         </div>
-        {overviewInfo.donations.map((donation, i) => {
-          return (
-            <div className="backed">
-              <div id="present">
-                <div id="imgPresent"></div>
-                <div id="info">
-                  <h2>donation.campaign.title</h2>
-                  <h3>Progress $###/$###</h3>
-                  <p>Created By {donation.campaign.owner}</p>
-                  <h5 id="contribution">Total Contributed: ${donation.total.toLocaleString("en")}</h5>
-                </div>
-              </div>
-              <h3 id="rewardsPromised">Rewards Promised:</h3>
-              {overviewInfo.donations.map((reward, i) => {
-                return (
-                  <div className="rewardsSummary" id={"rewards" + (i + 1)} key={i}>
-                    <div className="rewardTitle" id={"rewardTitle" + (i + 1)}>
-                      <h3 className="title">{reward.name}</h3>
-                      <h3 className="price">Reward Price: ${reward.price.toLocaleString("en")}</h3>
-                    </div>
-                    <p id={"summary" + (i + 1)}>{reward.description}</p>
-                    <div class="rewardInfo">
-                      <p className="delivery" id={"delivery" + (i + 1)}>
-                        Delivery {reward.expectedDeliveryDate.toDateString()}
-                      </p>
-                      <p className="purchased" id={"purchased" + (i + 1)}>
-                        Purchased on {donation.purchaseDate.toDateString()}
-                      </p>
-                    </div>
+        <div className="flex-column">
+          {overviewInfo.donations.map((donation) => {
+            return (
+              <div className="backed" key={donation._id}>
+                <div className="present">
+                  <img className="imgPresent" src={donation.campaign.imageSrc ? donation.campaign.imageSrc : ""} alt="" />
+                  <div className="info">
+                    <h2>{donation.campaign.title}</h2>
+                    <h3>
+                      Progress ${donation.campaign.currentlyDonated}/${donation.campaign.goal}
+                    </h3>
+                    <p>Created By {donation.campaign.owner}</p>
+                    <h5 className="contribution">Total Contributed: ${donation.sum.toLocaleString("en")}</h5>
                   </div>
-                );
-              })}
-            </div>
-          );
-        })}
+                </div>
+                <h3 className="rewardsPromised">Rewards Promised:</h3>
+                {donation.rewards.map((reward, i) => {
+                  return (
+                    <div className="rewardsSummary" id={"rewards" + (i + 1)} key={reward._id}>
+                      <div className="rewardTitle" id={"rewardTitle" + (i + 1)}>
+                        <h3 className="title">{reward.name}</h3>
+                        <h3 className="price">Reward Price: ${reward.price.toLocaleString("en")}</h3>
+                      </div>
+                      <p id={"summary" + (i + 1)}>{reward.description}</p>
+                      <div className="rewardInfo">
+                        <p className="delivery" id={"delivery" + (i + 1)}>
+                          Delivery {new Date(reward.expectedDeliveryDate).toDateString()}
+                        </p>
+                        <p className="purchased" id={"purchased" + (i + 1)}>
+                          Purchased on {new Date(donation.purchaseDate).toDateString()}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
         {/* <div className="rewardsSummary" id="rewards1">
           <div className="rewardTitle" id="rewardTitle1">
             <h3 className="title">Reward Title</h3>
@@ -173,7 +212,7 @@ function AccountOverview() {
               >
                 <img className="img" src={campaign.imageSrc ? campaign.imageSrc : ""} />
                 <div id="srcCamp1">
-                  <h4>{campaign.title}</h4>
+                  <h4 className="projectTitle">{campaign.title}</h4>
                   <p>Unpublished!</p>
                 </div>
               </div>
@@ -191,7 +230,7 @@ function AccountOverview() {
               >
                 <img className="img" src={campaign.imageSrc ? campaign.imageSrc : ""} />
                 <div id="srcCamp1">
-                  <h4>{campaign.title}</h4>
+                  <h4 className="projectTitle">{campaign.title}</h4>
                   <p>Published!</p>
                 </div>
               </div>
@@ -219,7 +258,9 @@ function AccountOverview() {
             </div>
           </div> */}
           <div className="campaign" id="newCamp">
-            <button id="add">Add</button>
+            <button id="add" onClick={goToCreateCampaign}>
+              Add
+            </button>
           </div>
         </div>
       </div>

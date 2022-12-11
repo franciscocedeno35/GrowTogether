@@ -6,15 +6,21 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
   const [state, setState] = useState(data.reward);
 
   const handleChange = (e) => {
-    if (e.target.name == "expectedDeliveryDate") {
-      setState({ ...state, [e.target.name]: new Date(e.target.value) });
-    } else {
-      setState({ ...state, [e.target.name]: e.target.value });
-    }
+    setState({ ...state, [e.target.name]: e.target.value });
   };
 
   const trySave = () => {
     // just make sure that the reward values are OK before saving.
+    if (!state.name || !state.description) {
+      alert("You must provide a Reward Name and Description!");
+      return;
+    }
+    const stateDate = new Date(state.expectedDeliveryDate);
+    const today = new Date(Date.now());
+    if (stateDate < today) {
+      alert("Your date must be after today!");
+      return;
+    }
     if (state.price <= 0) {
       alert("Price must be higher than 0");
       return;
@@ -40,7 +46,7 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
       </div>
       <div>
         <label>Expected Delivery Date</label>
-        <input name="expectedDeliveryDate" onChange={handleChange} type="date" defaultValue={state.expectedDeliveryDate.toLocaleDateString("en-CA")} />
+        <input name="expectedDeliveryDate" onChange={handleChange} type="datetime-local" defaultValue={state.expectedDeliveryDate} />
       </div>
       <button onClick={trySave}>SAVE</button>
       <button onClick={cancelEdit}>CANCEL</button>
