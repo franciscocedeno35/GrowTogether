@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-const SlideBar = ({ image, title, creator }) => {
+const SlideBar = ({ image, title, creator, campaignID }) => {
   return (
     <div className="">
       <img
@@ -9,7 +9,7 @@ const SlideBar = ({ image, title, creator }) => {
         alt="slidebar"
         onClick={(e) => {
           e.preventDefault();
-          window.location.href = "PublicCampaign/";
+          window.location.href = `/Campaign/${campaignID}`;
         }}
       />
       <span className="project-card-header-creator">

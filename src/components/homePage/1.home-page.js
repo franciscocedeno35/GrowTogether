@@ -105,7 +105,7 @@ const Home = () => {
           <div className="cardSlider">
             <div className="slider">
               {Recommended.map((campaign) => (
-                <SlideBar image={campaign.image} title={campaign.title} creator={campaign.owner} key={campaign._id} />
+                <SlideBar image={campaign.image} title={campaign.title} creator={campaign.owner} campaignID={campaign._id} key={campaign._id} />
               ))}
             </div>
           </div>
