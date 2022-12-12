@@ -1,5 +1,5 @@
 .content-editor-container {
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   background-color: rgb(0, 0, 0, 0.5);
