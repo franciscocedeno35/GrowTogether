@@ -1,11 +1,12 @@
-import "./Footer.css";
-import Button from "./Button";
+import './Footer.css';
+import { BsFacebook } from 'react-icons/bs';
+// import Button from "./Button";
 
 function Footer() {
-  return (
+	return (
 		<footer>
-			<hr className="whiteLine"></hr>
-			<div id="divFoot">
+			{/* <hr className="whiteLine"></hr> */}
+			{/* <div id="divFoot">
 				<Button id="arts" text="Arts" />
 				<Button id="comics" text="Comics & Illustration" />
 				<Button id="design" text="Design & Tech" />
@@ -14,86 +15,102 @@ function Footer() {
 				<Button id="games" text="Games" />
 				<Button id="music" text="Arts & Craft" />
 				<Button id="publishing" text="Publishing" />
-			</div>
-			<hr className='whiteLine'></hr>
+			</div> */}
+			<hr className="whiteLine"></hr>
 			<div id="additionalInfo">
 				<section>
-					<h2>ABOUT</h2>
 					<div className="infoLists">
 						<ul>
-							<Button id="aboutUs" text="About Us" />
+							<p className="footer-title-header">ABOUT</p>
+							<a href="">About us</a>
 						</ul>
 						<ul>
-							<Button id="charter" text="Our Charter" />
+							<a href="">Our Charter</a>
 						</ul>
 						<ul>
-							<Button id="stats" text="Stats" />
+							<a href="">Stats</a>
 						</ul>
 						<ul>
-							<Button id="press" text="Press" />
+							<a href="">Press</a>
 						</ul>
 						<ul>
-							<Button id="jobs" text="Jobs" />
+							<a href="">Jobs</a>
+						</ul>
+						<br />
+						<ul>
+							<h1 id="h1Foot">GrowTogether</h1>
 						</ul>
 					</div>
 				</section>
 				<section>
-					<h2>Support</h2>
-					<div className="infoLists">
+					<div className="infoLists2">
 						<ul>
-							<Button id="help" text="Help Center" />
+							<p className="footer-title-header">SUPPORT</p>
+							<a href="">Help Center</a>
 						</ul>
 						<ul>
-							<Button id="aboutUs" text="About Us" />
+							<a href="">Our Rules</a>
 						</ul>
 						<ul>
-							<Button id="charter" text="Our Charter" />
+							<a href="">Creator Resources</a>
 						</ul>
 						<ul>
-							<Button id="stats" text="Stats" />
+							<a href="">Forward Funds</a>
 						</ul>
 						<ul>
-							<Button id="press" text="Press" />
-						</ul>
-						<ul>
-							<Button id="jobs" text="Jobs" />
+							<a href="">Brand Assets</a>
 						</ul>
 					</div>
 				</section>
 				<section>
-					<h2>More From GrowTogether</h2>
-					<div className="infoLists">
+					<div className="infoLists3">
 						<ul>
-							<Button id="news" text="Newsletters" />
+							<p className="footer-title-header">MORE FROM GrowTogether</p>
+							<a href="">Newsletters</a>
 						</ul>
 						<ul>
-							<Button id="updates" text="GrowTogether Project Updates" />
+							<a href="">GrowTogether Project Updates</a>
 						</ul>
 						<ul>
-							<Button id="create" text="The Creative Independent" />
+							<a href="">The Creative Independent</a>
 						</ul>
 						<ul>
-							<Button id="apps" text="Mobile Apps" />
+							<a href="">Mobile Apps</a>
 						</ul>
 						<ul>
-							<Button id="research" text="Research" />
+							<a href="">Research</a>
+						</ul>
+						<br/>
+						<ul className="Social-media">
+							<a href="">
+								<img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" />{' '}
+							</a>
+							<a href="">
+								<img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" />{' '}
+								<a href="">
+									<img src="https://cdn-icons-png.flaticon.com/512/124/124021.png" />{' '}
+									<a href="">
+										<img src="https://cdn-icons-png.flaticon.com/512/3938/3938026.png" />{' '}
+									</a>
+								</a>
+							</a>
 						</ul>
 					</div>
 				</section>
 			</div>
-			<h1 id="h1Foot">GrowTogether</h1>
 			<hr className="whiteLine"></hr>
 			<div id="divFoot2">
-				<Button id="trust" text="Trust & Safety" />
-				<Button id="terms" text="Terms of Use" />
-				<Button id="privacy" text="Privacy Policy" />
-				<Button id="cookie" text="Cookie Policy" />
-				<Button id="access" text="Accessibility" />
-				<Button id="statement" text="Statement" />
-				<Button id="ca" text="CA" />
-				<Button id="notice" text="Notice of Consent" />
+				<a href="">Trust & Safety </a>
+				<a href="">Terms of Use</a>
+				<a href=""> Privacy Policy </a>
+
+				<a href=""> Cookie Policy</a>
+				<a href=""> Accessibility</a>
+				<a href=""> Statement</a>
+				<a href=""> CA</a>
+				<a href=""> Notice of Consent</a>
 			</div>
 		</footer>
 	);
-} 
-export default Footer
+}
+export default Footer;
