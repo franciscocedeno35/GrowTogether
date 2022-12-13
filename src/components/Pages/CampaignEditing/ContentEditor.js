@@ -108,7 +108,7 @@ const ContentEditor = ({ data, saveEdit, cancelEdit, insertEdit, deleteContent }
           <div>
             <label>Image</label>
             <input name="content" onChange={handleImage} type="file" defaultValue={""}></input>
-            {image.imageSrc ? <img src={image.imageSrc} /> : ""}
+            {image.imageSrc ? <img src={image.imageSrc} className="image-limiter" /> : ""}
           </div>
         );
       }

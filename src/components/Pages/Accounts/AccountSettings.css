@@ -1,8 +1,6 @@
-.create-campaign-h1{
-	color: white;
-}
 
-.create-campaign-input{
+
+.accountSetting-input{
   border-radius: 20px;
   width: 30%;
   height: 50px;
@@ -12,14 +10,28 @@
    
 }
 
-.create-campaign-label{
-  color: white;
-  display: inline-block;
-        width: 100px;
-				margin-top: 15px;
+.create-campaign-Description-textarea{
+  border-radius: 15px;
+  width: 30%;
+  height: 100px;
+  margin-bottom: 10px;
+  margin-right: 80px;
 
 }
-.create-campaign-create-button button{
+
+.accountSetting-label{
+  color: white;
+  padding:5px ;
+  margin-top: 12px;
+
+}
+
+.accountSetting-h1{
+  color: white;
+}
+
+
+.accountSetting-save-button button{
  background-color: #1C9A37;
  color: white;
  width: 24%;
@@ -27,14 +39,12 @@
  border-radius: 20px;
  margin-bottom: 7px;
  font-size: 1vw;
- font-size: bold;
+
 
 }
 
-
-/* 
 .accountSetting-button button{
-   
+   /* background-color: red; */
  color: white;
 width: 12%;
  height: 44px;
@@ -61,4 +71,4 @@ width: 12%;
       font-size: 17px;
     }
 
-} */
+}

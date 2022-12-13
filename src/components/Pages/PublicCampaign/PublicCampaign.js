@@ -1,3 +1,4 @@
+import { Buffer } from "buffer";
 import { React, useEffect, useState } from "react";
 import { Get, GetImage } from "../../../scripts";
 import "./PublicCampaign.css";
@@ -9,6 +10,7 @@ const PublicCampaign = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [userID, setUserID] = useState(localStorage.getItem("userID"));
+  const [mainImage, setMainImage] = useState();
   const [CampInfo, setCampInfo] = useState({
     title: "",
     subtitle: "",
@@ -22,8 +24,6 @@ const PublicCampaign = () => {
     content: [],
     rewards: [],
   });
-
-  const [mainImage, setMainImage] = useState(null);
 
   useEffect(() => {
     populateInfo();
