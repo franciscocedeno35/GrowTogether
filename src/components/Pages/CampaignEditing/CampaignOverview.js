@@ -145,6 +145,10 @@ function CampaignOverview(props) {
     );
   };
 
+  const getUnpublishedOverviewInfo = () => {
+    return <h1>HELLO!</h1>;
+  };
+
   return (
     <div className="campaign-overview white">
       <h1>{campaign.title}</h1>
@@ -152,7 +156,7 @@ function CampaignOverview(props) {
       <p>{campaign.description}</p>
       <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" />
       <hr />
-      {isPublished() ? getOverviewInfo() : ""}
+      {isPublished() ? getOverviewInfo() : getUnpublishedOverviewInfo()}
       <div className="flex-row justify-space-around">
         <Link to={"/Campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
           Settings
