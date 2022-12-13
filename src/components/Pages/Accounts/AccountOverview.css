@@ -124,10 +124,12 @@
 #yourCampaigns {
   box-sizing: border-box;
   width: 436px;
-  height: 400px;
+  /* height: 400px; */
   background: #3e3e3e;
   border: 3px solid #8b8b8b;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .campaign {
