@@ -1,12 +1,64 @@
-
-
-
-
-.create-project {
-	text-align: center;
-	color: #ffffff;
-	margin-bottom: 900px;
-  
-
-  
+.create-campaign-h1{
+	color: white;
 }
+
+.create-campaign-input{
+  border-radius: 20px;
+  width: 30%;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-right: 80px;
+  
+   
+}
+
+.create-campaign-label{
+  color: white;
+  display: inline-block;
+        width: 100px;
+				margin-top: 15px;
+
+}
+.create-campaign-create-button button{
+ background-color: #1C9A37;
+ color: white;
+ width: 24%;
+ height: 44px;
+ border-radius: 20px;
+ margin-bottom: 7px;
+ font-size: 1vw;
+ font-size: bold;
+
+}
+
+
+/* 
+.accountSetting-button button{
+   
+ color: white;
+width: 12%;
+ height: 44px;
+ border-radius: 20px;
+ margin-bottom: 200px;
+ font-size: 1vw;
+}
+
+
+.accountSetting-delete {
+ background-color: red;
+}
+
+.accountSetting-signOut{
+  background-color: red;
+}
+
+@media all and (max-width: 1487px) {
+    .accountSetting-button button {
+       
+        font-size: 12px;
+    }
+    .accountSetting-save-button button{
+      font-size: 17px;
+    }
+
+} */
