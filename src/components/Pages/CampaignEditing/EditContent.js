@@ -119,6 +119,11 @@ const EditContent = () => {
 
   return (
     <div className="flex-column white">
+      {showingEditor ? (
+        <ContentEditor data={contentToBeEdited} saveEdit={saveEdit} cancelEdit={cancelEdit} insertEdit={insertEdit} deleteContent={deleteContent} />
+      ) : (
+        ""
+      )}
       {contents.map((content, i) => {
         return (
           <div key={i}>
@@ -155,11 +160,6 @@ const EditContent = () => {
       <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
         CANCEL
       </Link>
-      {showingEditor ? (
-        <ContentEditor data={contentToBeEdited} saveEdit={saveEdit} cancelEdit={cancelEdit} insertEdit={insertEdit} deleteContent={deleteContent} />
-      ) : (
-        ""
-      )}
     </div>
   );
 };
