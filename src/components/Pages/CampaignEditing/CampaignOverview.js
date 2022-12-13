@@ -153,8 +153,8 @@ function CampaignOverview(props) {
     <div className="campaign-overview white">
       <h1>{campaign.title}</h1>
       <h1>{campaign.subtitle}</h1>
-      <p>{campaign.description}</p>
-      <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" />
+      {/* <p>{campaign.description}</p> */}
+      {/* <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" /> */}
       <hr />
       {isPublished() ? getOverviewInfo() : getUnpublishedOverviewInfo()}
       <div className="flex-row justify-space-around">
