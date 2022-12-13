@@ -3,20 +3,6 @@ Footer{
 }
 
 
-/* #divFoot {
-    display: flex;
-    justify-content: space-around;
-    background-color: #383838;
-    margin-top: 20px;
-} */
-
-/* #divFoot > button {
-    padding: 1px 20px;
-    text-align: center;
-    color: #54F5FF;
-    font-size: 15px;
-     border: none;
-} */
 
 #additionalInfo {
     display: flex;
@@ -44,13 +30,6 @@ Footer{
     font-weight: bold;
     font-size:x-large
 }
-
-/* .footer-title-header{
-    text-align: center;
-    font-weight: bold;
-    font-size:20px;
-} */
-
 
 
 #h1Foot{

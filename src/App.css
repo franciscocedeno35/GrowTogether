@@ -3,7 +3,7 @@ a {
 }
 
 a:hover {
-  color: #54ffad;
+  color: #54ffad ;
 }
 
 #divHead {
@@ -21,6 +21,7 @@ a:hover {
 }
 :link {
   margin-top: 20px;
+  
 }
 
 #h1Head {
@@ -28,7 +29,7 @@ a:hover {
   margin-top: 0;
 }
 
-.flex-col {
+.flex-column {
   display: flex;
   flex-direction: column;
 }
@@ -70,11 +71,15 @@ a:hover {
   align-items: right;
 }
 
-.white {
+.white{
   color: white;
 }
+.white:hover{
+  color: #54ffad;
+}
+
 .nav-link {
-color: white !important;
+color: white;
 
 }
 

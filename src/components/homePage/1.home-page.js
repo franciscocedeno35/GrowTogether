@@ -74,44 +74,60 @@ const Home = () => {
   };
 
   return (
-    <div className="homepage-body ">
-      <SearchbarDropdownn />
-      <div className="slider-container">
-        <section className="slider">
-          <div className="slides">
-            <p className="featured-project">FEATURED PROJECTS</p>
-            {Featured.map((campaign) => (
-              <SlideAnimate
-                image={campaign.image}
-                title={campaign.title}
-                description={campaign.description}
-                creator={campaign.owner}
-                slideClass={campaign.class}
-                slideId={campaign.id}
-                key={campaign._id}
-                campaignID={campaign._id}
-              />
-            ))}
-          </div>
-          <div className="icon-buttons">
-            <VscCircleLargeFilled onClick={() => setSlide("slide1", 0)} className="icons" />
-            <VscCircleLargeFilled onClick={() => setSlide("slide2", 1)} className="icons" />
-            <VscCircleLargeFilled onClick={() => setSlide("slide3", 2)} className="icons" />
-          </div>
-        </section>
-      </div>
-      <div className="cardSlider-container-body">
-        <div className="cardSlider-container">
-          <div className="cardSlider">
-            <div className="slider">
-              {Recommended.map((campaign) => (
-                <SlideBar image={campaign.image} title={campaign.title} creator={campaign.owner} campaignID={campaign._id} key={campaign._id} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+		<div className="homepage-body ">
+			<SearchbarDropdownn />
+			<div className="slider-container">
+				<section className="slider">
+					<div className="slides">
+						<p className="featured-project">FEATURED PROJECTS</p>
+						{Featured.map((campaign) => (
+							<SlideAnimate
+								image={campaign.image}
+								title={campaign.title}
+								description={campaign.description}
+								creator={campaign.owner}
+								slideClass={campaign.class}
+								slideId={campaign.id}
+								key={campaign._id}
+								campaignID={campaign._id}
+							/>
+						))}
+					</div>
+					<div className="icon-buttons">
+						<VscCircleLargeFilled
+							onClick={() => setSlide('slide1', 0)}
+							className="icons"
+						/>
+						<VscCircleLargeFilled
+							onClick={() => setSlide('slide2', 1)}
+							className="icons"
+						/>
+						<VscCircleLargeFilled
+							onClick={() => setSlide('slide3', 2)}
+							className="icons"
+						/>
+					</div>
+				</section>
+			</div>
+			<div className="cardSlider-container-body">
+				<div className="cardSlider-container">
+					<div className="cardSlider">
+						<div className="slider">
+								{Recommended.map((campaign) => (
+									<SlideBar
+										image={campaign.image}
+										title={campaign.title}
+										creator={campaign.owner}
+										campaignID={campaign._id}
+										key={campaign._id}
+									/>
+								))}
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 export default Home;

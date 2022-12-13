@@ -1,21 +1,8 @@
 import './Footer.css';
-import { BsFacebook } from 'react-icons/bs';
-// import Button from "./Button";
 
 function Footer() {
 	return (
 		<footer>
-			{/* <hr className="whiteLine"></hr> */}
-			{/* <div id="divFoot">
-				<Button id="arts" text="Arts" />
-				<Button id="comics" text="Comics & Illustration" />
-				<Button id="design" text="Design & Tech" />
-				<Button id="film" text="Film" />
-				<Button id="food" text="Food" />
-				<Button id="games" text="Games" />
-				<Button id="music" text="Arts & Craft" />
-				<Button id="publishing" text="Publishing" />
-			</div> */}
 			<hr className="whiteLine"></hr>
 			<div id="additionalInfo">
 				<section>
@@ -80,7 +67,7 @@ function Footer() {
 						<ul>
 							<a href="">Research</a>
 						</ul>
-						<br/>
+						<br />
 						<ul className="Social-media">
 							<a href="">
 								<img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" />{' '}

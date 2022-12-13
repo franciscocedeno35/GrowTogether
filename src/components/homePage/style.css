@@ -169,6 +169,7 @@ slider section */
   border-radius: 40px;
   width: 100%;
   cursor: pointer;
+  height: 400px;
 }
 .slider .slides .item span {
   position: relative;
@@ -231,7 +232,7 @@ slider section */
   display: flex;
   align-items: center;
   width: 90%;
-  height: 300px;
+  height: 350px;
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;

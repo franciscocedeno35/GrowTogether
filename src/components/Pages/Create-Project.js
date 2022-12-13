@@ -76,22 +76,51 @@ function CreateProject(props) {
   };
 
   return (
-    <div className="create-project">
-      <h1>Upload Image</h1>
-      {loading ? <h3>Loading...</h3> : <img src={mainImage ? mainImage : ""} style={{ width: "300px" }} />}
-      <div className="flex-col">
-        <input type="text" value={state.title} name="title" onChange={handleChange} />
-        <input type="text" value={state.subtitle} name="subtitle" onChange={handleChange} />
-        <input type="text" value={state.description} name="description" onChange={handleChange} />
-        <input type="number" value={state.goal} name="goal" onChange={handleChange} />
-        <input type="number" value={state.duration} name="duration" onChange={handleChange} />
-        <input type="file" onChange={uploadImage} />
-        <button onClick={submitNewCampaign} style={{ color: "black" }}>
-          {" "}
-          SUBMIT{" "}
-        </button>
-      </div>
-    </div>
-  );
+		<div className="create-project">
+			<h1>Upload Image</h1>
+			{loading ? (
+				<h3>Loading...</h3>
+			) : (
+				<img src={mainImage ? mainImage : ''} style={{ width: '300px' }} />
+			)}
+			<div className="flex-column">
+				<input
+					type="text"
+					value={state.title}
+					name="title"
+					onChange={handleChange}
+				/>
+				<input
+					type="text"
+					value={state.subtitle}
+					name="subtitle"
+					onChange={handleChange}
+				/>
+				<input
+					type="text"
+					value={state.description}
+					name="description"
+					onChange={handleChange}
+				/>
+				<input
+					type="number"
+					value={state.goal}
+					name="goal"
+					onChange={handleChange}
+				/>
+				<input
+					type="number"
+					value={state.duration}
+					name="duration"
+					onChange={handleChange}
+				/>
+				<input type="file" onChange={uploadImage} />
+				<button onClick={submitNewCampaign} style={{ color: 'black' }}>
+					{' '}
+					SUBMIT{' '}
+				</button>
+			</div>
+		</div>
+	);
 }
 export default CreateProject;

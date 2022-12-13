@@ -1,0 +1,21 @@
+
+
+.card-slider-image-container{
+  height: 300px;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+.card-slider-container-imgspan{
+  height: 280px;
+}
+
+.card-slider-image-container img{
+  object-fit: cover;
+  height: 250px;
+  width: 500px;
+  padding-right: 20px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  
+}
