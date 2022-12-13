@@ -76,84 +76,45 @@ function CreateProject(props) {
   };
 
   return (
-		<div className="flex-column justify-center">
-			<div className="flex-row justify-center ">
-				<h1 className="create-campaign-h1">Create Your Own Campaign!</h1>
-			</div>
+    <div className="flex-column justify-center">
+      <div className="flex-row justify-center ">
+        <h1 className="create-campaign-h1">Create Your Own Campaign!</h1>
+      </div>
 
-			<div className="flex-row justify-center  ">
-				<label className="create-campaign-label">Title:</label>
-				<input
-					className="create-campaign-input"
-					type="text"
-					value={state.title}
-					name="title"
-					onChange={handleChange}
-				/>
-			</div>
-			<div className="flex-row justify-center ">
-				<label className="create-campaign-label">SubTitle:</label>
-				<input
-					className="create-campaign-input"
-					type="text"
-					value={state.subtitle}
-					name="subtitle"
-					onChange={handleChange}
-				/>
-			</div>
-			<div className="flex-row justify-center ">
-				<label className="create-campaign-label">Description:</label>
-				<textarea className="create-campaign-Description-textarea">
-					<input
-						className="create-campaign-input "
-						type="text"
-						value={state.description}
-						name="description"
-						onChange={handleChange}
-					/>
-				</textarea>
-			</div>
-			<div className="flex-row justify-center ">
-				<label className="create-campaign-label">Main Image:</label>
-				<input
-					className="create-campaign-input "
-					type="file"
-					onChange={uploadImage}
-				/>
-				{loading ? (
-					<h3>Loading...</h3>
-				) : (
-					<img src={mainImage ? mainImage : ''} style={{ width: '300px' }} />
-				)}
-			</div>
-			<div className="flex-row justify-center ">
-				<label className="create-campaign-label">Goal:</label>
-				<input
-					className="create-campaign-input"
-					type="number"
-					value={state.goal}
-					name="goal"
-					onChange={handleChange}
-				/>
-			</div>
-			<div className="flex-row justify-center ">
-				<label className="create-campaign-label">Duration:</label>
-				<input
-					className="create-campaign-input"
-					type="number"
-					value={state.duration}
-					name="duration"
-					onChange={handleChange}
-				/>
-			</div>
+      <div className="flex-row justify-center  ">
+        <label className="create-campaign-label">Title:</label>
+        <input className="create-campaign-input" type="text" value={state.title} name="title" onChange={handleChange} />
+      </div>
+      <div className="flex-row justify-center ">
+        <label className="create-campaign-label">SubTitle:</label>
+        <input className="create-campaign-input" type="text" value={state.subtitle} name="subtitle" onChange={handleChange} />
+      </div>
+      <div className="flex-row justify-center ">
+        <label className="create-campaign-label">Description:</label>
+        <textarea className="create-campaign-Description-textarea">
+          <input className="create-campaign-input " type="text" value={state.description} name="description" onChange={handleChange} />
+        </textarea>
+      </div>
+      <div className="flex-row justify-center ">
+        <div className="flex-column create-project-test">
+          <label className="create-campaign-label">Main Image:</label>
+          <input className="create-campaign-image-input " type="file" onChange={uploadImage} />
+        </div>
+        <img src={mainImage ? mainImage : ""} className="create-campaign-image-preview" />
+      </div>
+      <div className="flex-row justify-center ">
+        <label className="create-campaign-label">Goal:</label>
+        <input className="create-campaign-input" type="number" value={state.goal} name="goal" onChange={handleChange} />
+      </div>
+      <div className="flex-row justify-center ">
+        <label className="create-campaign-label">Duration:</label>
+        <input className="create-campaign-input" type="number" value={state.duration} name="duration" onChange={handleChange} />
+      </div>
 
-			<div className="flex-row justify-center create-campaign-create-button ">
-				<button onClick={submitNewCampaign} >
-					{' '}
-					CREATE{' '}
-				</button>
-			</div>
-		</div>
-	);
+      <div className="flex-row justify-center create-campaign-create-button ">
+        <button onClick={submitNewCampaign}> CREATE </button>
+      </div>
+    </div>
+  );
 }
 export default CreateProject;

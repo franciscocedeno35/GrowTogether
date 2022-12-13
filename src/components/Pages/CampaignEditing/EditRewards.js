@@ -7,9 +7,9 @@ import "./EditRewards.css";
 import RewardEditor from "./RewardEditor";
 
 const emptyReward = {
-  name: "Default Reward Name",
+  name: "",
   price: 1,
-  description: "Default Description",
+  description: "",
   expectedDeliveryDate: new Date(),
 };
 

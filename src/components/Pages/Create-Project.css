@@ -1,36 +1,46 @@
-.create-campaign-h1{
-	color: white;
+.create-campaign-h1 {
+  color: white;
 }
 
-.create-campaign-input{
+.create-campaign-input {
   border-radius: 20px;
   width: 30%;
   height: 50px;
   margin-bottom: 10px;
   margin-right: 80px;
-  
-   
 }
 
-.create-campaign-label{
+.create-campaign-image-input {
+  border-radius: 20px;
+}
+
+.create-campaign-label {
   color: white;
   display: inline-block;
-        width: 100px;
-				margin-top: 15px;
-
+  width: 100px;
+  margin-top: 15px;
 }
-.create-campaign-create-button button{
- background-color: #1C9A37;
- color: white;
- width: 24%;
- height: 44px;
- border-radius: 20px;
- margin-bottom: 7px;
- font-size: 1vw;
- font-size: bold;
-
+.create-campaign-create-button button {
+  background-color: #1c9a37;
+  color: white;
+  width: 24%;
+  height: 44px;
+  border-radius: 20px;
+  margin-bottom: 7px;
+  font-size: 1vw;
+  font-size: bold;
 }
 
+.create-campaign-image-preview {
+  width: 30%;
+  height: 200px;
+  margin-bottom: 10px;
+  margin-right: 80px;
+}
+
+.create-project-test {
+  width: 100px;
+}
 
 /* 
 .accountSetting-button button{
