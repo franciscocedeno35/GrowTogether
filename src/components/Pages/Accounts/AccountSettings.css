@@ -1,31 +1,50 @@
 
-.accountSetting-firstName{
-  margin-left: 5%;
+
+.accountSetting-input{
+  border-radius: 20px;
+  width: 20%;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-right: 80px;
   
+   
+}
+
+.accountSetting-label{
+  color: white;
+  padding:5px ;
+
+}
+
+.accountSetting-h1{
+  color: white;
 }
 
 
-.accountSetting-lastName{
-margin-left: 5%;
+.accountSetting-save-button button{
+ background-color: #1C9A37;
+ color: white;
+ width: 15%;
+ height: 44px;
+ border-radius: 20px;
+ margin-bottom: 7px;
+
+}
+
+.accountSetting-button button{
+   /* background-color: red; */
+ color: white;
+width: 7%;
+ height: 44px;
+ border-radius: 20px;
+ margin-bottom: 200px;
 }
 
 
-.accountSetting-password{
-margin-left: 5%;
+.accountSetting-delete {
+ background-color: red;
 }
 
-
-
-
-.accountSetting-username{
-margin-left: 5%;
-}
-
-/* .accountSetting-input{
-  width: 70%;
-  margin-left: 2%;
-} */
-
-.accountSetting-container{
-  
+.accountSetting-signOut{
+  background-color: red;
 }
