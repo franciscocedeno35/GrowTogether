@@ -1,7 +1,7 @@
 import "./Create-Project.css";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Post } from "../../scripts";
+import { GetImage, Post } from "../../scripts";
 
 function CreateProject(props) {
   const navigate = useNavigate();
@@ -22,6 +22,10 @@ function CreateProject(props) {
     if (!userID) {
       // then user is not logged in!!! they shouldn't ever be here!
       navigate("/Login");
+    } else {
+      GetImage(`638ae54cd4f54a8e23b56c4e`).then((image) => {
+        setMainImage(image);
+      });
     }
   }, []);
 
@@ -91,9 +95,7 @@ function CreateProject(props) {
       </div>
       <div className="flex-row justify-center ">
         <label className="create-campaign-label">Description:</label>
-        <textarea className="create-campaign-Description-textarea">
-          <input className="create-campaign-input " type="text" value={state.description} name="description" onChange={handleChange} />
-        </textarea>
+        <textarea className="create-campaign-Description-textarea" value={state.description} name="description" onChange={handleChange} />
       </div>
       <div className="flex-row justify-center ">
         <div className="flex-column create-project-test">
