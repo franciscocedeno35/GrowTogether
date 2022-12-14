@@ -6,6 +6,12 @@ a:hover {
   color: #54ffad ;
 }
 
+#settings:hover{
+
+  color: #54ffad  !important;
+
+
+}
 #divHead {
   display: flex;
   justify-content: space-around;
@@ -74,7 +80,14 @@ a:hover {
 .white{
   color: white;
 }
-.white:hover{
+/* .white:hover{
+  color: #54ffad;
+} */
+
+.whitee{
+  color: white;
+}
+.whitee:hover{
   color: #54ffad;
 }
 
