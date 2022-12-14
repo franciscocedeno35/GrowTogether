@@ -30,11 +30,12 @@ const Login = (props) => {
         switch (error.response.status) {
           case 400: {
             // something
-            console.log("something");
+            console.log( "something" );
             break;
           }
           default: {
-            console.log("There was an error with the backend. what do?");
+            console.log( "There was an error with the backend. what do?" );
+            alert('You provided invalid information, please try again');
             break;
           }
         }
