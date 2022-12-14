@@ -1,4 +1,53 @@
-.edit-reward-reward {
+#containerRewards{
+  position: relative;
+  width: 1500;
+}
+
+#rewardTitle{
+  margin: 40px;
+}
+
+#edit-reward-reward {
+  position: relative;
   border: 1px solid white;
   border-radius: 15px;
+  width: 930px;
+  margin: 5px 350px;
+}
+
+.rewardSpacing{
+  margin: 20px;
+}
+
+#editButton{
+  position:absolute;
+  top:0;
+  right:0;
+  border-radius: 15px;
+  width: 100px;
+}
+
+.buttonRewards{
+  position: absolute;
+  right: 400px;
+  box-sizing: border-box;
+  border-radius: 20px; 
+  width: 200px;
+  background-color: #1C9A37;
+  color: white;
+  margin: 0;
+}
+
+#createNew{
+  top: 10px;
+}
+
+#saveEditRewards{
+  top: 50px;
+}
+
+#backButton{
+  display: flex;
+  justify-content: center;
+  top: 90px;
 }

@@ -6,3 +6,52 @@
   width: 100vw;
   height: 100vh;
 }
+
+#inputs{
+  position: absolute;
+  left: 200px;
+}
+
+.create-reward-label {
+  position: relative;
+  left: 10px ; 
+  color: white;
+  display: inline-block;
+  width: 100px;
+  margin-top: 15px;
+}
+
+.create-reward-input {
+  position: relative;
+  left: 80px;
+  border-radius: 20px;
+  width: 50%;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-right: 300px;
+}
+
+.buttonsEditor{
+  position: absolute;
+  right: 650px;
+  box-sizing: border-box;
+  border-radius: 20px; 
+  width: 200px;
+  background-color: #1C9A37;
+  color: white;
+  margin: 0;
+}
+
+#saveEditor{
+  top: 10px;
+}
+
+#cancelEditor{
+  top: 50px;
+}
+
+#deleteEditor{
+  display: flex;
+  justify-content: center;
+  top: 90px;
+}
