@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { Post } from "../../../scripts";
-// import "./Donate.css";
+import "./Donate.css";
 import PublicReward from "./PublicReward";
 
 function Donate() {
@@ -87,26 +87,24 @@ function Donate() {
   return (
     <div className="flex-row white">
       <div className="flex-column">
-        <div>
-          <label>Pledge Amount:</label>
-          <input type="number" defaultValue={0} min={0} name="charityAmount" onChange={handleCharityChange} />
+        <div id="textContainer">
+          <div>
+            <h3 className="donateText">Pledge Amount:</h3>
+            <input id="donateTextInput" type="number" defaultValue={0} min={0} name="charityAmount" onChange={handleCharityChange} />
+          </div>
+          <h3 className="donateText">
+            PLEDGE AMOUNT: {donation.charityAmount} <br /> TOTAL SUM (WITH REWARDS): {sum}
+          </h3>
+          <button id="donateButton" onClick={donate}>DONATE</button>
         </div>
-        <div className="flex-column">
-          {donation.rewards.map((reward, i) => {
-            return (
-              <div key={reward._id}>
-                <input type="checkbox" name={i} checked={donation.rewards[i].selected} onChange={handleCheckBoxChange}></input>
-                <PublicReward reward={reward} />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <div className="flex-column">
-        <div className="donate-total">
-          PLEDGE AMOUNT: {donation.charityAmount} <br /> TOTAL SUM (WITH REWARDS): {sum}
-        </div>
-        <button onClick={donate}>DONATE</button>
+        {donation.rewards.map((reward, i) => {
+          return (
+            <div id="pledges" key={reward._id}>
+              <input type="checkbox" name={i} checked={donation.rewards[i].selected} onChange={handleCheckBoxChange}></input>
+              <PublicReward reward={reward} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
