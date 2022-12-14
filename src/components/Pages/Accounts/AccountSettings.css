@@ -34,12 +34,22 @@
 .accountSetting-save-button button{
  background-color: #1C9A37;
  color: white;
- width: 24%;
+ width: 12%;
  height: 44px;
  border-radius: 20px;
  margin-bottom: 7px;
  font-size: 1vw;
 
+
+}
+.accountSetting-signout-button button{
+
+ color: white;
+ width: 12%;
+ height: 44px;
+ border-radius: 20px;
+ margin-bottom: 7px;
+ font-size: 1vw;
 
 }
 
@@ -49,7 +59,6 @@
 width: 12%;
  height: 44px;
  border-radius: 20px;
- margin-bottom: 200px;
  font-size: 1vw;
 }
 

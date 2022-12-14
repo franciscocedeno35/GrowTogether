@@ -15,7 +15,7 @@ function PublicContent({ content }) {
     }
     case "Paragraph": {
       return (
-        <div>
+        <div className="public-content-paragraph">
           <PublicContentParagraph content={content} />
         </div>
       );

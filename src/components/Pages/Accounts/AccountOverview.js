@@ -105,30 +105,7 @@ function AccountOverview() {
       </div>
       <div className="a">
         <div id="backed">
-          {/* <div id="present">
-            <div id="imgPresent"></div>
-            <div id="info">
-              <h2>Campaign Title</h2>
-              <h3>Progress $###/$###</h3>
-              <p>Created By Username</p>
-              <h5 id="contribution">Total Contributed: $###</h5>
-            </div>
-          </div>
-          <h3 id="rewardsPromised">Rewards Promised:</h3>
-          {overviewInfo.donations.map((reward, i) => {
-            return (
-              <div className="rewardsSummary" id={"rewards" + (i + 1)} key={i}>
-                <div className="rewardTitle" id={"rewardTitle" + (i + 1)}>
-                  <h3 className="title">{reward.name}</h3>
-                  <h3 className="price">Reward Price: ${reward.price.toLocaleString("en")}</h3>
-                </div>
-                <p id={"summary" + (i + 1)}>{reward.description}</p>
-                <p className="delivery" id="delivery1">
-                  Delivery {reward.expectedDeliveryDate.toDateString()}
-                </p>
-              </div>
-            );
-          })} */}
+          
         </div>
         <div className="flex-column">
           {overviewInfo.donations.map((donation) => {
@@ -169,36 +146,7 @@ function AccountOverview() {
             );
           })}
         </div>
-        {/* <div className="rewardsSummary" id="rewards1">
-          <div className="rewardTitle" id="rewardTitle1">
-            <h3 className="title">Reward Title</h3>
-            <h3 className="price">Reward Price: $###</h3>
-          </div>
-          <p id="summary1">Summary</p>
-          <p className="delivery" id="delivery1">
-            Delivery XX/XX/XXXX
-          </p>
-        </div>
-        <div className="rewardsSummary" id="rewards2">
-          <div className="rewardTitle" id="rewardTitle2">
-            <h3 className="title">Reward Title</h3>
-            <h3 className="price">Reward Price: $###</h3>
-          </div>
-          <p id="summary2">Summary</p>
-          <p className="delivery" id="delivery2">
-            Delivery XX/XX/XXXX
-          </p>
-        </div>
-        <div className="rewardsSummary" id="rewards3">
-          <div className="rewardTitle" id="rewardTitle3">
-            <h3 className="title">Reward Title</h3>
-            <h3 className="price">Reward Price: $###</h3>
-          </div>
-          <p id="summary3">Summary</p>
-          <p className="delivery" id="delivery3">
-            Delivery XX/XX/XXXX
-          </p>
-        </div> */}
+        
         <div id="yourCampaigns">
           {overviewInfo.unpublishedCampaignsOwned.map((campaign, i) => {
             return (
@@ -236,27 +184,7 @@ function AccountOverview() {
               </div>
             );
           })}
-          {/* <div className="campaign" id="campaign1">
-            <div className="img" id="imageCamp1"></div>
-            <div id="srcCamp1">
-              <h4>Project 1</h4>
-              <p>Status Text</p>
-            </div>
-          </div>
-          <div className="campaign" id="campaign2">
-            <div className="img" id="imageCamp2"></div>
-            <div id="srcCamp2">
-              <h4>Project 2</h4>
-              <p>Status Text</p>
-            </div>
-          </div>
-          <div className="campaign" id="campaign3">
-            <div className="img" id="imageCamp3"></div>
-            <div id="srcCamp3">
-              <h4>Project 3</h4>
-              <p>Status Text</p>
-            </div>
-          </div> */}
+         
           <div className="campaign" id="newCamp">
             <button id="add" onClick={goToCreateCampaign}>
               Add
