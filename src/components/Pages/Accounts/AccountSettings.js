@@ -127,6 +127,11 @@ function AccountSettings({ onSuccess }) {
 					</button>
 				)}
 			</div>
+			<div className="flex-row justify-center create-campaign-create-button editSetting-campaign-cancel-button ">
+				<Link to={'/AccountOverview'} state={location.state}>
+					CANCEL
+				</Link>
+			</div>
 		</div>
 	);
 }
