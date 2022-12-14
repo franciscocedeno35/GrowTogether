@@ -42,7 +42,7 @@
 .backed {
   box-sizing: border-box;
   width: 643px;
-  height: 1065px;
+  height: 800px;
   background: #3e3e3e;
   border: 3px solid #8b8b8b;
   border-radius: 15px;
@@ -75,7 +75,7 @@
 
 .rewardsSummary {
   width: 614px;
-  height: 245px;
+  height: 510px;
   margin: 20px 10px;
   background: #4c4c4c;
   border: 1px solid #8b8b8b;
@@ -111,13 +111,13 @@
 .delivery {
   position: relative;
   margin: 20px;
-  top: 100px;
+  top: 50px;
 }
 
 .purchased {
   position: absolute;
   margin: auto;
-  top: 100px;
+  top: 50px;
   right: 20px;
 }
 

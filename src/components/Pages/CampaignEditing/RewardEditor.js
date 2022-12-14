@@ -55,7 +55,7 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
           <button className="buttonsEditor" id="saveEditor" onClick={trySave}>SAVE</button>
           <button className="buttonsEditor" id="cancelEditor" onClick={cancelEdit}>CANCEL</button>
           {data.isNew ? "" : <button className="buttonsEditor" id="deleteEditor" onClick={deleteReward}>DELETE</button>}
-        </div>
+      </div>
     </div>
   );
 };
