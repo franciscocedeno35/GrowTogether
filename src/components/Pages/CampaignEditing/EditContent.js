@@ -28,21 +28,31 @@ const EditContent = () => {
   }, []);
 
   const prepareContent = async (campaign) => {
+    setContents(campaign.content);
     const newContent = [];
-    // this is to make it so newContent is a different pointer than campaign.content
     for (let i = 0; i < campaign.content.length; i++) {
-      const content = campaign.content[i];
-      if (content.type == "Image") {
-        // we gotta grab the image from DB and store it.
-        const src = await GetImage(content.content);
-        content.imageSrc = src;
-      }
-      if (content.type == "Video") {
-        content.videoURL = content.content;
-      }
-      newContent.push(content);
+      new Promise((res, rej) => {
+        console.log("Requested Content for " + i);
+        const content = campaign.content[i];
+        if (content.type == "Image") {
+          GetImage(content.content).then((src) => {
+            content.imageSrc = src;
+            res(content);
+          });
+          // we gotta grab the image from DB and store it.
+          // new Promise(async (res, rej) => {
+          //   // res();
+          // });
+        }
+        if (content.type == "Video") {
+          content.videoURL = content.content;
+          res(content);
+        }
+      }).then((preparedContent) => {
+        newContent[i] = preparedContent;
+        setContents(newContent);
+      });
     }
-    setContents(newContent);
   };
 
   const showEditor = (content, index, isInsert) => {
