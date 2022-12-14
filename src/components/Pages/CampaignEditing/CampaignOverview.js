@@ -146,17 +146,28 @@ function CampaignOverview(props) {
   };
 
   const getUnpublishedOverviewInfo = () => {
-    return <h1>HELLO!</h1>;
+    return (
+      <div id="containerUnpublished">
+        <div id="unpublishedWarning">
+          <div className="flex-column align-center">
+            <h1 className="spacing bold">Your Project is Unpublished!</h1>
+            <h3>Please customize your project before publishing.</h3>
+            <h3 className="spacing">You cannot change your goal, duration, or rewards after publishing
+                so make sure they are perfect before you publish!</h3>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
     <div className="campaign-overview white">
-      <h1>{campaign.title}</h1>
-      <h1>{campaign.subtitle}</h1>
+        <h1 className="flex-row justify-center">{campaign.title}</h1>
+        <h1 className="flex-row justify-center">{campaign.subtitle}</h1>
       {/* <p>{campaign.description}</p> */}
       {/* <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" /> */}
-      <hr />
       {isPublished() ? getOverviewInfo() : getUnpublishedOverviewInfo()}
+      <hr className="whitLine"></hr>
       <div className="flex-row justify-space-around">
         <Link to={"/Campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
           Settings
@@ -174,7 +185,7 @@ function CampaignOverview(props) {
         {isPublished() ? (
           ""
         ) : (
-          <button disabled={!canBePublished()} onClick={publishCampaign}>
+          <button className="white" disabled={!canBePublished()} onClick={publishCampaign}>
             PUBLISH
           </button>
         )}
