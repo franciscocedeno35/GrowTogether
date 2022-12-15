@@ -93,6 +93,16 @@ const EditRewards = () => {
 
   return (
 		<div>
+			{showingEditor ? (
+				<RewardEditor
+					data={rewardToBeEdited}
+					saveReward={saveEdit}
+					cancelEdit={cancelEdit}
+					deleteReward={deleteReward}
+				/>
+			) : (
+				''
+			)}
 			<h1 className="flex-row justify-center white">{campaign.title}</h1>
 			<h5 className="flex-row justify-center white">{campaign.subtitle}</h5>
 			<hr className="white"></hr>
@@ -183,17 +193,9 @@ const EditRewards = () => {
 					Cancel
 				</Link>
 
-				{showingEditor ? (
-					<RewardEditor
-						data={rewardToBeEdited}
-						saveReward={saveEdit}
-						cancelEdit={cancelEdit}
-						deleteReward={deleteReward}
-					/>
-				) : (
-					''
-				)}
+				
 			</div>
+   
 
 			<br></br>
 		</div>

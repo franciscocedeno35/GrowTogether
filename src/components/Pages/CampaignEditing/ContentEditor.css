@@ -1,5 +1,14 @@
-.content-editor-container {
+.content-editor-container-container {
   position: sticky;
+  top: 0;
+  left: 0;
+  /* background-color: rgb(0, 0, 0, 0.5); */
+  width: 100vw;
+  height: 0px;
+}
+
+.content-editor-container {
+  position: absolute;
   top: 0;
   left: 0;
   background-color: rgb(0, 0, 0, 0.5);

@@ -1,11 +1,10 @@
-
-#containerRewards{
+#containerRewards {
   position: relative;
   width: 1500;
-   margin-bottom: 400px;
+  margin-bottom: 400px;
 }
 
-#rewardTitle{
+#rewardTitle {
   margin: 40px;
 }
 
@@ -17,62 +16,53 @@
   margin: 5px 350px;
 }
 
-.rewardSpacing{
+.rewardSpacing {
   margin: 20px;
 }
 
-#editButton{
-  position:absolute;
-  top:0;
-  right:0;
+#editButton {
+  position: absolute;
+  top: 0;
+  right: 0;
   border-radius: 15px;
   width: 100px;
 }
 
-.buttonRewards{
- 
- 
+.buttonRewards {
   /* right: 400px; */
   /* box-sizing: border-box; */
-  border-radius: 20px; 
+  border-radius: 20px;
   width: 200px;
   /* background-color: #1C9A37; */
   color: white;
- 
-  
+
   /* margin: 0; */
 }
 
-
-.test5{
+.test5 {
   /* background-color: aquamarine; */
   width: 80%;
   align-items: flex-end;
-  
+
   gap: 5px;
 }
 
-
-
- #createNew{
-
-   top: 10px;
+#createNew {
+  top: 10px;
   background-color: #248383;
   /* top: 10px;
   background-color: #1C9A37; */
-} 
+}
 
-#saveEditRewards{
-     top: 10px;
-  background-color: #1C9A37;
+#saveEditRewards {
+  top: 10px;
+  background-color: #1c9a37;
 }
 
 /* #saveEditRewards{
   top: 50px;
 } */
 
-#cancel-button{
-
-text-align: center;
-} 
-
+#cancel-button {
+  text-align: center;
+}

@@ -1,63 +1,78 @@
+.reward-editor-container-container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 0px;
+  z-index: 1;
+}
+
 .reward-editor-container {
   position: absolute;
   top: 0;
   left: 0;
-  /* background-color: rgb(0, 0, 0, 0.5); */
-  background-color: #383838;
+  background-color: rgb(0, 0, 0, 0.5);
+  /* background-color: #383838; */
 
   width: 100vw;
   height: 100vh;
-  
-  
 }
 
-
-#inputs{
+#inputs {
   position: absolute;
-  left: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: #383838;
+  border-radius: 20px;
+  border: #d9d9d9 1px solid;
+  padding: 20px;
+  width: 60%;
 }
 
 .create-reward-label {
-  position: relative;
-  left: 10px ; 
+  /* position: relative;
+  left: 10px; */
   color: white;
-  display: inline-block;
-  width: 100px;
+  /* display: inline-block; */
+  width: 35%;
   margin-top: 15px;
 }
 
 .create-reward-input {
-  position: relative;
-  left: 80px;
+  /* position: relative; */
+  /* left: 80px; */
   border-radius: 20px;
-  width: 50%;
+  /* width: 50%; */
   height: 50px;
   margin-bottom: 10px;
-  margin-right: 300px;
+  flex-grow: 2;
+  /* margin-right: 300px; */
 }
 
-.buttonsEditor{
-  position: absolute;
-  left: 30% ; 
+.buttonsEditor {
+  /* position: absolute; */
+  /* left: 30%; */
+  margin: 5px auto;
   box-sizing: border-box;
-  border-radius: 20px; 
+  border-radius: 20px;
   width: 200px;
-  background-color: #1C9A37;
+  background-color: #1c9a37;
   color: white;
-  margin: 0;
-  
+  padding: 5px;
 }
 
-#saveEditor{
- 
+#saveEditor {
 }
 
-#cancelEditor{
-  margin-top: 40px;
+#cancelEditor {
+  /* margin-top: 40px; */
   background-color: gray;
 }
 
-#deleteEditor{
- 
- 
+#deleteEditor {
+}
+
+#reward-editor-title {
+  text-align: center;
+  margin-bottom: 1em;
 }
