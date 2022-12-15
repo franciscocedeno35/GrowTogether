@@ -31,32 +31,77 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
   };
 
   return (
-    <div className="flex-column white reward-editor-container">
-      <div className="justify-space-around"></div>
-        <div id="inputs">
-          <div>
-            <h3 className="create-reward-label">Name</h3>
-            <input className="create-reward-input" name="name" size="100" onChange={handleChange} type="text" defaultValue={state.name} />
-          </div>
-          <div>
-            <h3 className="create-reward-label">Description</h3>
-            <input className="create-reward-input" name="description" onChange={handleChange} type="text" defaultValue={state.description} />
-          </div>
-          <div>
-            <h3 className="create-reward-label">Price</h3>
-            <input className="create-reward-input" name="price" onChange={handleChange} type="number" defaultValue={state.price} />
-          </div>
-          <div>
-            <h3 className="create-reward-label">Expected Delivery Date</h3>
-            <input className="create-reward-input" name="expectedDeliveryDate" onChange={handleChange} type="datetime-local" defaultValue={state.expectedDeliveryDate} />
-          </div>
-        </div>
-        <div>
-          <button className="buttonsEditor" id="saveEditor" onClick={trySave}>SAVE</button>
-          <button className="buttonsEditor" id="cancelEditor" onClick={cancelEdit}>CANCEL</button>
-          {data.isNew ? "" : <button className="buttonsEditor" id="deleteEditor" onClick={deleteReward}>DELETE</button>}
+		
+			
+				<div className="flex-column white reward-editor-container">
+					<div id="inputs">
+						<div>
+							<h3 className="create-reward-label">Name</h3>
+							<input
+								className="create-reward-input"
+								name="name"
+								size="100"
+								onChange={handleChange}
+								type="text"
+								defaultValue={state.name}
+							/>
+						</div>
+						<div>
+							<h3 className="create-reward-label">Description</h3>
+							<input
+								className="create-reward-input"
+								name="description"
+								onChange={handleChange}
+								type="text"
+								defaultValue={state.description}
+							/>
+						</div>
+						<div>
+							<h3 className="create-reward-label">Price</h3>
+							<input
+								className="create-reward-input"
+								name="price"
+								onChange={handleChange}
+								type="number"
+								defaultValue={state.price}
+							/>
+						</div>
+						<div>
+							<h3 className="create-reward-label">Expected Delivery Date</h3>
+							<input
+								className="create-reward-input"
+								name="expectedDeliveryDate"
+								onChange={handleChange}
+								type="datetime-local"
+								defaultValue={state.expectedDeliveryDate}
+							/>
+						</div>
+					
+					<div>
+						<button className="buttonsEditor" id="saveEditor" onClick={trySave}>
+							SAVE
+						</button>
+						<button
+							className="buttonsEditor"
+							id="cancelEditor"
+							onClick={cancelEdit}>
+							CANCEL
+						</button>
+						{data.isNew ? (
+							''
+						) : (
+							<button
+								className="buttonsEditor"
+								id="deleteEditor"
+								onClick={deleteReward}>
+								DELETE
+							</button>
+						)}
+					</div>
       </div>
-    </div>
-  );
+      </div>
+			
+		
+	);
 };
 export default RewardEditor;

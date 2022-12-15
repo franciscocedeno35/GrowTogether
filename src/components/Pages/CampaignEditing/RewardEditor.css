@@ -2,14 +2,19 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgb(0, 0, 0, 0.5);
+  /* background-color: rgb(0, 0, 0, 0.5); */
+  background-color: #383838;
+
   width: 100vw;
   height: 100vh;
+  
+  
 }
+
 
 #inputs{
   position: absolute;
-  left: 200px;
+  left: 10%;
 }
 
 .create-reward-label {
@@ -33,25 +38,26 @@
 
 .buttonsEditor{
   position: absolute;
-  right: 650px;
+  left: 30% ; 
   box-sizing: border-box;
   border-radius: 20px; 
   width: 200px;
   background-color: #1C9A37;
   color: white;
   margin: 0;
+  
 }
 
 #saveEditor{
-  top: 10px;
+ 
 }
 
 #cancelEditor{
-  top: 50px;
+  margin-top: 40px;
+  background-color: gray;
 }
 
 #deleteEditor{
-  display: flex;
-  justify-content: center;
-  top: 90px;
+ 
+ 
 }
