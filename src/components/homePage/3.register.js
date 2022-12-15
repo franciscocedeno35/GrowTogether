@@ -35,7 +35,8 @@ const Register = (props) => {
           }
           case 409: {
             // username taken
-            console.log("Username is Taken!!");
+            console.log( "Username is Taken!!" );
+            alert('Username is Taken!!');
             break;
           }
           default: {

@@ -93,6 +93,37 @@ const EditRewards = () => {
 
   return (
 		<div>
+			<h1 className="flex-row justify-center white">{campaign.title}</h1>
+			<h5 className="flex-row justify-center white">{campaign.subtitle}</h5>
+			<hr className="white"></hr>
+			<div className="flex-row justify-space-around ">
+				<Link
+					to={'/Campaign/Overview/' + campaign._id}
+					state={{ campaign: campaign, userID: location.state.userID }}>
+					Overview
+				</Link>
+				<Link
+					to={'/Campaign/Settings/' + campaign._id}
+					state={{ campaign: campaign, userID: location.state.userID }}>
+					Settings
+				</Link>
+				<Link
+					to={'/Campaign/Content/' + campaign._id}
+					state={{ campaign: campaign, userID: location.state.userID }}>
+					Content
+				</Link>
+				{campaign.publishDate ? (
+					''
+				) : (
+					<Link
+						to={'/Campaign/Rewards/' + campaign._id}
+						state={{ campaign: campaign, userID: location.state.userID }}>
+						Rewards
+					</Link>
+				)}
+			</div>
+			<hr className="Navbar-line"></hr>
+
 			<h1 className="flex-row justify-center  white" id="rewardTitle">
 				Rewards
 			</h1>
@@ -154,7 +185,6 @@ const EditRewards = () => {
 
 				{showingEditor ? (
 					<RewardEditor
-						
 						data={rewardToBeEdited}
 						saveReward={saveEdit}
 						cancelEdit={cancelEdit}

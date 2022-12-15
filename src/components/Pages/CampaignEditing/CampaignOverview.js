@@ -124,16 +124,30 @@ function CampaignOverview(props) {
 
 	const getUnpublishedOverviewInfo = () => {
 		return (
-			<div class="containerUnpublished ">
-				<div id="unpublishedWarning">
-					<div className="flex-column align-center ">
-						<h1 className="spacing bold">Your Project is Unpublished!</h1>
-						<h3>Please customize your project before publishing.</h3>
-						<h3 className="spacing">
-							You cannot change your goal, duration, or rewards after publishing
-							so make sure they are perfect before you publish!
-						</h3>
+			<div className="flex-column justi justify-center align-center">
+				<div class="containerUnpublished ">
+					<div id="unpublishedWarning">
+						<div className="flex-column align-center ">
+							<h1 className="spacing bold">Your Project is Unpublished!</h1>
+							<h3>Please customize your project before publishing.</h3>
+							<h3 className="spacing">
+								You cannot change your goal, duration, or rewards after
+								publishing so make sure they are perfect before you publish!
+							</h3>
+						</div>
 					</div>
+				</div>
+				<div className="test555">
+					{isPublished() ? (
+						''
+					) : (
+						<button
+							className="white"
+							disabled={!canBePublished()}
+							onClick={publishCampaign}>
+							PUBLISH
+						</button>
+					)}
 				</div>
 			</div>
 		);
@@ -231,6 +245,12 @@ function CampaignOverview(props) {
 
 			<div className="flex-row justify-space-around ">
 				<Link
+					to={'/Campaign/Overview/' + campaign._id}
+					state={{ campaign: campaign, userID: userID }}>
+					Overview
+				</Link>
+
+				<Link
 					to={'/Campaign/Settings/' + campaign._id}
 					state={{ campaign: campaign, userID: userID }}>
 					Settings
@@ -248,16 +268,6 @@ function CampaignOverview(props) {
 						state={{ campaign: campaign, userID: userID }}>
 						Rewards
 					</Link>
-				)}
-				{isPublished() ? (
-					''
-				) : (
-					<button
-						className="white"
-						disabled={!canBePublished()}
-						onClick={publishCampaign}>
-						PUBLISH
-					</button>
 				)}
 			</div>
 			<hr className="whitLine "></hr>
