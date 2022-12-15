@@ -59,6 +59,9 @@
   width: 200px;
   color: white;
   padding: 5px;
+  text-align: center;
+  font-weight: bold;
+  border-width: 0px;
 }
 
 #reward-editor-title {

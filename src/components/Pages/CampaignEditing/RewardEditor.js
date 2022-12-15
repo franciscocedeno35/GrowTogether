@@ -59,16 +59,16 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
           </div>
 
           <div className="flex-column">
-            <button className="buttonsEditor green-bg" onClick={trySave}>
+            <button className="buttonsEditor green-bg" id="saveEditor" onClick={trySave}>
               SAVE
             </button>
-            <button className="buttonsEditor gray-bg" onClick={cancelEdit}>
+            <button className="buttonsEditor gray-bg" id="cancelEditor" onClick={cancelEdit}>
               CANCEL
             </button>
             {data.isNew ? (
               ""
             ) : (
-              <button className="buttonsEditor red-bg" onClick={deleteReward}>
+              <button className="buttonsEditor red-bg" id="deleteEditor" onClick={deleteReward}>
                 DELETE
               </button>
             )}

@@ -2,7 +2,6 @@
   text-align: center;
   color: white;
   width: 100%;
-  
 }
 
 .campaign-title {
@@ -17,8 +16,6 @@
   padding-right: 100px;
   max-height: 430px;
   gap: 120px;
-  
-  
 }
 
 img {
@@ -46,7 +43,6 @@ img {
   flex-direction: column;
   align-items: flex-start;
   flex-grow: 5;
-
 }
 
 .intro-main-stat {
@@ -56,9 +52,6 @@ img {
 
 .green-highlight {
   color: #50e25f;
-  
-  
-
 }
 
 .intro-stat-label {
@@ -79,21 +72,15 @@ img {
 }
 
 .bottom-section {
-
   margin: 1rem;
   padding: 2rem 2rem;
   text-align: center;
-  
- 
-
 }
 
-.child{
+.child {
   display: inline-block;
   padding: 1rem 1rem;
   vertical-align: middle;
-  
-
 }
 
 .reward-title {
@@ -101,37 +88,32 @@ img {
 }
 
 .content-section {
-  
   width: 750px;
   margin-bottom: 200px;
-
 }
 
-.public-content-paragraph{
- color: white !important;
- margin-top: 50px;
+.public-content-paragraph {
+  color: white !important;
+  margin-top: 50px;
 }
 
-.sticky{
+.sticky {
   /* position: sticky; */
   float: right;
   top: 0;
-   overflow: auto;
-
+  overflow: auto;
 }
 
 .rewards-section {
- 
- display: flex;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 450px;
   background-color: #515151;
   border-radius: 15px;
-  padding: 20px; 
+  padding: 20px;
   margin-right: 50px;
   float: right;
-    
 }
 
 .rewards-list {

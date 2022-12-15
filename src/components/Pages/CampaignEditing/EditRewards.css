@@ -1,31 +1,26 @@
 #containerRewards {
-  position: relative;
-  width: 1500;
-  margin-bottom: 400px;
+  /* position: relative; */
+  width: 100%;
+  /* margin-bottom: 400px; */
 }
 
 #rewardTitle {
   margin: 40px;
 }
 
-#edit-reward-reward {
-  position: relative;
-  border: 1px solid white;
-  border-radius: 15px;
-  width: 930px;
-  margin: 5px 350px;
-}
-
 .rewardSpacing {
   margin: 20px;
 }
 
-#editButton {
+.editButton {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 5px;
+  right: 5px;
   border-radius: 15px;
   width: 100px;
+  color: #8b8b8b;
+  background-color: #d9d9d9;
+  border-width: 0px;
 }
 
 .buttonRewards {
@@ -39,12 +34,27 @@
   /* margin: 0; */
 }
 
-.test5 {
+.edit-subject {
   /* background-color: aquamarine; */
-  width: 80%;
+  width: 75vw;
+  /* flex-grow: 2; */
+
   align-items: flex-end;
 
-  gap: 5px;
+  /* gap: 5px; */
+}
+
+.edit-reward-reward {
+  position: relative;
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 65vw;
+  /* flex-grow: 2; */
+  margin: 10px;
+}
+
+.edit-buttons {
+  align-items: flex-start;
 }
 
 #createNew {
