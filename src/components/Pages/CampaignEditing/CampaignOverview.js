@@ -244,6 +244,7 @@ function CampaignOverview(props) {
       </div>
       <hr className="whitLine "></hr>
 
+      <h1 className="campaign-edit-title">Overview</h1>
       {/* <p>{campaign.description}</p> */}
       {/* <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" /> */}
       {isPublished() ? getOverviewInfo() : getUnpublishedOverviewInfo()}

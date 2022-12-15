@@ -161,43 +161,53 @@ const EditContent = () => {
       </div>
       <hr className="Navbar-line"></hr>
 
-      <div className="flex-column white">
-        {contents.map((content, i) => {
-          return (
-            <div key={i}>
-              <div className="edit-content-content">
+      <h1 className="campaign-edit-title">Contents</h1>
+      <div className="flex-row">
+        <div className="flex-column white edit-subject">
+          {contents.map((content, i) => {
+            return (
+              <div className="flex-column" key={i}>
+                {/* <div className="edit-content-content" key={i}> */}
                 <button
+                  className="insertButton"
                   onClick={() => {
                     showEditor(emptyContent, i, true);
                   }}
                 >
                   INSERT NEW
                 </button>
+                {/* </div> */}
+                <div className="edit-content-content edit-subject-item">
+                  <PublicContent content={content}></PublicContent>
+                  <button
+                    className="editButton"
+                    onClick={() => {
+                      showEditor(content, i, false);
+                    }}
+                  >
+                    EDIT
+                  </button>
+                </div>
               </div>
-              <div className="edit-content-content">
-                <PublicContent content={content}></PublicContent>
-                <button
-                  onClick={() => {
-                    showEditor(content, i, false);
-                  }}
-                >
-                  EDIT
-                </button>
-              </div>
-            </div>
-          );
-        })}
-        <button
-          onClick={() => {
-            showEditor(emptyContent, contents.length, true);
-          }}
-        >
-          APPEND NEW
-        </button>
-        <button onClick={saveContents}>SAVE</button>
-        <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
-          CANCEL
-        </Link>
+            );
+          })}
+        </div>
+        <div className="flex-column edit-buttons">
+          <button
+            className="buttonsEditor blue-bg"
+            onClick={() => {
+              showEditor(emptyContent, contents.length, true);
+            }}
+          >
+            APPEND NEW
+          </button>
+          <button className="buttonsEditor green-bg" onClick={saveContents}>
+            SAVE
+          </button>
+          <Link className="buttonsEditor gray-bg" to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+            CANCEL
+          </Link>
+        </div>
       </div>
     </div>
   );

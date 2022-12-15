@@ -3,3 +3,13 @@
   border-radius: 15px;
   text-align: center;
 }
+
+.insertButton {
+  border-radius: 15px;
+  padding: 3px 5em;
+  color: #646464;
+  background-color: #d9d9d9;
+  border-width: 0px;
+  margin: 0 auto;
+  font-weight: bold;
+}

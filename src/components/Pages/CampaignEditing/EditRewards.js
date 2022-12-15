@@ -117,14 +117,14 @@ const EditRewards = () => {
       </div>
       <hr className="Navbar-line"></hr>
 
-      <h1 className="flex-row justify-center  white" id="rewardTitle">
+      <h1 className="campaign-edit-title" id="rewardTitle">
         Rewards
       </h1>
       <div className="flex-row">
         <div className="flex-column white edit-subject">
           {rewards.map((reward, i) => {
             return (
-              <div className="edit-reward-reward" key={i}>
+              <div className="edit-subject-item" key={i}>
                 <div>
                   <h2 className="rewardSpacing">Pledge ${reward.price} or more</h2>
                 </div>

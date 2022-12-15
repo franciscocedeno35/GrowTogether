@@ -88,134 +88,95 @@ const EditCampaignSettings = () => {
     }
   };
 
-	return (
-		<div>
-			<h1 className="flex-row justify-center white">{campaign.title}</h1>
-			<h5 className="flex-row justify-center white">{campaign.subtitle}</h5>
-			<hr className="white "></hr>
-			<div className="flex-row justify-space-around ">
-				<Link
-					to={'/Campaign/Overview/' + campaign._id}
-					state={{ campaign: campaign, userID: location.state.userID }}>
-					Overview
-				</Link>
-				<Link
-					to={'/Campaign/Settings/' + campaign._id}
-					state={{ campaign: campaign, userID: location.state.userID }}>
-					Settings
-				</Link>
-				<Link
-					to={'/Campaign/Content/' + campaign._id}
-					state={{ campaign: campaign, userID: location.state.userID }}>
-					Content
-				</Link>
-				{campaign.publishDate ? (
-					''
-				) : (
-					<Link
-						to={'/Campaign/Rewards/' + campaign._id}
-						state={{ campaign: campaign, userID: location.state.userID }}>
-						Rewards
-					</Link>
-				)}
-			</div>
-			<hr className="Navbar-line"></hr>
+  return (
+    <div>
+      <h1 className="flex-row justify-center white">{campaign.title}</h1>
+      <h5 className="flex-row justify-center white">{campaign.subtitle}</h5>
+      <hr className="white "></hr>
+      <div className="flex-row justify-space-around ">
+        <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Overview
+        </Link>
+        <Link to={"/Campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Settings
+        </Link>
+        <Link to={"/Campaign/Content/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Content
+        </Link>
+        {campaign.publishDate ? (
+          ""
+        ) : (
+          <Link to={"/Campaign/Rewards/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+            Rewards
+          </Link>
+        )}
+      </div>
+      <hr className="Navbar-line"></hr>
 
-			<div className="flex-column justify-center white">
-				<div className="flex-row justify-center">
-					<h1 className="create-campaign-h1">Settings</h1>
-				</div>
+      <h1 className="campaign-edit-title">Settings</h1>
+      <div className="flex-column justify-center white">
+        <div className="flex-row justify-center">
+          <label className="create-campaign-label">Title:</label>
+          <input className="create-campaign-input" name="title" type="text" onChange={handleChange} defaultValue={campaign.title} />
+        </div>
+        <div className="flex-row justify-center">
+          <label className="create-campaign-label">Subtitle:</label>
+          <input className="create-campaign-input" name="subtitle" type="text" onChange={handleChange} defaultValue={campaign.subtitle} />
+        </div>
+        <div className="flex-row justify-center">
+          <label className="create-campaign-label">Description:</label>
+          <input className="create-campaign-input" name="description" type="text" onChange={handleChange} defaultValue={campaign.description} />
+        </div>
+        <div className="flex-row justify-center">
+          <div className="flex-column create-project-test">
+            <label className="create-campaign-label">Main Image:</label>
+            <input className="create-campaign-image-input" name="imgURL" type="file" onChange={previewImage} defaultValue={campaign.imageSrc} />
+          </div>
+          <img className="create-campaign-image-preview" src={campaign.imageSrc} alt="Main Image" />
+        </div>
+        <div className="flex-row justify-center">
+          <label className="create-campaign-label">Goal:</label>
+          <input
+            className="create-campaign-input"
+            name="goal"
+            type="number"
+            onChange={handleChange}
+            defaultValue={campaign.goal}
+            disabled={campaign.publishDate}
+          />
+        </div>
+        <div className="flex-row justify-center">
+          <label className="create-campaign-label">Duration In Days:</label>
+          <input
+            className="create-campaign-input"
+            name="duration"
+            type="number"
+            onChange={handleChange}
+            defaultValue={campaign.duration}
+            disabled={campaign.publishDate}
+          />
+        </div>
+        <div className="flex-column">
+          <button className="buttonsEditor green-bg" onClick={saveSettings}>
+            SAVE
+          </button>
 
-				<div className="flex-row justify-center">
-					<label className="create-campaign-label">Title:</label>
-					<input
-						className="create-campaign-input"
-						name="title"
-						type="text"
-						onChange={handleChange}
-						defaultValue={campaign.title}
-					/>
-				</div>
-				<div className="flex-row justify-center">
-					<label className="create-campaign-label">Subtitle:</label>
-					<input
-						className="create-campaign-input"
-						name="subtitle"
-						type="text"
-						onChange={handleChange}
-						defaultValue={campaign.subtitle}
-					/>
-				</div>
-				<div className="flex-row justify-center">
-					<label className="create-campaign-label">Description:</label>
-					<input
-						className="create-campaign-input"
-						name="description"
-						type="text"
-						onChange={handleChange}
-						defaultValue={campaign.description}
-					/>
-				</div>
-				<div className="flex-row justify-center">
-					<div className="flex-column create-project-test">
-						<label className="create-campaign-label">Main Image:</label>
-						<input
-							className="create-campaign-image-input"
-							name="imgURL"
-							type="file"
-							onChange={previewImage}
-							defaultValue={campaign.imageSrc}
-						/>
-					</div>
-					<img
-						className="create-campaign-image-preview"
-						src={campaign.imageSrc}
-						alt="Main Image"
-					/>
-				</div>
-				<div className="flex-row justify-center">
-					<label className="create-campaign-label">Goal:</label>
-					<input
-						className="create-campaign-input"
-						name="goal"
-						type="number"
-						onChange={handleChange}
-						defaultValue={campaign.goal}
-						disabled={campaign.publishDate}
-					/>
-				</div>
-				<div className="flex-row justify-center">
-					<label className="create-campaign-label">Duration In Days:</label>
-					<input
-						className="create-campaign-input"
-						name="duration"
-						type="number"
-						onChange={handleChange}
-						defaultValue={campaign.duration}
-						disabled={campaign.publishDate}
-					/>
-				</div>
-				<div className="flex-row justify-center create-campaign-create-button ">
-					<button onClick={saveSettings}>SAVE</button>
-				</div>
+          {campaign.publishDate ? (
+            <button className="buttonsEditor red-bg" disabled>
+              DELETE
+            </button>
+          ) : (
+            <button className="buttonsEditor red-bg" onClick={deleteCampaign}>
+              DELETE
+            </button>
+          )}
 
-				<div className="flex-row justify-center editSetting-campaign-delete-button ">
-					{campaign.publishDate ? (
-						<button disabled>DELETE</button>
-					) : (
-						<button onClick={deleteCampaign}>DELETE</button>
-					)}
-				</div>
-
-				<div className="flex-row justify-center create-campaign-create-button editSetting-campaign-cancel-button ">
-					<Link
-						to={'/Campaign/Overview/' + campaign._id}
-						state={{ campaign: campaign }}>
-						Cancel
-					</Link>
-				</div>
-			</div>
-		</div>
-	);
+          <Link className="buttonsEditor gray-bg" to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+            Cancel
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default EditCampaignSettings;

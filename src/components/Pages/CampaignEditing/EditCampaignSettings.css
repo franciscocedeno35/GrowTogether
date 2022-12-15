@@ -1,24 +1,20 @@
 .settings-image-preview {
   max-height: 300px;
 }
-.editSetting-campaign-delete-button button{
 
-
-
- color: white;
-width: 12%;
- height: 44px;
- border-radius: 20px;
- font-size: 1vw;
-
+.editSetting-campaign-delete-button button {
+  color: white;
+  width: 12%;
+  height: 44px;
+  border-radius: 20px;
+  font-size: 1vw;
 }
 
-
-.editSetting-campaign-cancel-button{
+.editSetting-campaign-cancel-button {
   margin-bottom: 200px;
 }
 
-.Navbar-line{
+.Navbar-line {
   color: white;
   margin-bottom: 40px;
 }
