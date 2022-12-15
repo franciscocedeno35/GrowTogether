@@ -92,81 +92,61 @@ const EditRewards = () => {
   };
 
   return (
-		<div>
-			<h1 className="flex-row justify-center  white" id="rewardTitle">
-				Rewards
-			</h1>
-			<div className="flex-column white test5" id="containerRewards">
-				{rewards.map((reward, i) => {
-					return (
-						<div key={i}>
-							<div id="edit-reward-reward">
-								<div>
-									<h2 className="rewardSpacing">
-										Pledge ${reward.price} or more
-									</h2>
-								</div>
-								<div>
-									<h6 className="rewardSpacing">
-										Delivery {new Date(reward.expectedDeliveryDate).toString()}
-									</h6>
-								</div>
-								<div>
-									<h3 className="rewardSpacing">{reward.name}</h3>
-								</div>
-								<div>
-									<h4 className="rewardSpacing">{reward.description}</h4>
-								</div>
-								<button
-									id="editButton"
-									onClick={() => {
-										showEditor(reward, i, false);
-									}}>
-									EDIT
-								</button>
-							</div>
-						</div>
-					);
-				})}
+    <div>
+      {showingEditor ? <RewardEditor data={rewardToBeEdited} saveReward={saveEdit} cancelEdit={cancelEdit} deleteReward={deleteReward} /> : ""}
+      <h1 className="flex-row justify-center  white" id="rewardTitle">
+        Rewards
+      </h1>
+      <div className="flex-column white test5" id="containerRewards">
+        {rewards.map((reward, i) => {
+          return (
+            <div key={i}>
+              <div id="edit-reward-reward">
+                <div>
+                  <h2 className="rewardSpacing">Pledge ${reward.price} or more</h2>
+                </div>
+                <div>
+                  <h6 className="rewardSpacing">Delivery {new Date(reward.expectedDeliveryDate).toString()}</h6>
+                </div>
+                <div>
+                  <h3 className="rewardSpacing">{reward.name}</h3>
+                </div>
+                <div>
+                  <h4 className="rewardSpacing">{reward.description}</h4>
+                </div>
+                <button
+                  id="editButton"
+                  onClick={() => {
+                    showEditor(reward, i, false);
+                  }}
+                >
+                  EDIT
+                </button>
+              </div>
+            </div>
+          );
+        })}
 
-				<button
-					className="buttonRewards"
-					id="createNew"
-					onClick={() => {
-						showEditor(emptyReward, rewards.length, true);
-					}}>
-					CREATE NEW
-				</button>
-				<button
-					className="buttonRewards"
-					id="saveEditRewards"
-					onClick={saveRewards}>
-					SAVE
-				</button>
+        <button
+          className="buttonRewards"
+          id="createNew"
+          onClick={() => {
+            showEditor(emptyReward, rewards.length, true);
+          }}
+        >
+          CREATE NEW
+        </button>
+        <button className="buttonRewards" id="saveEditRewards" onClick={saveRewards}>
+          SAVE
+        </button>
 
-				<Link
-					className="buttonRewards"
-					id="cancel-button"
-					to={'/Campaign/Overview/' + campaign._id}
-					state={{ campaign: campaign }}>
-					Cancel
-				</Link>
+        <Link className="buttonRewards" id="cancel-button" to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+          Cancel
+        </Link>
+      </div>
 
-				{showingEditor ? (
-					<RewardEditor
-						
-						data={rewardToBeEdited}
-						saveReward={saveEdit}
-						cancelEdit={cancelEdit}
-						deleteReward={deleteReward}
-					/>
-				) : (
-					''
-				)}
-			</div>
-
-			<br></br>
-		</div>
-	);
+      <br></br>
+    </div>
+  );
 };
 export default EditRewards;

@@ -1,25 +1,31 @@
+.reward-editor-container-container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 0px;
+  z-index: 1;
+}
+
 .reward-editor-container {
   position: absolute;
   top: 0;
   left: 0;
-  /* background-color: rgb(0, 0, 0, 0.5); */
-  background-color: #383838;
+  background-color: rgb(0, 0, 0, 0.5);
+  /* background-color: #383838; */
 
   width: 100vw;
   height: 100vh;
-  
-  
 }
 
-
-#inputs{
+#inputs {
   position: absolute;
   left: 10%;
 }
 
 .create-reward-label {
   position: relative;
-  left: 10px ; 
+  left: 10px;
   color: white;
   display: inline-block;
   width: 100px;
@@ -36,28 +42,24 @@
   margin-right: 300px;
 }
 
-.buttonsEditor{
+.buttonsEditor {
   position: absolute;
-  left: 30% ; 
+  left: 30%;
   box-sizing: border-box;
-  border-radius: 20px; 
+  border-radius: 20px;
   width: 200px;
-  background-color: #1C9A37;
+  background-color: #1c9a37;
   color: white;
   margin: 0;
-  
 }
 
-#saveEditor{
- 
+#saveEditor {
 }
 
-#cancelEditor{
+#cancelEditor {
   margin-top: 40px;
   background-color: gray;
 }
 
-#deleteEditor{
- 
- 
+#deleteEditor {
 }
