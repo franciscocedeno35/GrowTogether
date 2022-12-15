@@ -1,6 +1,10 @@
 .edit-content-content {
-  border: 1px solid white;
-  border-radius: 15px;
+  position: relative;
+  width: 65vw;
+  /* flex-grow: 2; */
+  margin: 10px 0px;
+  /* border: 1px solid white;
+  border-radius: 15px; */
   text-align: center;
 }
 
@@ -12,4 +16,11 @@
   border-width: 0px;
   margin: 0 auto;
   font-weight: bold;
+}
+
+.content-background {
+  border-radius: 15px;
+  background-color: #515151;
+  /* padding: 20px; */
+  padding: 5px 0px;
 }

@@ -45,15 +45,17 @@
   align-items: flex-end;
 
   /* gap: 5px; */
+  padding: 5px;
 }
 
 .edit-subject-item {
   position: relative;
-  border: 1px solid white;
+  /* border: 1px solid white; */
+  background-color: #515151;
   border-radius: 15px;
   width: 65vw;
   /* flex-grow: 2; */
-  margin: 10px;
+  margin-bottom: 10px;
 }
 
 .edit-buttons {

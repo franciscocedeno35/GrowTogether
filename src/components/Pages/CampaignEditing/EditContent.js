@@ -164,33 +164,35 @@ const EditContent = () => {
       <h1 className="campaign-edit-title">Contents</h1>
       <div className="flex-row">
         <div className="flex-column white edit-subject">
-          {contents.map((content, i) => {
-            return (
-              <div className="flex-column" key={i}>
-                {/* <div className="edit-content-content" key={i}> */}
-                <button
-                  className="insertButton"
-                  onClick={() => {
-                    showEditor(emptyContent, i, true);
-                  }}
-                >
-                  INSERT NEW
-                </button>
-                {/* </div> */}
-                <div className="edit-content-content edit-subject-item">
-                  <PublicContent content={content}></PublicContent>
+          <div className="content-background">
+            {contents.map((content, i) => {
+              return (
+                <div className="flex-column" key={i}>
+                  {/* <div className="edit-content-content" key={i}> */}
                   <button
-                    className="editButton"
+                    className="insertButton"
                     onClick={() => {
-                      showEditor(content, i, false);
+                      showEditor(emptyContent, i, true);
                     }}
                   >
-                    EDIT
+                    INSERT NEW
                   </button>
+                  {/* </div> */}
+                  <div className="edit-content-content">
+                    <PublicContent content={content}></PublicContent>
+                    <button
+                      className="editButton"
+                      onClick={() => {
+                        showEditor(content, i, false);
+                      }}
+                    >
+                      EDIT
+                    </button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
         <div className="flex-column edit-buttons">
           <button
