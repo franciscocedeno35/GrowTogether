@@ -106,17 +106,17 @@ const ContentEditor = ({ data, saveEdit, cancelEdit, insertEdit, deleteContent }
       case "Image": {
         return (
           <div>
-            <label>Image</label>
+            <h3 className="create-edit-label">Image</h3>
             <input name="content" onChange={handleImage} type="file" defaultValue={""}></input>
-            {image.imageSrc ? <img src={image.imageSrc} className="image-limiter" /> : ""}
+            {image.imageSrc ? <img className="create-content-image-preview image-limiter" src={image.imageSrc}/> : ""}
           </div>
         );
       }
       case "Video": {
         return (
           <div>
-            <label>YouTube URL:</label>
-            <input name="content" onChange={handleVideo} type="text" defaultValue={state.content} />
+            <h3 className="create-edit-label">YouTube URL:</h3>
+            <input className="create-edit-input" name="content" onChange={handleVideo} type="text" defaultValue={state.content} />
             <iframe src={videoURL} type="text/html" width="500" height="265" allowFullScreen></iframe>
           </div>
         );
@@ -124,8 +124,8 @@ const ContentEditor = ({ data, saveEdit, cancelEdit, insertEdit, deleteContent }
       default: {
         return (
           <div>
-            <label>Content</label>
-            <input name="content" onChange={handleChange} type="text" defaultValue={state.content} />
+            <h3 className="create-edit-label">Content</h3>
+            <input className="create-edit-input" name="content" onChange={handleChange} type="text" defaultValue={state.content} />
           </div>
         );
       }
@@ -134,18 +134,22 @@ const ContentEditor = ({ data, saveEdit, cancelEdit, insertEdit, deleteContent }
 
   return (
     <div className="flex-column white content-editor-container">
-      <div>
-        <label>Content Type</label>
-        <select name="type" onChange={handleChange} defaultValue={state.type}>
-          {ValidContentTypes.map((type) => {
-            return <option key={type}>{type}</option>;
-          })}
-        </select>
+      <div className="justify-space-around">
+        <div id="inputsContentEditor">
+          <h3 className="create-edit-label">Content Type</h3>
+          <select className="create-edit-inputs" name="type" onChange={handleChange} defaultValue={state.type}>
+            {ValidContentTypes.map((type) => {
+              return <option key={type}>{type}</option>;
+            })}
+          </select>
+          <div>{getContentInput()}</div>
+        </div>
+        <div>
+          <button className="buttonsContentEditor" id="saveContentEditor" onClick={trySave}>SAVE CURRENT</button>
+          <button className="buttonsContentEditor" id="cancelContentEditor" onClick={cancelEdit}>CANCEL</button>
+          {data.isInsert ? "" : <button className="buttonsContentEditor" id="deleteContentEditor" onClick={deleteContent}>DELETE</button>}
+          </div>
       </div>
-      <div>{getContentInput()}</div>
-      <button onClick={trySave}>SAVE</button>
-      <button onClick={cancelEdit}>CANCEL</button>
-      {data.isInsert ? "" : <button onClick={deleteContent}>DELETE</button>}
     </div>
   );
 };

@@ -32,7 +32,7 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
 
   return (
     <div className="flex-column white reward-editor-container">
-      <div className="justify-space-around"></div>
+      <div className="justify-space-around">
         <div id="inputs">
           <div>
             <h3 className="create-reward-label">Name</h3>
@@ -55,6 +55,7 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
           <button className="buttonsEditor" id="saveEditor" onClick={trySave}>SAVE</button>
           <button className="buttonsEditor" id="cancelEditor" onClick={cancelEdit}>CANCEL</button>
           {data.isNew ? "" : <button className="buttonsEditor" id="deleteEditor" onClick={deleteReward}>DELETE</button>}
+        </div>
       </div>
     </div>
   );

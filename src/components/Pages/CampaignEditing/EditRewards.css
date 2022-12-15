@@ -1,10 +1,10 @@
+#rewardTitle{
+  margin: 40px;
+}
+
 #containerRewards{
   position: relative;
   width: 1500;
-}
-
-#rewardTitle{
-  margin: 40px;
 }
 
 #edit-reward-reward {
@@ -42,11 +42,11 @@
   top: 10px;
 }
 
-#saveEditRewards{
+#saveRewards{
   top: 50px;
 }
 
-#backButton{
+#backRewardButton{
   display: flex;
   justify-content: center;
   top: 90px;

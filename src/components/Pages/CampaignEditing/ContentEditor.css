@@ -1,5 +1,5 @@
 .content-editor-container {
-  position: sticky;
+  position: absolute;
   top: 0;
   left: 0;
   background-color: rgb(0, 0, 0, 0.5);
@@ -9,4 +9,60 @@
 
 .image-limiter {
   max-height: 80vh;
+}
+
+#inputsContentEditor{
+  position: absolute;
+  left: 200px;
+}
+
+.create-edit-label {
+  position: relative;
+  left: 0 ; 
+  color: white;
+  display: inline-block;
+  width: 100px;
+  margin-top: 15px;
+}
+
+.create-edit-input {
+  position: relative;
+  left: 100px;
+  border-radius: 20px;
+  width: 50%;
+  height: 50px;
+  margin-bottom: 10px;
+  margin-right: 300px;
+}
+
+.create-campaign-image-preview {
+  width: 30%;
+  height: 200px;
+  margin-bottom: 10px;
+  margin-right: 80px;
+}
+
+.buttonsContentEditor{
+  position: absolute;
+  left: 1400px;
+  box-sizing: border-box;
+  border-radius: 20px; 
+  width: 200px;
+  background-color: #1C9A37;
+  color: white;
+  margin: 0;
+}
+
+#saveContentEditor{
+  top: 10px;
+}
+
+#cancelContentEditor{
+  top: 50px;
+}
+
+#deleteContentEditor{
+  display: flex;
+  justify-content: center;
+  top: 90px;
 }

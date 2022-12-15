@@ -129,8 +129,8 @@ const EditRewards = () => {
         >
           CREATE NEW
         </button>
-        <button className="buttonRewards" id="saveEditRewards" onClick={saveRewards}>SAVE</button>
-        <Link className="buttonRewards" id="backButton"to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+        <button className="buttonRewards" id="saveRewards" onClick={saveRewards}>SAVE</button>
+        <Link className="buttonRewards" id="backRewardButton" to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
           Back
         </Link>
         {showingEditor ? <RewardEditor data={rewardToBeEdited} saveReward={saveEdit} cancelEdit={cancelEdit} deleteReward={deleteReward} /> : ""}

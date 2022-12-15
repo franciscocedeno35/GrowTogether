@@ -118,48 +118,53 @@ const EditContent = () => {
   };
 
   return (
-    <div className="flex-column white">
-      {showingEditor ? (
-        <ContentEditor data={contentToBeEdited} saveEdit={saveEdit} cancelEdit={cancelEdit} insertEdit={insertEdit} deleteContent={deleteContent} />
-      ) : (
-        ""
-      )}
-      {contents.map((content, i) => {
-        return (
-          <div key={i}>
-            <div className="edit-content-content">
-              <button
-                onClick={() => {
-                  showEditor(emptyContent, i, true);
-                }}
-              >
-                INSERT NEW
-              </button>
+    <div>
+      <h1 className="flex-row justify-center white" id="contentTitle">Content</h1>
+      <div className="flex-column white" id="containerContent">
+        {showingEditor ? (
+          <ContentEditor data={contentToBeEdited} saveEdit={saveEdit} cancelEdit={cancelEdit} insertEdit={insertEdit} deleteContent={deleteContent} />
+        ) : (
+          ""
+        )}
+        {contents.map((content, i) => {
+          return (
+            <div key={i}>
+              <div className="edit-content-content">
+                <button className="additionalButtons" id="insertNew"
+                  onClick={() => {
+                    showEditor(emptyContent, i, true);
+                  }}
+                >
+                  INSERT NEW CONTENT
+                </button>
+              </div>
+              <div className="edit-content-content">
+                <br></br>
+                <PublicContent content={content}></PublicContent>
+                <button className="additionalButtons" id="editSection"
+                  onClick={() => {
+                    showEditor(content, i, false);
+                  }}
+                >
+                  EDIT
+                </button>
+              </div>
             </div>
-            <div className="edit-content-content">
-              <PublicContent content={content}></PublicContent>
-              <button
-                onClick={() => {
-                  showEditor(content, i, false);
-                }}
-              >
-                EDIT
-              </button>
-            </div>
-          </div>
-        );
-      })}
-      <button
-        onClick={() => {
-          showEditor(emptyContent, contents.length, true);
-        }}
-      >
-        APPEND NEW
-      </button>
-      <button onClick={saveContents}>SAVE</button>
-      <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
-        CANCEL
-      </Link>
+          );
+        })}
+        <button className="buttonsContent" id="appendNew"
+          onClick={() => {
+            showEditor(emptyContent, contents.length, true);
+          }}
+        >
+          APPEND NEW
+        </button>
+        <button className="buttonsContent" id="saveContent" onClick={saveContents}>SAVE ALL</button>
+        <Link className="buttonsContent" id="backContent" to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+          Back
+        </Link>
+      </div>
+      <br></br>
     </div>
   );
 };
