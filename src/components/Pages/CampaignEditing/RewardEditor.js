@@ -34,19 +34,20 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
     <div className="flex-column white reward-editor-container-container">
       <div className="flex-column white reward-editor-container">
         <div id="inputs">
-          <div>
+          <h1 id="reward-editor-title">Reward Editor</h1>
+          <div className="flex-row">
             <h3 className="create-reward-label">Name</h3>
-            <input className="create-reward-input" name="name" size="100" onChange={handleChange} type="text" defaultValue={state.name} />
+            <input className="create-reward-input" name="name" onChange={handleChange} type="text" defaultValue={state.name} />
           </div>
-          <div>
+          <div className="flex-row">
             <h3 className="create-reward-label">Description</h3>
             <input className="create-reward-input" name="description" onChange={handleChange} type="text" defaultValue={state.description} />
           </div>
-          <div>
+          <div className="flex-row">
             <h3 className="create-reward-label">Price</h3>
             <input className="create-reward-input" name="price" onChange={handleChange} type="number" defaultValue={state.price} />
           </div>
-          <div>
+          <div className="flex-row">
             <h3 className="create-reward-label">Expected Delivery Date</h3>
             <input
               className="create-reward-input"
@@ -57,7 +58,7 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
             />
           </div>
 
-          <div>
+          <div className="flex-column">
             <button className="buttonsEditor" id="saveEditor" onClick={trySave}>
               SAVE
             </button>
