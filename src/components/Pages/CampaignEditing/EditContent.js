@@ -28,21 +28,35 @@ const EditContent = () => {
   }, []);
 
   const prepareContent = async (campaign) => {
+    setContents(campaign.content);
     const newContent = [];
-    // this is to make it so newContent is a different pointer than campaign.content
+    const contentPromises = [];
     for (let i = 0; i < campaign.content.length; i++) {
-      const content = campaign.content[i];
-      if (content.type == "Image") {
-        // we gotta grab the image from DB and store it.
-        const src = await GetImage(content.content);
-        content.imageSrc = src;
-      }
-      if (content.type == "Video") {
-        content.videoURL = content.content;
-      }
-      newContent.push(content);
+      const babyPromise = new Promise((res, rej) => {
+        const content = campaign.content[i];
+        console.log(content);
+        if (content.type == "Image") {
+          GetImage(content.content)
+            .then((src) => {
+              content.imageSrc = src;
+              res(content);
+            })
+            .catch((error) => {
+              console.log(`Could not find the image for content at index ${i} where the image id is ${content.content}`);
+            });
+        } else if (content.type == "Video") {
+          content.videoURL = content.content;
+          res(content);
+        } else {
+          res(content);
+        }
+      });
+      contentPromises.push(babyPromise);
     }
-    setContents(newContent);
+    Promise.all(contentPromises).then((result) => {
+      console.log(result);
+      setContents(result);
+    });
   };
 
   const showEditor = (content, index, isInsert) => {
@@ -119,29 +133,50 @@ const EditContent = () => {
 
   return (
     <div>
-      <h1 className="flex-row justify-center white" id="contentTitle">Content</h1>
-      <div className="flex-column white" id="containerContent">
-        {showingEditor ? (
-          <ContentEditor data={contentToBeEdited} saveEdit={saveEdit} cancelEdit={cancelEdit} insertEdit={insertEdit} deleteContent={deleteContent} />
-        ) : (
+      {showingEditor ? (
+        <ContentEditor data={contentToBeEdited} saveEdit={saveEdit} cancelEdit={cancelEdit} insertEdit={insertEdit} deleteContent={deleteContent} />
+      ) : (
+        ""
+      )}
+      <h1 className="flex-row justify-center white">{campaign.title}</h1>
+      <h5 className="flex-row justify-center white">{campaign.subtitle}</h5>
+      <hr className="white "></hr>
+      <div className="flex-row justify-space-around ">
+        <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Overview
+        </Link>
+        <Link to={"/Campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Settings
+        </Link>
+        <Link to={"/Campaign/Content/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Content
+        </Link>
+        {campaign.publishDate ? (
           ""
+        ) : (
+          <Link to={"/Campaign/Rewards/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+            Rewards
+          </Link>
         )}
+      </div>
+      <hr className="Navbar-line"></hr>
+
+      <div className="flex-column white">
         {contents.map((content, i) => {
           return (
             <div key={i}>
               <div className="edit-content-content">
-                <button className="additionalButtons" id="insertNew"
+                <button
                   onClick={() => {
                     showEditor(emptyContent, i, true);
                   }}
                 >
-                  INSERT NEW CONTENT
+                  INSERT NEW
                 </button>
               </div>
               <div className="edit-content-content">
-                <br></br>
                 <PublicContent content={content}></PublicContent>
-                <button className="additionalButtons" id="editSection"
+                <button
                   onClick={() => {
                     showEditor(content, i, false);
                   }}
@@ -152,19 +187,18 @@ const EditContent = () => {
             </div>
           );
         })}
-        <button className="buttonsContent" id="appendNew"
+        <button
           onClick={() => {
             showEditor(emptyContent, contents.length, true);
           }}
         >
           APPEND NEW
         </button>
-        <button className="buttonsContent" id="saveContent" onClick={saveContents}>SAVE ALL</button>
-        <Link className="buttonsContent" id="backContent" to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
-          Back
+        <button onClick={saveContents}>SAVE</button>
+        <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+          CANCEL
         </Link>
       </div>
-      <br></br>
     </div>
   );
 };

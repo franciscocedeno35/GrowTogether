@@ -57,13 +57,13 @@ const App = () => {
           <div id="divHead">
             
             <Link className="nav-link" to={createProj.path}>
-              <div className="white">Start A Project</div>
+              <div className="whitee">Start A Project</div>
             </Link>
             <Link className="Logo" to="/">
               <h1 id="h1Head">GrowTogether</h1>
             </Link>           
             <Link className="nav-link" to={loginSetting.path}>
-              <div className="white">{loginSetting.text}</div>
+              <div className="whitee">{loginSetting.text}</div>
             </Link>
           </div>
 

@@ -2,7 +2,7 @@
   max-height: 400px;
 }
 
-#containerUnpublished{
+.containerUnpublished {
   width: 100%;
   height: 100%;
   display: flex;
@@ -12,7 +12,7 @@
   margin-bottom: 40px;
 }
 
-#unpublishedWarning{
+#unpublishedWarning {
   position: relative;
   box-sizing: border-box;
   width: 1060px;
@@ -22,6 +22,70 @@
   border-radius: 15px;
 }
 
-.spacing{
+.spacing {
   margin: 50px;
+}
+
+.test555 {
+  /* display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  left: 50%;
+  background-color: #1c9a37;
+  width: 250px; */
+  border-radius: 20px;
+  margin-bottom: 200px;
+}
+
+/* **************Published Campaign**************** */
+.overview-text {
+  margin-top: 80px;
+}
+.campaign-overview-main-container {
+  text-align: center;
+  /* border: 5px solid red; */
+  width: 50%;
+}
+
+.campaign-overview-stats {
+  /* background-color: aqua; */
+  text-align: left;
+  margin-top: 30px;
+  /* padding-bottom: 200px; */
+}
+
+.campaign-overview-text-size {
+  margin-bottom: 10px;
+}
+
+.campaign-overview-text-size h3 {
+  font-weight: bold;
+}
+
+.test55 {
+  /* border: 5px solid white; */
+  text-align: left;
+  margin-top: 30px;
+}
+
+.Expected-delivery {
+  float: right;
+}
+.overview-reward-summary-srction {
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+.reward-description {
+  margin-bottom: 10px;
+}
+
+.reward-line {
+  margin-top: 0;
+}
+
+.link-line {
+  margin: 5px;
 }

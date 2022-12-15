@@ -93,12 +93,38 @@ const EditRewards = () => {
 
   return (
     <div>
-      <h1 className="flex-row justify-center white" id="rewardTitle">Rewards</h1>
-      <div className="flex-column white" id="containerRewards">
-        {rewards.map((reward, i) => {
-          return (
-            <div key={i}>
-              <div id="edit-reward-reward">
+      {showingEditor ? <RewardEditor data={rewardToBeEdited} saveReward={saveEdit} cancelEdit={cancelEdit} deleteReward={deleteReward} /> : ""}
+      <h1 className="flex-row justify-center white">{campaign.title}</h1>
+      <h5 className="flex-row justify-center white">{campaign.subtitle}</h5>
+      <hr className="white"></hr>
+      <div className="flex-row justify-space-around ">
+        <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Overview
+        </Link>
+        <Link to={"/Campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Settings
+        </Link>
+        <Link to={"/Campaign/Content/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Content
+        </Link>
+        {campaign.publishDate ? (
+          ""
+        ) : (
+          <Link to={"/Campaign/Rewards/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+            Rewards
+          </Link>
+        )}
+      </div>
+      <hr className="Navbar-line"></hr>
+
+      <h1 className="flex-row justify-center  white" id="rewardTitle">
+        Rewards
+      </h1>
+      <div className="flex-row">
+        <div className="flex-column white edit-subject">
+          {rewards.map((reward, i) => {
+            return (
+              <div className="edit-reward-reward" key={i}>
                 <div>
                   <h2 className="rewardSpacing">Pledge ${reward.price} or more</h2>
                 </div>
@@ -111,7 +137,8 @@ const EditRewards = () => {
                 <div>
                   <h4 className="rewardSpacing">{reward.description}</h4>
                 </div>
-                <button id="editButton"
+                <button
+                  className="editButton"
                   onClick={() => {
                     showEditor(reward, i, false);
                   }}
@@ -119,22 +146,28 @@ const EditRewards = () => {
                   EDIT
                 </button>
               </div>
-            </div>
-          );
-        })}
-        <button className="buttonRewards" id="createNew"
-          onClick={() => {
-            showEditor(emptyReward, rewards.length, true);
-          }}
-        >
-          CREATE NEW
-        </button>
-        <button className="buttonRewards" id="saveRewards" onClick={saveRewards}>SAVE</button>
-        <Link className="buttonRewards" id="backRewardButton" to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
-          Back
-        </Link>
-        {showingEditor ? <RewardEditor data={rewardToBeEdited} saveReward={saveEdit} cancelEdit={cancelEdit} deleteReward={deleteReward} /> : ""}
+            );
+          })}
+        </div>
+        <div className="flex-column edit-buttons">
+          <button className="buttonsEditor green-bg" onClick={saveRewards}>
+            SAVE
+          </button>
+          <button
+            className="buttonsEditor blue-bg"
+            onClick={() => {
+              showEditor(emptyReward, rewards.length, true);
+            }}
+          >
+            CREATE NEW
+          </button>
+
+          <Link className="buttonsEditor gray-bg " id="cancel-button" to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+            Cancel
+          </Link>
+        </div>
       </div>
+
       <br></br>
     </div>
   );

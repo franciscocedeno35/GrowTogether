@@ -3,9 +3,12 @@ a {
 }
 
 a:hover {
-  color: #54ffad ;
+  color: #54ffad;
 }
 
+#settings:hover {
+  color: #54ffad !important;
+}
 #divHead {
   display: flex;
   justify-content: space-around;
@@ -21,7 +24,6 @@ a:hover {
 }
 :link {
   margin-top: 20px;
-  
 }
 
 #h1Head {
@@ -71,22 +73,44 @@ a:hover {
   align-items: right;
 }
 
-.white{
+.white {
   color: white;
 }
-.white:hover{
+/* .white:hover{
+  color: #54ffad;
+} */
+
+.whitee {
+  color: white;
+}
+.whitee:hover {
   color: #54ffad;
 }
 
 .nav-link {
-color: white;
-
+  color: white;
 }
 
 .black {
   color: black;
 }
 
-.bold{
+.bold {
   font-weight: bold;
+}
+
+.green-bg {
+  background-color: #1c9a37;
+}
+
+.gray-bg {
+  background-color: #797979;
+}
+
+.red-bg {
+  background-color: #de3838;
+}
+
+.blue-bg {
+  background-color: #5bb1e1;
 }

@@ -1,53 +1,78 @@
-#rewardTitle{
+#containerRewards {
+  /* position: relative; */
+  width: 100%;
+  /* margin-bottom: 400px; */
+}
+
+#rewardTitle {
   margin: 40px;
 }
 
-#containerRewards{
-  position: relative;
-  width: 1500;
-}
-
-#edit-reward-reward {
-  position: relative;
-  border: 1px solid white;
-  border-radius: 15px;
-  width: 930px;
-  margin: 5px 350px;
-}
-
-.rewardSpacing{
+.rewardSpacing {
   margin: 20px;
 }
 
-#editButton{
-  position:absolute;
-  top:0;
-  right:0;
+.editButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
   border-radius: 15px;
   width: 100px;
+  color: #8b8b8b;
+  background-color: #d9d9d9;
+  border-width: 0px;
 }
 
-.buttonRewards{
-  position: absolute;
-  right: 400px;
-  box-sizing: border-box;
-  border-radius: 20px; 
+.buttonRewards {
+  /* right: 400px; */
+  /* box-sizing: border-box; */
+  border-radius: 20px;
   width: 200px;
-  background-color: #1C9A37;
+  /* background-color: #1C9A37; */
   color: white;
-  margin: 0;
+
+  /* margin: 0; */
 }
 
-#createNew{
+.edit-subject {
+  /* background-color: aquamarine; */
+  width: 75vw;
+  /* flex-grow: 2; */
+
+  align-items: flex-end;
+
+  /* gap: 5px; */
+}
+
+.edit-reward-reward {
+  position: relative;
+  border: 1px solid white;
+  border-radius: 15px;
+  width: 65vw;
+  /* flex-grow: 2; */
+  margin: 10px;
+}
+
+.edit-buttons {
+  align-items: flex-start;
+}
+
+#createNew {
   top: 10px;
+  background-color: #248383;
+  /* top: 10px;
+  background-color: #1C9A37; */
 }
 
-#saveRewards{
+#saveEditRewards {
+  top: 10px;
+  background-color: #1c9a37;
+}
+
+/* #saveEditRewards{
   top: 50px;
-}
+} */
 
-#backRewardButton{
-  display: flex;
-  justify-content: center;
-  top: 90px;
+#cancel-button {
+  text-align: center;
 }

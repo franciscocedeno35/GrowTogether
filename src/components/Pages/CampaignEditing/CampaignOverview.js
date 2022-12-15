@@ -1,8 +1,8 @@
-import "./CampaignOverview.css";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
-import { Get, GetImage, Patch } from "../../../scripts";
 import { Link } from "react-router-dom";
+import { Get, GetImage, Patch } from "../../../scripts";
+import "./CampaignOverview.css";
 
 function CampaignOverview(props) {
   const canBePublished = () => {
@@ -65,6 +65,11 @@ function CampaignOverview(props) {
       }
       c.currentlyDonated = sum;
     }
+    // get days to go here.
+    const dayInMs = 24 * 60 * 60 * 1000;
+    const endInMs = new Date(c.publishDate).getTime() + c.duration * dayInMs;
+    const todayInMs = Date.now();
+    c.daysToGo = (endInMs - todayInMs) / dayInMs;
     setCampaign({ ...c });
   };
 
@@ -113,48 +118,100 @@ function CampaignOverview(props) {
     }
   };
 
-  const getOverviewInfo = () => {
+  const getUnpublishedOverviewInfo = () => {
     return (
-      <div className="flex-column">
-        <div>
-          Progress: {campaign.currentlyDonated} / {campaign.goal}
-        </div>
-        <div>TimeLeft = {}</div>
-        <div>Total Views = {campaign.views.length}</div>
-        <div>
-          Conversion Percentage = {donations.length} / {campaign.views.length} = {donations.length / campaign.views.length}%
-        </div>
-        <div>
-          <h1>Reward Info</h1>
-          <div className="overview-reward-summary">
-            {rewardSummaryInfo.map((r) => {
-              return (
-                <div className="flex-column" key={r._id}>
-                  <h3>{r.name}</h3>
-                  <div>Times Bought: {r.purchaseCount}</div>
-                  <div>Total Earned: {r.purchaseCount * r.price}</div>
-                  <div>Percentage Responsible: {(r.purchaseCount * r.price) / campaign.goal}%</div>
-                  <div>Idk, and some other interesting statistics.</div>
-                </div>
-              );
-            })}
+      <div className="flex-column justi justify-center align-center">
+        <div class="containerUnpublished ">
+          <div id="unpublishedWarning">
+            <div className="flex-column align-center ">
+              <h1 className="spacing bold">Your Project is Unpublished!</h1>
+              <h3>Please customize your project before publishing.</h3>
+              <h3 className="spacing">You cannot change your goal, duration, or rewards after publishing so make sure they are perfect before you publish!</h3>
+            </div>
           </div>
         </div>
-        <hr />
+        <div className="test555">
+          {isPublished() ? (
+            ""
+          ) : (
+            <button className="white buttonsEditor green-bg" disabled={!canBePublished()} onClick={publishCampaign}>
+              PUBLISH
+            </button>
+          )}
+        </div>
       </div>
     );
   };
 
-  const getUnpublishedOverviewInfo = () => {
+  const getOverviewInfo = () => {
     return (
-      <div id="containerUnpublished">
-        <div id="unpublishedWarning">
-          <div className="flex-column align-center">
-            <h1 className="spacing bold">Your Project is Unpublished!</h1>
-            <h3>Please customize your project before publishing.</h3>
-            <h3 className="spacing">You cannot change your goal, duration, or rewards after publishing
-                so make sure they are perfect before you publish!</h3>
+      <div className="flex-column align-center">
+        <div className="campaign-overview-main-container ">
+          {/* <hr className="whitLine "></hr> */}
+          <div className="overview-text">
+            <h1>Overview</h1>
           </div>
+          <div className="campaign-overview-stats">
+            <div className="campaign-overview-text-size">
+              <h3>Funding Progress</h3>
+            </div>
+            <div className="campaign-overview-text-size">
+              <h5>
+                Progress: {campaign.currentlyDonated} / {campaign.goal}
+              </h5>
+            </div>
+
+            <div className="campaign-overview-text-size">
+              <h3>TimeLeft </h3>
+            </div>
+            <div className="campaign-overview-text-size">
+              <h5> {campaign.daysToGo} Days</h5>
+            </div>
+
+            <div className="campaign-overview-text-size">
+              <h3>Views </h3>
+            </div>
+            <div className="campaign-overview-text-size">
+              <h5>Total Views:{campaign.views.length} </h5>
+            </div>
+
+            <div className="campaign-overview-text-size">
+              <h3>Conversion Percentage </h3>
+            </div>
+            <div className="campaign-overview-text-size">
+              <h5>
+                {" "}
+                {donations.length} / {campaign.views.length} = {donations.length / campaign.views.length}%
+              </h5>
+            </div>
+          </div>
+
+          <div className="campaign-overview-stats campaign-overview-text-size">
+            <h1>Reward Information</h1>
+          </div>
+          <div className="test55">
+            <div className="overview-reward-summary">
+              {rewardSummaryInfo.map((r) => {
+                return (
+                  <div className="flex-column overview-reward-summary-srction" key={r._id}>
+                    <h3>{r.name}</h3>
+                    <div className="reward-description">Description: {r.description}</div>
+                    <div>
+                      Price: ${r.price}
+                      <div className="Expected-delivery">Expected Delivery Date:{r.expectedDeliveryDate}</div>
+                    </div>
+
+                    <hr className="reward-line"></hr>
+                    <div>Times Bought: {r.purchaseCount}</div>
+                    <div>Total Earned: {r.purchaseCount * r.price}</div>
+                    <div>Percentage Responsible: {(r.purchaseCount * r.price) / campaign.goal}%</div>
+                    <div>Idk, and some other interesting statistics.</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <hr />
         </div>
       </div>
     );
@@ -162,13 +219,15 @@ function CampaignOverview(props) {
 
   return (
     <div className="campaign-overview white">
-        <h1 className="flex-row justify-center">{campaign.title}</h1>
-        <h1 className="flex-row justify-center">{campaign.subtitle}</h1>
-      {/* <p>{campaign.description}</p> */}
-      {/* <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" /> */}
-      {isPublished() ? getOverviewInfo() : getUnpublishedOverviewInfo()}
-      <hr className="whitLine"></hr>
-      <div className="flex-row justify-space-around">
+      <h1 className="flex-row justify-center link-line">{campaign.title}</h1>
+      <h5 className="flex-row justify-center ">{campaign.subtitle}</h5>
+      <hr className="whitLine "></hr>
+
+      <div className="flex-row justify-space-around ">
+        <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
+          Overview
+        </Link>
+
         <Link to={"/Campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
           Settings
         </Link>
@@ -182,14 +241,12 @@ function CampaignOverview(props) {
             Rewards
           </Link>
         )}
-        {isPublished() ? (
-          ""
-        ) : (
-          <button className="white" disabled={!canBePublished()} onClick={publishCampaign}>
-            PUBLISH
-          </button>
-        )}
       </div>
+      <hr className="whitLine "></hr>
+
+      {/* <p>{campaign.description}</p> */}
+      {/* <img className="overview-image-preview" src={campaign.imageSrc} alt="Main Image" /> */}
+      {isPublished() ? getOverviewInfo() : getUnpublishedOverviewInfo()}
     </div>
   );
 }

@@ -31,30 +31,48 @@ const RewardEditor = ({ data, saveReward, cancelEdit, deleteReward }) => {
   };
 
   return (
-    <div className="flex-column white reward-editor-container">
-      <div className="justify-space-around">
+    <div className="flex-column white reward-editor-container-container">
+      <div className="flex-column white reward-editor-container">
         <div id="inputs">
-          <div>
+          <h1 id="reward-editor-title">Reward Editor</h1>
+          <div className="flex-row">
             <h3 className="create-reward-label">Name</h3>
-            <input className="create-reward-input" name="name" size="100" onChange={handleChange} type="text" defaultValue={state.name} />
+            <input className="create-reward-input" name="name" onChange={handleChange} type="text" defaultValue={state.name} />
           </div>
-          <div>
+          <div className="flex-row">
             <h3 className="create-reward-label">Description</h3>
             <input className="create-reward-input" name="description" onChange={handleChange} type="text" defaultValue={state.description} />
           </div>
-          <div>
+          <div className="flex-row">
             <h3 className="create-reward-label">Price</h3>
             <input className="create-reward-input" name="price" onChange={handleChange} type="number" defaultValue={state.price} />
           </div>
-          <div>
+          <div className="flex-row">
             <h3 className="create-reward-label">Expected Delivery Date</h3>
-            <input className="create-reward-input" name="expectedDeliveryDate" onChange={handleChange} type="datetime-local" defaultValue={state.expectedDeliveryDate} />
+            <input
+              className="create-reward-input"
+              name="expectedDeliveryDate"
+              onChange={handleChange}
+              type="datetime-local"
+              defaultValue={state.expectedDeliveryDate}
+            />
           </div>
-        </div>
-        <div>
-          <button className="buttonsEditor" id="saveEditor" onClick={trySave}>SAVE</button>
-          <button className="buttonsEditor" id="cancelEditor" onClick={cancelEdit}>CANCEL</button>
-          {data.isNew ? "" : <button className="buttonsEditor" id="deleteEditor" onClick={deleteReward}>DELETE</button>}
+
+          <div className="flex-column">
+            <button className="buttonsEditor green-bg" id="saveEditor" onClick={trySave}>
+              SAVE
+            </button>
+            <button className="buttonsEditor gray-bg" id="cancelEditor" onClick={cancelEdit}>
+              CANCEL
+            </button>
+            {data.isNew ? (
+              ""
+            ) : (
+              <button className="buttonsEditor red-bg" id="deleteEditor" onClick={deleteReward}>
+                DELETE
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

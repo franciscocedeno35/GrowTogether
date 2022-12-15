@@ -45,15 +45,22 @@ const PublicCampaign = () => {
       GetImage(PC.mainImage).then((src) => {
         setMainImage(src);
       });
+      const contentPromises = [];
       // populate content images
       for (let i = 0; i < PC.content.length; i++) {
-        const c = PC.content[i];
-        if (c.type == "Image") {
-          PC.content[i].imageSrc = await GetImage(c.content);
-        }
-        if (c.type == "Video") {
-          PC.content[i].videoURL = c.content;
-        }
+        const babyPromise = new Promise(async (res, rej) => {
+          const c = PC.content[i];
+          if (c.type == "Image") {
+            PC.content[i].imageSrc = await GetImage(c.content);
+            res();
+          } else if (c.type == "Video") {
+            PC.content[i].videoURL = c.content;
+            res();
+          } else {
+            res();
+          }
+        });
+        contentPromises.push(babyPromise);
       }
       // get donation information
       Get(`/donations/${params.campaignID}`, {}).then((donations) => {
@@ -71,7 +78,9 @@ const PublicCampaign = () => {
         const endInMs = new Date(PC.publishDate).getTime() + PC.duration * dayInMs;
         const todayInMs = Date.now();
         PC.daysToGo = (endInMs - todayInMs) / dayInMs;
-        setCampInfo(PC);
+        Promise.all(contentPromises).then((result) => {
+          setCampInfo(PC);
+        });
       });
     }
   };
@@ -115,21 +124,23 @@ const PublicCampaign = () => {
         </div>
       </div>
       <div className="bottom-section">
-        <div className="content-section">
+        <div className="child content-section">
           {CampInfo.content.map((content, i) => (
             <div key={i}>
               <PublicContent content={content} />
             </div>
           ))}
         </div>
-        <div className="rewards-section">
-          <h1 className="title-section reward-title">Rewards</h1>
-          <div className="rewards-list">
-            {CampInfo.rewards.map((reward) => (
-              <div key={reward._id}>
-                <PublicReward reward={reward} />
-              </div>
-            ))}
+        <div className="sticky">
+          <div className="child rewards-section">
+            <h1 className="title-section reward-title">Rewards</h1>
+            <div className="rewards-list">
+              {CampInfo.rewards.map((reward) => (
+                <div key={reward._id}>
+                  <PublicReward reward={reward} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

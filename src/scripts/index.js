@@ -3,7 +3,7 @@ import { Buffer } from "buffer";
 
 const a = axios.create({
   baseURL: "http://localhost:4000",
-  timeout: 5000,
+  timeout: 30 * 1000,
 });
 
 /**
@@ -102,6 +102,7 @@ export async function GetImage(imageID) {
         } else {
           console.log("Something's wrong with the database");
         }
+        reject(error);
       });
   });
 }
