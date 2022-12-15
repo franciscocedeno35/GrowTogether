@@ -102,6 +102,7 @@ export async function GetImage(imageID) {
         } else {
           console.log("Something's wrong with the database");
         }
+        reject(error);
       });
   });
 }

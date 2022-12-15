@@ -30,29 +30,33 @@ const EditContent = () => {
   const prepareContent = async (campaign) => {
     setContents(campaign.content);
     const newContent = [];
+    const contentPromises = [];
     for (let i = 0; i < campaign.content.length; i++) {
-      new Promise((res, rej) => {
-        console.log("Requested Content for " + i);
+      const babyPromise = new Promise((res, rej) => {
         const content = campaign.content[i];
+        console.log(content);
         if (content.type == "Image") {
-          GetImage(content.content).then((src) => {
-            content.imageSrc = src;
-            res(content);
-          });
-          // we gotta grab the image from DB and store it.
-          // new Promise(async (res, rej) => {
-          //   // res();
-          // });
-        }
-        if (content.type == "Video") {
+          GetImage(content.content)
+            .then((src) => {
+              content.imageSrc = src;
+              res(content);
+            })
+            .catch((error) => {
+              console.log(`Could not find the image for content at index ${i} where the image id is ${content.content}`);
+            });
+        } else if (content.type == "Video") {
           content.videoURL = content.content;
           res(content);
+        } else {
+          res(content);
         }
-      }).then((preparedContent) => {
-        newContent[i] = preparedContent;
-        setContents(newContent);
       });
+      contentPromises.push(babyPromise);
     }
+    Promise.all(contentPromises).then((result) => {
+      console.log(result);
+      setContents(result);
+    });
   };
 
   const showEditor = (content, index, isInsert) => {
