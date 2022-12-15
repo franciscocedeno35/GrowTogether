@@ -133,19 +133,21 @@ const ContentEditor = ({ data, saveEdit, cancelEdit, insertEdit, deleteContent }
   };
 
   return (
-    <div className="flex-column white content-editor-container">
-      <div>
-        <label>Content Type</label>
-        <select name="type" onChange={handleChange} defaultValue={state.type}>
-          {ValidContentTypes.map((type) => {
-            return <option key={type}>{type}</option>;
-          })}
-        </select>
+    <div className="flex-column white content-editor-container-container">
+      <div className="flex-column white content-editor-container">
+        <div>
+          <label>Content Type</label>
+          <select name="type" onChange={handleChange} defaultValue={state.type}>
+            {ValidContentTypes.map((type) => {
+              return <option key={type}>{type}</option>;
+            })}
+          </select>
+        </div>
+        <div>{getContentInput()}</div>
+        <button onClick={trySave}>SAVE</button>
+        <button onClick={cancelEdit}>CANCEL</button>
+        {data.isInsert ? "" : <button onClick={deleteContent}>DELETE</button>}
       </div>
-      <div>{getContentInput()}</div>
-      <button onClick={trySave}>SAVE</button>
-      <button onClick={cancelEdit}>CANCEL</button>
-      {data.isInsert ? "" : <button onClick={deleteContent}>DELETE</button>}
     </div>
   );
 };
