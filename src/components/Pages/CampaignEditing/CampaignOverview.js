@@ -147,10 +147,6 @@ function CampaignOverview(props) {
     return (
       <div className="flex-column align-center">
         <div className="campaign-overview-main-container ">
-          {/* <hr className="whitLine "></hr> */}
-          <div className="overview-text">
-            <h1>Overview</h1>
-          </div>
           <div className="campaign-overview-stats">
             <div className="campaign-overview-text-size">
               <h3>Funding Progress</h3>
@@ -223,8 +219,8 @@ function CampaignOverview(props) {
       <h5 className="flex-row justify-center ">{campaign.subtitle}</h5>
       <hr className="whitLine "></hr>
 
-      <div className="flex-row justify-space-around ">
-        <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
+      <div className="flex-row justify-space-around edit-campaign-links">
+        <Link className="green" to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign, userID: userID }}>
           Overview
         </Link>
 

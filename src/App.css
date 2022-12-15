@@ -82,6 +82,7 @@ a:hover {
 
 .whitee {
   color: white;
+  font-size: x-large;
 }
 .whitee:hover {
   color: #54ffad;
@@ -93,6 +94,10 @@ a:hover {
 
 .black {
   color: black;
+}
+
+.green {
+  color: #54ffad;
 }
 
 .bold {
@@ -113,4 +118,9 @@ a:hover {
 
 .blue-bg {
   background-color: #5bb1e1;
+}
+
+.edit-campaign-links {
+  font-size: x-large;
+  font-weight: bold;
 }

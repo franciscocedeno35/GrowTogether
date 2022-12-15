@@ -59,12 +59,15 @@ function AccountOverview() {
       const campaign = userInfo.donations[i].campaign;
 
       // compute campaign progress
-      let sum = 0;
+      let totalSum = 0;
+      let donatedSum = 0;
       const campDonations = await Get(`/donations/${campaign._id}`, {});
       for (let j = 0; j < campDonations.length; j++) {
-        sum += campDonations[j].sum;
+        totalSum += campDonations[j].sum;
+        donatedSum += campDonations[j].charityAmount;
       }
-      campaign.currentlyDonated = sum;
+      campaign.currentlyDonated = totalSum;
+      campaign.totalDonated = donatedSum;
 
       const imageSrc = await GetImage(campaign.mainImage);
       campaign.imageSrc = imageSrc;
@@ -101,7 +104,7 @@ function AccountOverview() {
       <hr className="whiteLine"></hr>
 
       <div className="a">
-        <div className="flex-column">
+        <div className="flex-column campaigns-backed">
           <div id="titles">
             <h2>Campaigns Backed:</h2>
           </div>
@@ -117,6 +120,7 @@ function AccountOverview() {
                       {donation.campaign.goal}
                     </h3>
                     <p>Created By {donation.campaign.owner}</p>
+                    <h5 className="donated">Total Donated: ${donation.charityAmount.toLocaleString("en")}</h5>
                     <h5 className="contribution">Total Contributed: ${donation.sum.toLocaleString("en")}</h5>
                   </div>
                 </div>
@@ -146,7 +150,7 @@ function AccountOverview() {
           })}
         </div>
 
-        <div className="flex-column">
+        <div className="flex-column your-campaigns">
           <div id="titles">
             <h2>Your Campaigns:</h2>
           </div>

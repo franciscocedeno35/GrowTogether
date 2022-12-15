@@ -34,16 +34,18 @@
 
 .a {
   display: flex;
-  justify-content: space-around;
-  width: 90%;
-  margin-right: 500px;
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+  /* margin-right: 500px; */
   background-color: #383838;
   color: white;
+  gap: 20px;
 }
 
 .backed {
   box-sizing: border-box;
-  width: 643px;
+  /* width: 643px; */
   /* height: 400px; */
   padding: 10px 0px;
   background: #3e3e3e;
@@ -68,8 +70,8 @@
 }
 
 .contribution {
-  position: relative;
-  top: 40px;
+  /* position: relative; */
+  /* top: 40px; */
 }
 
 .rewardsPromised {
@@ -77,8 +79,8 @@
 }
 
 .rewardsSummary {
-  width: 614px;
-  height: 510px;
+  /* width: 614px; */
+  /* height: 510px; */
   margin: 20px 10px;
   background: #4c4c4c;
   border: 1px solid #8b8b8b;
@@ -114,19 +116,20 @@
 .delivery {
   position: relative;
   margin: 20px;
-  top: 50px;
+  /* top: 50px; */
 }
 
 .purchased {
   position: absolute;
   margin: auto;
-  top: 50px;
+  /* top: 50px; */
+  top: 0px;
   right: 20px;
 }
 
 #yourCampaigns {
   box-sizing: border-box;
-  width: 436px;
+  /* width: 436px; */
   /* height: 400px; */
   background: #3e3e3e;
   border: 3px solid #8b8b8b;
@@ -139,7 +142,7 @@
   display: flex;
   justify-content: left;
   margin: 5px 7px;
-  width: 416px;
+  /* width: 416px; */
   height: 92px;
   background: #4d4d4d;
   border: 3px solid #8b8b8b;
@@ -163,4 +166,12 @@
   background-color: #4d4d4d;
   color: white;
   border: 3px solid #8b8b8b;
+}
+
+.campaigns-backed {
+  width: 50vw;
+}
+
+.your-campaigns {
+  width: 30vw;
 }

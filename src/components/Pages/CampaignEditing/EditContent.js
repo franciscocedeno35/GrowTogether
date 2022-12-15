@@ -141,14 +141,14 @@ const EditContent = () => {
       <h1 className="flex-row justify-center white">{campaign.title}</h1>
       <h5 className="flex-row justify-center white">{campaign.subtitle}</h5>
       <hr className="white "></hr>
-      <div className="flex-row justify-space-around ">
+      <div className="flex-row justify-space-around edit-campaign-links ">
         <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
           Overview
         </Link>
         <Link to={"/Campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
           Settings
         </Link>
-        <Link to={"/Campaign/Content/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+        <Link className="green" to={"/Campaign/Content/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
           Content
         </Link>
         {campaign.publishDate ? (
