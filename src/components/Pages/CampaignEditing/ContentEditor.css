@@ -5,6 +5,7 @@
   /* background-color: rgb(0, 0, 0, 0.5); */
   width: 100vw;
   height: 0px;
+  z-index: 1;
 }
 
 .content-editor-container {
@@ -16,6 +17,30 @@
   height: 100vh;
 }
 
+.content-editor-background {
+  margin: 0 auto;
+  background-color: #383838;
+  border-radius: 20px;
+  border: #d9d9d9 1px solid;
+  padding: 20px;
+  width: 60%;
+}
+
+.video-preview {
+  margin: 2em auto;
+}
+
 .image-limiter {
-  max-height: 80vh;
+  max-height: 60vh;
+}
+
+#content-editor-title {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#content-editor-image-input {
+  margin: auto;
+  height: auto;
+  border-radius: inherit;
 }

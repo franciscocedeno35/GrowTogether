@@ -105,27 +105,38 @@ const ContentEditor = ({ data, saveEdit, cancelEdit, insertEdit, deleteContent }
     switch (state.type) {
       case "Image": {
         return (
-          <div>
-            <label>Image</label>
-            <input name="content" onChange={handleImage} type="file" defaultValue={""}></input>
+          <div className="flex-column">
+            <div className="flex-row">
+              <h3 className="create-reward-label">Image</h3>
+              <input
+                className="create-reward-input"
+                id="content-editor-image-input"
+                name="content"
+                onChange={handleImage}
+                type="file"
+                defaultValue={""}
+              ></input>
+            </div>
             {image.imageSrc ? <img src={image.imageSrc} className="image-limiter" /> : ""}
           </div>
         );
       }
       case "Video": {
         return (
-          <div>
-            <label>YouTube URL:</label>
-            <input name="content" onChange={handleVideo} type="text" defaultValue={state.content} />
-            <iframe src={videoURL} type="text/html" width="500" height="265" allowFullScreen></iframe>
+          <div className="flex-column">
+            <div className="flex-row">
+              <h3 className="create-reward-label">YouTube URL:</h3>
+              <input className="create-reward-input" name="content" onChange={handleVideo} type="text" defaultValue={state.content} />
+            </div>
+            <iframe className="video-preview" src={videoURL} type="text/html" width="500" height="265" allowFullScreen></iframe>
           </div>
         );
       }
       default: {
         return (
-          <div>
-            <label>Content</label>
-            <input name="content" onChange={handleChange} type="text" defaultValue={state.content} />
+          <div className="flex-row">
+            <h3 className="create-reward-label">Content</h3>
+            <input className="create-reward-input" name="content" onChange={handleChange} type="text" defaultValue={state.content} />
           </div>
         );
       }
@@ -133,20 +144,35 @@ const ContentEditor = ({ data, saveEdit, cancelEdit, insertEdit, deleteContent }
   };
 
   return (
-    <div className="flex-column white content-editor-container-container">
+    <div className="content-editor-container-container">
       <div className="flex-column white content-editor-container">
-        <div>
-          <label>Content Type</label>
-          <select name="type" onChange={handleChange} defaultValue={state.type}>
-            {ValidContentTypes.map((type) => {
-              return <option key={type}>{type}</option>;
-            })}
-          </select>
+        <div className="content-editor-background">
+          <h1 id="content-editor-title">Content Editor</h1>
+          <div className="flex-row">
+            <h3 className="create-reward-label">Content Type</h3>
+            <select name="type" onChange={handleChange} defaultValue={state.type} className="create-reward-input">
+              {ValidContentTypes.map((type) => {
+                return <option key={type}>{type}</option>;
+              })}
+            </select>
+          </div>
+          <div>{getContentInput()}</div>
+          <div className="flex-column">
+            <button className="buttonsEditor green-bg" onClick={trySave}>
+              SAVE
+            </button>
+            <button className="buttonsEditor gray-bg" onClick={cancelEdit}>
+              CANCEL
+            </button>
+            {data.isInsert ? (
+              ""
+            ) : (
+              <button className="buttonsEditor red-bg" onClick={deleteContent}>
+                DELETE
+              </button>
+            )}
+          </div>
         </div>
-        <div>{getContentInput()}</div>
-        <button onClick={trySave}>SAVE</button>
-        <button onClick={cancelEdit}>CANCEL</button>
-        {data.isInsert ? "" : <button onClick={deleteContent}>DELETE</button>}
       </div>
     </div>
   );
