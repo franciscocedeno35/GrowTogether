@@ -4,6 +4,7 @@
   height: 300px;
   overflow: hidden;
   object-fit: contain;
+  
 }
 
 .card-slider-container-imgspan{
@@ -17,5 +18,6 @@
   padding-right: 20px;
   padding-bottom: 0;
   margin-bottom: 0;
+  cursor: pointer;
   
 }
