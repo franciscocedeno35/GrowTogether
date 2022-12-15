@@ -132,87 +132,74 @@ const EditContent = () => {
   };
 
   return (
-		<div>
-			<h1 className="flex-row justify-center white">{campaign.title}</h1>
-			<h5 className="flex-row justify-center white">{campaign.subtitle}</h5>
-			<hr className="white "></hr>
-			<div className="flex-row justify-space-around ">
-				<Link
-					to={'/Campaign/Overview/' + campaign._id}
-					state={{ campaign: campaign, userID: location.state.userID }}>
-					Overview
-				</Link>
-				<Link
-					to={'/Campaign/Settings/' + campaign._id}
-					state={{ campaign: campaign, userID: location.state.userID }}>
-					Settings
-				</Link>
-				<Link
-					to={'/Campaign/Content/' + campaign._id}
-					state={{ campaign: campaign, userID: location.state.userID }}>
-					Content
-				</Link>
-				{campaign.publishDate ? (
-					''
-				) : (
-					<Link
-						to={'/Campaign/Rewards/' + campaign._id}
-						state={{ campaign: campaign, userID: location.state.userID }}>
-						Rewards
-					</Link>
-				)}
-			</div>
-			<hr className="Navbar-line"></hr>
+    <div>
+      {showingEditor ? (
+        <ContentEditor data={contentToBeEdited} saveEdit={saveEdit} cancelEdit={cancelEdit} insertEdit={insertEdit} deleteContent={deleteContent} />
+      ) : (
+        ""
+      )}
+      <h1 className="flex-row justify-center white">{campaign.title}</h1>
+      <h5 className="flex-row justify-center white">{campaign.subtitle}</h5>
+      <hr className="white "></hr>
+      <div className="flex-row justify-space-around ">
+        <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Overview
+        </Link>
+        <Link to={"/Campaign/Settings/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Settings
+        </Link>
+        <Link to={"/Campaign/Content/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+          Content
+        </Link>
+        {campaign.publishDate ? (
+          ""
+        ) : (
+          <Link to={"/Campaign/Rewards/" + campaign._id} state={{ campaign: campaign, userID: location.state.userID }}>
+            Rewards
+          </Link>
+        )}
+      </div>
+      <hr className="Navbar-line"></hr>
 
-			<div className="flex-column white">
-				{showingEditor ? (
-					<ContentEditor
-						data={contentToBeEdited}
-						saveEdit={saveEdit}
-						cancelEdit={cancelEdit}
-						insertEdit={insertEdit}
-						deleteContent={deleteContent}
-					/>
-				) : (
-					''
-				)}
-				{contents.map((content, i) => {
-					return (
-						<div key={i}>
-							<div className="edit-content-content">
-								<button
-									onClick={() => {
-										showEditor(emptyContent, i, true);
-									}}>
-									INSERT NEW
-								</button>
-							</div>
-							<div className="edit-content-content">
-								<PublicContent content={content}></PublicContent>
-								<button
-									onClick={() => {
-										showEditor(content, i, false);
-									}}>
-									EDIT
-								</button>
-							</div>
-						</div>
-					);
-				})}
-				<button
-					onClick={() => {
-						showEditor(emptyContent, contents.length, true);
-					}}>
-					APPEND NEW
-				</button>
-				<button onClick={saveContents}>SAVE</button>
-				<Link
-					to={'/Campaign/Overview/' + campaign._id}
-					state={{ campaign: campaign }}>
-					CANCEL
-				</Link>
-			</div>
-		</div>
-	);
+      <div className="flex-column white">
+        {contents.map((content, i) => {
+          return (
+            <div key={i}>
+              <div className="edit-content-content">
+                <button
+                  onClick={() => {
+                    showEditor(emptyContent, i, true);
+                  }}
+                >
+                  INSERT NEW
+                </button>
+              </div>
+              <div className="edit-content-content">
+                <PublicContent content={content}></PublicContent>
+                <button
+                  onClick={() => {
+                    showEditor(content, i, false);
+                  }}
+                >
+                  EDIT
+                </button>
+              </div>
+            </div>
+          );
+        })}
+        <button
+          onClick={() => {
+            showEditor(emptyContent, contents.length, true);
+          }}
+        >
+          APPEND NEW
+        </button>
+        <button onClick={saveContents}>SAVE</button>
+        <Link to={"/Campaign/Overview/" + campaign._id} state={{ campaign: campaign }}>
+          CANCEL
+        </Link>
+      </div>
+    </div>
+  );
 };
 export default EditContent;
